@@ -68,15 +68,13 @@ import crossroadsStaticCollisionSource from '../models/crossroads/static/collisi
 
 // Car prius
 import carPriusChassisSource from '../models/car/prius/chassis.glb'
+import carPriusBackLightsBrakeSource from '../models/car/prius/backLightsBrake.glb'
+import carPriusBackLightsReverseSource from '../models/car/prius/backLightsReverse.glb'
+import carPriusFrontLightsSource from '../models/car/prius/frontLights.glb'
 
 // Car default
 import carDefaultWheelSource from '../models/car/default/wheel.glb'
-import carDefaultBackLightsBrakeSource from '../models/car/default/backLightsBrake.glb'
-import carDefaultBackLightsReverseSource from '../models/car/default/backLightsReverse.glb'
-import carDefaultAntenaSource from '../models/car/default/antena.glb'
-// import carDefaultBunnyEarLeftSource from '../models/car/default/bunnyEarLeft.glb'
-// import carDefaultBunnyEarRightSource from '../models/car/default/bunnyEarRight.glb'
-// Car cyber truck
+
 // Projects
 import projectsBoardStructureSource from '../models/projects/board/structure.glb'
 import projectsBoardCollisionSource from '../models/projects/board/collision.glb'
@@ -253,11 +251,9 @@ export default class Resources extends EventEmitter {
             // Car prius
             {name: 'carPriusChassis', source: carPriusChassisSource},
             {name: 'carPriusWheel', source: carDefaultWheelSource},
-            {name: 'carPriusBackLightsBrake', source: carDefaultBackLightsBrakeSource},
-            {name: 'carPriusBackLightsReverse', source: carDefaultBackLightsReverseSource},
-            {name: 'carPriusAntena', source: carDefaultAntenaSource},
-            // { name: 'carDefaultBunnyEarLeft', source: carDefaultBunnyEarLeftSource },
-            // { name: 'carDefaultBunnyEarRight', source: carDefaultBunnyEarRightSource },
+            {name: 'carPriusBackLightsBrake', source: carPriusBackLightsBrakeSource},
+            {name: 'carPriusBackLightsReverse', source: carPriusBackLightsReverseSource},
+            {name: 'carPriusFrontLights', source: carPriusFrontLightsSource},
 
             // Project
             {name: 'projectsBoardStructure', source: projectsBoardStructureSource},

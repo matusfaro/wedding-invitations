@@ -128,7 +128,7 @@ export default class Physics {
         this.car.options.wheelFrontOffsetDepth = 0.635
         this.car.options.wheelBackOffsetDepth = -0.475
         this.car.options.wheelOffsetWidth = 0.39
-        this.car.options.wheelRadius = 0.25
+        this.car.options.wheelRadius = 0.15
         this.car.options.wheelHeight = 0.24
         this.car.options.wheelSuspensionStiffness = 25
         this.car.options.wheelSuspensionRestLength = 0.1
