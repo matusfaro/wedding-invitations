@@ -6,9 +6,11 @@ module.exports = webpackMerge(
     {
         mode: 'development',
         devServer:
-        {
-            contentBase: './dist',
-            open: true
-        }
+            {
+                hot: false,
+                inline: false,
+                contentBase: './dist',
+                open: false
+            }
     }
 )

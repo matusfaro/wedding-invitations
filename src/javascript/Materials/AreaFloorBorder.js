@@ -3,13 +3,12 @@ import * as THREE from 'three'
 import shaderFragment from '../../shaders/areaFloorBorder/fragment.glsl'
 import shaderVertex from '../../shaders/areaFloorBorder/vertex.glsl'
 
-export default function()
-{
+export default function () {
     const uniforms = {
-        uColor: { value: null },
-        uAlpha: { value: null },
-        uLoadProgress: { value: null },
-        uProgress: { value: null }
+        uColor: {value: null},
+        uAlpha: {value: null},
+        uLoadProgress: {value: null},
+        uProgress: {value: null}
     }
 
     const material = new THREE.ShaderMaterial({

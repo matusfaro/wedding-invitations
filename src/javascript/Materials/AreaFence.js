@@ -3,12 +3,11 @@ import * as THREE from 'three'
 import shaderFragment from '../../shaders/areaFence/fragment.glsl'
 import shaderVertex from '../../shaders/areaFence/vertex.glsl'
 
-export default function()
-{
+export default function () {
     const uniforms = {
-        uTime: { value: null },
-        uBorderAlpha: { value: null },
-        uStrikeAlpha: { value: null }
+        uTime: {value: null},
+        uBorderAlpha: {value: null},
+        uStrikeAlpha: {value: null}
     }
 
     const material = new THREE.ShaderMaterial({

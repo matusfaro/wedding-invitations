@@ -1,16 +1,13 @@
 import * as THREE from 'three'
 
-export default class Walls
-{
-    constructor(_options)
-    {
+export default class Walls {
+    constructor(_options) {
         // Options
         this.resources = _options.resources
         this.objects = _options.objects
     }
 
-    add(_options)
-    {
+    add(_options) {
         const wall = {}
         wall.coordinates = []
         wall.items = []
@@ -19,30 +16,23 @@ export default class Walls
         let widthCount = shape.widthCount
         let heightCount = shape.heightCount
 
-        switch(_options.shape.type)
-        {
+        switch (_options.shape.type) {
             case 'rectangle':
             case 'brick':
-                for(let i = 0; i < heightCount; i++)
-                {
+                for (let i = 0; i < heightCount; i++) {
                     const lastLine = i === heightCount - 1
                     let j = 0
                     let widthCountTemp = widthCount
 
-                    if(_options.shape.type === 'brick' && lastLine && _options.shape.equilibrateLastLine)
-                    {
-                        if(i % 2 === 0)
-                        {
+                    if (_options.shape.type === 'brick' && lastLine && _options.shape.equilibrateLastLine) {
+                        if (i % 2 === 0) {
                             widthCountTemp--
-                        }
-                        else
-                        {
+                        } else {
                             j++
                         }
                     }
 
-                    for(; j < widthCountTemp; j++)
-                    {
+                    for (; j < widthCountTemp; j++) {
                         const offset = new THREE.Vector3()
                         offset.add(shape.offsetWidth.clone().multiplyScalar(j - (shape.widthCount - 1) * 0.5))
                         offset.add(shape.offsetHeight.clone().multiplyScalar(i))
@@ -50,8 +40,7 @@ export default class Walls
                         offset.y += (Math.random() - 0.5) * shape.randomOffset.y
                         offset.z += (Math.random() - 0.5) * shape.randomOffset.z
 
-                        if(_options.shape.type === 'brick' && i % 2 === 0)
-                        {
+                        if (_options.shape.type === 'brick' && i % 2 === 0) {
                             offset.add(shape.offsetWidth.clone().multiplyScalar(0.5))
                         }
 
@@ -71,10 +60,8 @@ export default class Walls
 
             case 'triangle':
                 heightCount = shape.widthCount
-                for(let i = 0; i < heightCount; i++)
-                {
-                    for(let j = 0; j < widthCount; j++)
-                    {
+                for (let i = 0; i < heightCount; i++) {
+                    for (let j = 0; j < widthCount; j++) {
                         const offset = new THREE.Vector3()
                         offset.add(shape.offsetWidth.clone().multiplyScalar(j - (shape.widthCount - 1) * 0.5))
                         offset.add(shape.offsetWidth.clone().multiplyScalar(i * 0.5))
@@ -83,8 +70,7 @@ export default class Walls
                         offset.y += (Math.random() - 0.5) * shape.randomOffset.y
                         offset.z += (Math.random() - 0.5) * shape.randomOffset.z
 
-                        if(_options.shape.type === 'brick' && i % 2 === 0)
-                        {
+                        if (_options.shape.type === 'brick' && i % 2 === 0) {
                             offset.add(shape.offsetWidth.clone().multiplyScalar(0.5))
                         }
 
@@ -106,9 +92,8 @@ export default class Walls
                 break
         }
 
-        for(const _coordinates of wall.coordinates)
-        {
-            const objectOptions = { ..._options.object }
+        for (const _coordinates of wall.coordinates) {
+            const objectOptions = {..._options.object}
             objectOptions.offset = _options.object.offset.clone().add(_coordinates.offset).add(shape.position)
             objectOptions.rotation = _options.object.rotation.clone()
             objectOptions.rotation.x += _coordinates.rotation.x

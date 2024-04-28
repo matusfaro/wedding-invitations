@@ -1,10 +1,8 @@
 import CANNON from 'cannon'
 import * as THREE from 'three'
 
-export default class Physics
-{
-    constructor(_options)
-    {
+export default class Physics {
+    constructor(_options) {
         this.config = _options.config
         this.debug = _options.debug
         this.time = _options.time
@@ -13,8 +11,7 @@ export default class Physics
         this.sounds = _options.sounds
 
         // Set up
-        if(this.debug)
-        {
+        if (this.debug) {
             this.debugFolder = this.debug.addFolder('physics')
             // this.debugFolder.open()
         }
@@ -25,16 +22,14 @@ export default class Physics
         this.setFloor()
         this.setCar()
 
-        this.time.on('tick', () =>
-        {
+        this.time.on('tick', () => {
             this.world.step(1 / 60, this.time.delta, 3)
         })
     }
 
-    setWorld()
-    {
+    setWorld() {
         this.world = new CANNON.World()
-        this.world.gravity.set(0, 0, - 3.25)
+        this.world.gravity.set(0, 0, -3.25)
         this.world.allowSleep = true
         // this.world.gravity.set(0, 0, 0)
         // this.world.broadphase = new CANNON.SAPBroadphase(this.world)
@@ -42,31 +37,27 @@ export default class Physics
         this.world.defaultContactMaterial.restitution = 0.2
 
         // Debug
-        if(this.debug)
-        {
-            this.debugFolder.add(this.world.gravity, 'z').step(0.001).min(- 20).max(20).name('gravity')
+        if (this.debug) {
+            this.debugFolder.add(this.world.gravity, 'z').step(0.001).min(-20).max(20).name('gravity')
         }
     }
 
-    setModels()
-    {
+    setModels() {
         this.models = {}
         this.models.container = new THREE.Object3D()
         this.models.container.visible = false
         this.models.materials = {}
-        this.models.materials.static = new THREE.MeshBasicMaterial({ color: 0x0000ff, wireframe: true })
-        this.models.materials.dynamic = new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true })
-        this.models.materials.dynamicSleeping = new THREE.MeshBasicMaterial({ color: 0xffff00, wireframe: true })
+        this.models.materials.static = new THREE.MeshBasicMaterial({color: 0x0000ff, wireframe: true})
+        this.models.materials.dynamic = new THREE.MeshBasicMaterial({color: 0xff0000, wireframe: true})
+        this.models.materials.dynamicSleeping = new THREE.MeshBasicMaterial({color: 0xffff00, wireframe: true})
 
         // Debug
-        if(this.debug)
-        {
+        if (this.debug) {
             this.debugFolder.add(this.models.container, 'visible').name('modelsVisible')
         }
     }
 
-    setMaterials()
-    {
+    setMaterials() {
         this.materials = {}
 
         // All materials
@@ -78,18 +69,29 @@ export default class Physics
         // Contact between materials
         this.materials.contacts = {}
 
-        this.materials.contacts.floorDummy = new CANNON.ContactMaterial(this.materials.items.floor, this.materials.items.dummy, { friction: 0.05, restitution: 0.3, contactEquationStiffness: 1000 })
+        this.materials.contacts.floorDummy = new CANNON.ContactMaterial(this.materials.items.floor, this.materials.items.dummy, {
+            friction: 0.05,
+            restitution: 0.3,
+            contactEquationStiffness: 1000
+        })
         this.world.addContactMaterial(this.materials.contacts.floorDummy)
 
-        this.materials.contacts.dummyDummy = new CANNON.ContactMaterial(this.materials.items.dummy, this.materials.items.dummy, { friction: 0.5, restitution: 0.3, contactEquationStiffness: 1000 })
+        this.materials.contacts.dummyDummy = new CANNON.ContactMaterial(this.materials.items.dummy, this.materials.items.dummy, {
+            friction: 0.5,
+            restitution: 0.3,
+            contactEquationStiffness: 1000
+        })
         this.world.addContactMaterial(this.materials.contacts.dummyDummy)
 
-        this.materials.contacts.floorWheel = new CANNON.ContactMaterial(this.materials.items.floor, this.materials.items.wheel, { friction: 0.3, restitution: 0, contactEquationStiffness: 1000 })
+        this.materials.contacts.floorWheel = new CANNON.ContactMaterial(this.materials.items.floor, this.materials.items.wheel, {
+            friction: 0.3,
+            restitution: 0,
+            contactEquationStiffness: 1000
+        })
         this.world.addContactMaterial(this.materials.contacts.floorWheel)
     }
 
-    setFloor()
-    {
+    setFloor() {
         this.floor = {}
         this.floor.body = new CANNON.Body({
             mass: 0,
@@ -102,8 +104,7 @@ export default class Physics
         this.world.addBody(this.floor.body)
     }
 
-    setCar()
-    {
+    setCar() {
         this.car = {}
 
         this.car.steering = 0
@@ -125,7 +126,7 @@ export default class Physics
         this.car.options.chassisOffset = new CANNON.Vec3(0, 0, 0.41)
         this.car.options.chassisMass = 20
         this.car.options.wheelFrontOffsetDepth = 0.635
-        this.car.options.wheelBackOffsetDepth = - 0.475
+        this.car.options.wheelBackOffsetDepth = -0.475
         this.car.options.wheelOffsetWidth = 0.39
         this.car.options.wheelRadius = 0.25
         this.car.options.wheelHeight = 0.24
@@ -135,9 +136,9 @@ export default class Physics
         this.car.options.wheelDampingRelaxation = 1.8
         this.car.options.wheelDampingCompression = 1.5
         this.car.options.wheelMaxSuspensionForce = 100000
-        this.car.options.wheelRollInfluence =  0.01
+        this.car.options.wheelRollInfluence = 0.01
         this.car.options.wheelMaxSuspensionTravel = 0.3
-        this.car.options.wheelCustomSlidingRotationalSpeed = - 30
+        this.car.options.wheelCustomSlidingRotationalSpeed = -30
         this.car.options.wheelMass = 5
         this.car.options.controlsSteeringSpeed = 0.005
         this.car.options.controlsSteeringMax = Math.PI * 0.17
@@ -160,8 +161,7 @@ export default class Physics
         /**
          * Jump
          */
-        this.car.jump = (_toReturn = true, _strength = 60) =>
-        {
+        this.car.jump = (_toReturn = true, _strength = 60) => {
             let worldPosition = this.car.chassis.body.position
             worldPosition = worldPosition.vadd(new CANNON.Vec3(_toReturn ? 0.08 : 0, 0, 0))
             this.car.chassis.body.applyImpulse(new CANNON.Vec3(0, 0, _strength), worldPosition)
@@ -170,8 +170,7 @@ export default class Physics
         /**
          * Create method
          */
-        this.car.create = () =>
-        {
+        this.car.create = () => {
             /**
              * Chassis
              */
@@ -179,20 +178,18 @@ export default class Physics
 
             this.car.chassis.shape = new CANNON.Box(new CANNON.Vec3(this.car.options.chassisDepth * 0.5, this.car.options.chassisWidth * 0.5, this.car.options.chassisHeight * 0.5))
 
-            this.car.chassis.body = new CANNON.Body({ mass: this.car.options.chassisMass })
+            this.car.chassis.body = new CANNON.Body({mass: this.car.options.chassisMass})
             this.car.chassis.body.allowSleep = false
             this.car.chassis.body.position.set(0, 0, 12)
             this.car.chassis.body.sleep()
             this.car.chassis.body.addShape(this.car.chassis.shape, this.car.options.chassisOffset)
-            this.car.chassis.body.quaternion.setFromAxisAngle(new CANNON.Vec3(0, 0, 1), - Math.PI * 0.5)
+            this.car.chassis.body.quaternion.setFromAxisAngle(new CANNON.Vec3(0, 0, 1), -Math.PI * 0.5)
 
             /**
              * Sound
              */
-            this.car.chassis.body.addEventListener('collide', (_event) =>
-            {
-                if(_event.body.mass === 0)
-                {
+            this.car.chassis.body.addEventListener('collide', (_event) => {
+                if (_event.body.mass === 0) {
                     const relativeVelocity = _event.contact.getImpactVelocityAlongNormal()
                     this.sounds.play('carHit', relativeVelocity)
                 }
@@ -222,7 +219,7 @@ export default class Physics
                 maxSuspensionTravel: this.car.options.wheelMaxSuspensionTravel,
                 customSlidingRotationalSpeed: this.car.options.wheelCustomSlidingRotationalSpeed,
                 useCustomSlidingRotationalSpeed: true,
-                directionLocal: new CANNON.Vec3(0, 0, - 1),
+                directionLocal: new CANNON.Vec3(0, 0, -1),
                 axleLocal: new CANNON.Vec3(0, 1, 0),
                 chassisConnectionPointLocal: new CANNON.Vec3(1, 1, 0) // Will be changed for each wheel
             }
@@ -232,7 +229,7 @@ export default class Physics
             this.car.vehicle.addWheel(this.car.wheels.options)
 
             // Front right
-            this.car.wheels.options.chassisConnectionPointLocal.set(this.car.options.wheelFrontOffsetDepth, - this.car.options.wheelOffsetWidth, 0)
+            this.car.wheels.options.chassisConnectionPointLocal.set(this.car.options.wheelFrontOffsetDepth, -this.car.options.wheelOffsetWidth, 0)
             this.car.vehicle.addWheel(this.car.wheels.options)
 
             // Back left
@@ -240,7 +237,7 @@ export default class Physics
             this.car.vehicle.addWheel(this.car.wheels.options)
 
             // Back right
-            this.car.wheels.options.chassisConnectionPointLocal.set(this.car.options.wheelBackOffsetDepth, - this.car.options.wheelOffsetWidth, 0)
+            this.car.wheels.options.chassisConnectionPointLocal.set(this.car.options.wheelBackOffsetDepth, -this.car.options.wheelOffsetWidth, 0)
             this.car.vehicle.addWheel(this.car.wheels.options)
 
             this.car.vehicle.addToWorld(this.world)
@@ -253,10 +250,9 @@ export default class Physics
             this.car.wheels.indexes.backRight = 3
             this.car.wheels.bodies = []
 
-            for(const _wheelInfos of this.car.vehicle.wheelInfos)
-            {
+            for (const _wheelInfos of this.car.vehicle.wheelInfos) {
                 const shape = new CANNON.Cylinder(_wheelInfos.radius, _wheelInfos.radius, this.car.wheels.options.height, 20)
-                const body = new CANNON.Body({ mass: this.car.options.wheelMass, material: this.materials.items.wheel })
+                const body = new CANNON.Body({mass: this.car.options.wheelMass, material: this.materials.items.wheel})
                 const quaternion = new CANNON.Quaternion()
                 quaternion.setFromAxisAngle(new CANNON.Vec3(1, 0, 0), Math.PI / 2)
 
@@ -273,7 +269,7 @@ export default class Physics
             this.car.model.container = new THREE.Object3D()
             this.models.container.add(this.car.model.container)
 
-            this.car.model.material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true })
+            this.car.model.material = new THREE.MeshBasicMaterial({color: 0xffffff, wireframe: true})
 
             this.car.model.chassis = new THREE.Mesh(new THREE.BoxBufferGeometry(this.car.options.chassisDepth, this.car.options.chassisWidth, this.car.options.chassisHeight), this.car.model.material)
             this.car.model.container.add(this.car.model.chassis)
@@ -282,8 +278,7 @@ export default class Physics
 
             const wheelGeometry = new THREE.CylinderBufferGeometry(this.car.options.wheelRadius, this.car.options.wheelRadius, this.car.options.wheelHeight, 8, 1)
 
-            for(let i = 0; i < 4; i++)
-            {
+            for (let i = 0; i < 4; i++) {
                 const wheel = new THREE.Mesh(wheelGeometry, this.car.model.material)
                 this.car.model.container.add(wheel)
                 this.car.model.wheels.push(wheel)
@@ -293,8 +288,7 @@ export default class Physics
         /**
          * Destroy method
          */
-        this.car.destroy = () =>
-        {
+        this.car.destroy = () => {
             this.car.vehicle.removeFromWorld(this.world)
             this.models.container.remove(this.car.model.container)
         }
@@ -302,8 +296,7 @@ export default class Physics
         /**
          * Recreate method
          */
-        this.car.recreate = () =>
-        {
+        this.car.recreate = () => {
             this.car.destroy()
             this.car.create()
             this.car.chassis.body.wakeUp()
@@ -312,8 +305,7 @@ export default class Physics
         /**
          * Brake
          */
-        this.car.brake = () =>
-        {
+        this.car.brake = () => {
             this.car.vehicle.setBrake(1, 0)
             this.car.vehicle.setBrake(1, 1)
             this.car.vehicle.setBrake(1, 2)
@@ -323,8 +315,7 @@ export default class Physics
         /**
          * Unbrake
          */
-        this.car.unbrake = () =>
-        {
+        this.car.unbrake = () => {
             this.car.vehicle.setBrake(0, 0)
             this.car.vehicle.setBrake(0, 1)
             this.car.vehicle.setBrake(0, 2)
@@ -334,10 +325,8 @@ export default class Physics
         /**
          * Actions
          */
-        this.controls.on('action', (_name) =>
-        {
-            switch(_name)
-            {
+        this.controls.on('action', (_name) => {
+            switch (_name) {
                 case 'reset':
                     this.car.recreate()
                     break
@@ -347,8 +336,7 @@ export default class Physics
         /**
          * Cannon tick
          */
-        this.world.addEventListener('postStep', () =>
-        {
+        this.world.addEventListener('postStep', () => {
             // Update speed
             let positionDelta = new CANNON.Vec3()
             positionDelta = positionDelta.copy(this.car.chassis.body.position)
@@ -370,35 +358,27 @@ export default class Physics
             const worldUp = new CANNON.Vec3()
             this.car.chassis.body.vectorToWorldFrame(localUp, worldUp)
 
-            if(worldUp.dot(localUp) < 0.5)
-            {
-                if(this.car.upsideDown.state === 'watching')
-                {
+            if (worldUp.dot(localUp) < 0.5) {
+                if (this.car.upsideDown.state === 'watching') {
                     this.car.upsideDown.state = 'pending'
-                    this.car.upsideDown.pendingTimeout = window.setTimeout(() =>
-                    {
+                    this.car.upsideDown.pendingTimeout = window.setTimeout(() => {
                         this.car.upsideDown.state = 'turning'
                         this.car.jump(true)
 
-                        this.car.upsideDown.turningTimeout = window.setTimeout(() =>
-                        {
+                        this.car.upsideDown.turningTimeout = window.setTimeout(() => {
                             this.car.upsideDown.state = 'watching'
                         }, 1000)
                     }, 1000)
                 }
-            }
-            else
-            {
-                if(this.car.upsideDown.state === 'pending')
-                {
+            } else {
+                if (this.car.upsideDown.state === 'pending') {
                     this.car.upsideDown.state = 'watching'
                     window.clearTimeout(this.car.upsideDown.pendingTimeout)
                 }
             }
 
             // Update wheel bodies
-            for(let i = 0; i < this.car.vehicle.wheelInfos.length; i++)
-            {
+            for (let i = 0; i < this.car.vehicle.wheelInfos.length; i++) {
                 this.car.vehicle.updateWheelTransform(i)
 
                 const transform = this.car.vehicle.wheelInfos[i].worldTransform
@@ -406,8 +386,7 @@ export default class Physics
                 this.car.wheels.bodies[i].quaternion.copy(transform.quaternion)
 
                 // Rotate the wheels on the right
-                if(i === 1 || i === 3)
-                {
+                if (i === 1 || i === 3) {
                     const rotationQuaternion = new CANNON.Quaternion(0, 0, 0, 1)
                     rotationQuaternion.setFromAxisAngle(new CANNON.Vec3(0, 0, 1), Math.PI)
                     this.car.wheels.bodies[i].quaternion = this.car.wheels.bodies[i].quaternion.mult(rotationQuaternion)
@@ -415,12 +394,10 @@ export default class Physics
             }
 
             // Slow down back
-            if(!this.controls.actions.up && !this.controls.actions.down)
-            {
+            if (!this.controls.actions.up && !this.controls.actions.down) {
                 let slowDownForce = this.car.worldForward.clone()
 
-                if(this.car.goingForward)
-                {
+                if (this.car.goingForward) {
                     slowDownForce = slowDownForce.negate()
                 }
 
@@ -433,8 +410,7 @@ export default class Physics
         /**
          * Time tick
          */
-        this.time.on('tick', () =>
-        {
+        this.time.on('tick', () => {
             /**
              * Body
              */
@@ -443,8 +419,7 @@ export default class Physics
             this.car.model.chassis.quaternion.copy(this.car.chassis.body.quaternion)
 
             // Update wheel models
-            for(const _wheelKey in this.car.wheels.bodies)
-            {
+            for (const _wheelKey in this.car.wheels.bodies) {
                 const wheelBody = this.car.wheels.bodies[_wheelKey]
                 const wheelMesh = this.car.model.wheels[_wheelKey]
 
@@ -455,68 +430,56 @@ export default class Physics
             /**
              * Steering
              */
-            if(this.controls.touch)
-            {
+            if (this.controls.touch) {
                 let deltaAngle = 0
 
-                if(this.controls.touch.joystick.active)
-                {
+                if (this.controls.touch.joystick.active) {
                     // Calculate delta between joystick and car angles
                     deltaAngle = (this.controls.touch.joystick.angle.value - this.car.angle + Math.PI) % (Math.PI * 2) - Math.PI
-                    deltaAngle = deltaAngle < - Math.PI ? deltaAngle + Math.PI * 2 : deltaAngle
+                    deltaAngle = deltaAngle < -Math.PI ? deltaAngle + Math.PI * 2 : deltaAngle
                 }
 
                 // Update steering directly
                 const goingForward = Math.abs(this.car.forwardSpeed) < 0.01 ? true : this.car.goingForward
-                this.car.steering = deltaAngle * (goingForward ? - 1 : 1)
+                this.car.steering = deltaAngle * (goingForward ? -1 : 1)
 
                 // Clamp steer
-                if(Math.abs(this.car.steering) > this.car.options.controlsSteeringMax)
-                {
+                if (Math.abs(this.car.steering) > this.car.options.controlsSteeringMax) {
                     this.car.steering = Math.sign(this.car.steering) * this.car.options.controlsSteeringMax
                 }
             }
 
-            if(!this.controls.touch || !this.controls.touch.joystick.active)
-            {
+            if (!this.controls.touch || !this.controls.touch.joystick.active) {
                 const steerStrength = this.time.delta * this.car.options.controlsSteeringSpeed
 
                 // Steer right
-                if(this.controls.actions.right)
-                {
+                if (this.controls.actions.right) {
                     this.car.steering += steerStrength
                 }
                 // Steer left
-                else if(this.controls.actions.left)
-                {
+                else if (this.controls.actions.left) {
                     this.car.steering -= steerStrength
                 }
                 // Steer center
-                else
-                {
-                    if(Math.abs(this.car.steering) > steerStrength)
-                    {
+                else {
+                    if (Math.abs(this.car.steering) > steerStrength) {
                         this.car.steering -= steerStrength * Math.sign(this.car.steering)
-                    }
-                    else
-                    {
+                    } else {
                         this.car.steering = 0
                     }
                 }
 
                 // Clamp steer
-                if(Math.abs(this.car.steering) > this.car.options.controlsSteeringMax)
-                {
+                if (Math.abs(this.car.steering) > this.car.options.controlsSteeringMax) {
                     this.car.steering = Math.sign(this.car.steering) * this.car.options.controlsSteeringMax
                 }
             }
 
             // Update wheels
-            this.car.vehicle.setSteeringValue(- this.car.steering, this.car.wheels.indexes.frontLeft)
-            this.car.vehicle.setSteeringValue(- this.car.steering, this.car.wheels.indexes.frontRight)
+            this.car.vehicle.setSteeringValue(-this.car.steering, this.car.wheels.indexes.frontLeft)
+            this.car.vehicle.setSteeringValue(-this.car.steering, this.car.wheels.indexes.frontRight)
 
-            if(this.car.options.controlsSteeringQuad)
-            {
+            if (this.car.options.controlsSteeringQuad) {
                 this.car.vehicle.setSteeringValue(this.car.steering, this.car.wheels.indexes.backLeft)
                 this.car.vehicle.setSteeringValue(this.car.steering, this.car.wheels.indexes.backRight)
             }
@@ -529,56 +492,42 @@ export default class Physics
             const controlsAcceleratinMaxSpeed = this.controls.actions.boost ? this.car.options.controlsAcceleratinMaxSpeedBoost : this.car.options.controlsAcceleratinMaxSpeed
 
             // Accelerate up
-            if(this.controls.actions.up)
-            {
-                if(this.car.speed < controlsAcceleratinMaxSpeed || !this.car.goingForward)
-                {
+            if (this.controls.actions.up) {
+                if (this.car.speed < controlsAcceleratinMaxSpeed || !this.car.goingForward) {
                     this.car.accelerating = accelerateStrength
-                }
-                else
-                {
+                } else {
                     this.car.accelerating = 0
                 }
             }
 
             // Accelerate Down
-            else if(this.controls.actions.down)
-            {
-                if(this.car.speed < controlsAcceleratinMaxSpeed || this.car.goingForward)
-                {
-                    this.car.accelerating = - accelerateStrength
-                }
-                else
-                {
+            else if (this.controls.actions.down) {
+                if (this.car.speed < controlsAcceleratinMaxSpeed || this.car.goingForward) {
+                    this.car.accelerating = -accelerateStrength
+                } else {
                     this.car.accelerating = 0
                 }
-            }
-            else
-            {
+            } else {
                 this.car.accelerating = 0
             }
 
-            this.car.vehicle.applyEngineForce(- this.car.accelerating, this.car.wheels.indexes.backLeft)
-            this.car.vehicle.applyEngineForce(- this.car.accelerating, this.car.wheels.indexes.backRight)
+            this.car.vehicle.applyEngineForce(-this.car.accelerating, this.car.wheels.indexes.backLeft)
+            this.car.vehicle.applyEngineForce(-this.car.accelerating, this.car.wheels.indexes.backRight)
 
-            if(this.car.options.controlsSteeringQuad)
-            {
-                this.car.vehicle.applyEngineForce(- this.car.accelerating, this.car.wheels.indexes.frontLeft)
-                this.car.vehicle.applyEngineForce(- this.car.accelerating, this.car.wheels.indexes.frontRight)
+            if (this.car.options.controlsSteeringQuad) {
+                this.car.vehicle.applyEngineForce(-this.car.accelerating, this.car.wheels.indexes.frontLeft)
+                this.car.vehicle.applyEngineForce(-this.car.accelerating, this.car.wheels.indexes.frontRight)
             }
 
             /**
              * Brake
              */
-            if(this.controls.actions.brake)
-            {
+            if (this.controls.actions.brake) {
                 this.car.vehicle.setBrake(this.car.options.controlsBrakeStrength, 0)
                 this.car.vehicle.setBrake(this.car.options.controlsBrakeStrength, 1)
                 this.car.vehicle.setBrake(this.car.options.controlsBrakeStrength, 2)
                 this.car.vehicle.setBrake(this.car.options.controlsBrakeStrength, 3)
-            }
-            else
-            {
+            } else {
                 this.car.vehicle.setBrake(0, 0)
                 this.car.vehicle.setBrake(0, 1)
                 this.car.vehicle.setBrake(0, 2)
@@ -590,8 +539,7 @@ export default class Physics
         this.car.create()
 
         // Debug
-        if(this.debug)
-        {
+        if (this.debug) {
             this.car.debugFolder = this.debugFolder.addFolder('car')
             this.car.debugFolder.open()
 
@@ -601,7 +549,7 @@ export default class Physics
             this.car.debugFolder.add(this.car.options.chassisOffset, 'z').step(0.001).min(0).max(5).name('chassisOffset').onFinishChange(this.car.recreate)
             this.car.debugFolder.add(this.car.options, 'chassisMass').step(0.001).min(0).max(1000).name('chassisMass').onFinishChange(this.car.recreate)
             this.car.debugFolder.add(this.car.options, 'wheelFrontOffsetDepth').step(0.001).min(0).max(5).name('wheelFrontOffsetDepth').onFinishChange(this.car.recreate)
-            this.car.debugFolder.add(this.car.options, 'wheelBackOffsetDepth').step(0.001).min(- 5).max(0).name('wheelBackOffsetDepth').onFinishChange(this.car.recreate)
+            this.car.debugFolder.add(this.car.options, 'wheelBackOffsetDepth').step(0.001).min(-5).max(0).name('wheelBackOffsetDepth').onFinishChange(this.car.recreate)
             this.car.debugFolder.add(this.car.options, 'wheelOffsetWidth').step(0.001).min(0).max(5).name('wheelOffsetWidth').onFinishChange(this.car.recreate)
             this.car.debugFolder.add(this.car.options, 'wheelRadius').step(0.001).min(0).max(2).name('wheelRadius').onFinishChange(this.car.recreate)
             this.car.debugFolder.add(this.car.options, 'wheelHeight').step(0.001).min(0).max(2).name('wheelHeight').onFinishChange(this.car.recreate)
@@ -613,7 +561,7 @@ export default class Physics
             this.car.debugFolder.add(this.car.options, 'wheelMaxSuspensionForce').step(0.001).min(0).max(1000000).name('wheelMaxSuspensionForce').onFinishChange(this.car.recreate)
             this.car.debugFolder.add(this.car.options, 'wheelRollInfluence').step(0.001).min(0).max(1).name('wheelRollInfluence').onFinishChange(this.car.recreate)
             this.car.debugFolder.add(this.car.options, 'wheelMaxSuspensionTravel').step(0.001).min(0).max(5).name('wheelMaxSuspensionTravel').onFinishChange(this.car.recreate)
-            this.car.debugFolder.add(this.car.options, 'wheelCustomSlidingRotationalSpeed').step(0.001).min(- 45).max(45).name('wheelCustomSlidingRotationalSpeed').onFinishChange(this.car.recreate)
+            this.car.debugFolder.add(this.car.options, 'wheelCustomSlidingRotationalSpeed').step(0.001).min(-45).max(45).name('wheelCustomSlidingRotationalSpeed').onFinishChange(this.car.recreate)
             this.car.debugFolder.add(this.car.options, 'wheelMass').step(0.001).min(0).max(1000).name('wheelMass').onFinishChange(this.car.recreate)
             this.car.debugFolder.add(this.car.options, 'controlsSteeringSpeed').step(0.001).min(0).max(0.1).name('controlsSteeringSpeed')
             this.car.debugFolder.add(this.car.options, 'controlsSteeringMax').step(0.001).min(0).max(Math.PI * 0.5).name('controlsSteeringMax')
@@ -627,8 +575,7 @@ export default class Physics
         }
     }
 
-    addObjectFromThree(_options)
-    {
+    addObjectFromThree(_options) {
         // Set up
         const collision = {}
 
@@ -650,16 +597,14 @@ export default class Physics
         })
         collision.body.allowSleep = true
         collision.body.sleepSpeedLimit = 0.01
-        if(_options.sleep)
-        {
+        if (_options.sleep) {
             collision.body.sleep()
         }
 
         this.world.addBody(collision.body)
 
         // Rotation
-        if(_options.rotation)
-        {
+        if (_options.rotation) {
             const rotationQuaternion = new CANNON.Quaternion()
             rotationQuaternion.setFromEuler(_options.rotation.x, _options.rotation.y, _options.rotation.z, _options.rotation.order)
             collision.body.quaternion = collision.body.quaternion.mult(rotationQuaternion)
@@ -672,53 +617,38 @@ export default class Physics
         const shapes = []
 
         // Each mesh
-        for(let i = 0; i < _options.meshes.length; i++)
-        {
+        for (let i = 0; i < _options.meshes.length; i++) {
             const mesh = _options.meshes[i]
 
             // Define shape
             let shape = null
 
-            if(mesh.name.match(/^cube_?[0-9]{0,3}?|box[0-9]{0,3}?$/i))
-            {
+            if (mesh.name.match(/^cube_?[0-9]{0,3}?|box[0-9]{0,3}?$/i)) {
                 shape = 'box'
-            }
-            else if(mesh.name.match(/^cylinder_?[0-9]{0,3}?$/i))
-            {
+            } else if (mesh.name.match(/^cylinder_?[0-9]{0,3}?$/i)) {
                 shape = 'cylinder'
-            }
-            else if(mesh.name.match(/^sphere_?[0-9]{0,3}?$/i))
-            {
+            } else if (mesh.name.match(/^sphere_?[0-9]{0,3}?$/i)) {
                 shape = 'sphere'
-            }
-            else if(mesh.name.match(/^center_?[0-9]{0,3}?$/i))
-            {
+            } else if (mesh.name.match(/^center_?[0-9]{0,3}?$/i)) {
                 shape = 'center'
             }
 
             // Shape is the center
-            if(shape === 'center')
-            {
+            if (shape === 'center') {
                 collision.center.set(mesh.position.x, mesh.position.y, mesh.position.z)
             }
 
             // Other shape
-            else if(shape)
-            {
+            else if (shape) {
                 // Geometry
                 let shapeGeometry = null
 
-                if(shape === 'cylinder')
-                {
+                if (shape === 'cylinder') {
                     shapeGeometry = new CANNON.Cylinder(mesh.scale.x, mesh.scale.x, mesh.scale.z, 8)
-                }
-                else if(shape === 'box')
-                {
+                } else if (shape === 'box') {
                     const halfExtents = new CANNON.Vec3(mesh.scale.x * 0.5, mesh.scale.y * 0.5, mesh.scale.z * 0.5)
                     shapeGeometry = new CANNON.Box(halfExtents)
-                }
-                else if(shape === 'sphere')
-                {
+                } else if (shape === 'sphere') {
                     shapeGeometry = new CANNON.Sphere(mesh.scale.x)
                 }
 
@@ -727,28 +657,22 @@ export default class Physics
 
                 // Quaternion
                 const shapeQuaternion = new CANNON.Quaternion(mesh.quaternion.x, mesh.quaternion.y, mesh.quaternion.z, mesh.quaternion.w)
-                if(shape === 'cylinder')
-                {
+                if (shape === 'cylinder') {
                     // Rotate cylinder
                     // shapeQuaternion.setFromAxisAngle(new CANNON.Vec3(1, 0, 0), - Math.PI * 0.5)
                 }
 
                 // Save
-                shapes.push({ shapeGeometry, shapePosition, shapeQuaternion })
+                shapes.push({shapeGeometry, shapePosition, shapeQuaternion})
 
                 // Create model object
                 let modelGeometry = null
-                if(shape === 'cylinder')
-                {
+                if (shape === 'cylinder') {
                     modelGeometry = new THREE.CylinderBufferGeometry(1, 1, 1, 8, 1)
                     modelGeometry.rotateX(Math.PI * 0.5)
-                }
-                else if(shape === 'box')
-                {
+                } else if (shape === 'box') {
                     modelGeometry = new THREE.BoxBufferGeometry(1, 1, 1)
-                }
-                else if(shape === 'sphere')
-                {
+                } else if (shape === 'sphere') {
                     modelGeometry = new THREE.SphereBufferGeometry(1, 8, 8)
                 }
 
@@ -762,8 +686,7 @@ export default class Physics
         }
 
         // Update meshes to match center
-        for(const _mesh of collision.model.meshes)
-        {
+        for (const _mesh of collision.model.meshes) {
             _mesh.position.x -= collision.center.x
             _mesh.position.y -= collision.center.y
             _mesh.position.z -= collision.center.z
@@ -772,8 +695,7 @@ export default class Physics
         }
 
         // Update shapes to match center
-        for(const _shape of shapes)
-        {
+        for (const _shape of shapes) {
             // Create physic object
             _shape.shapePosition.x -= collision.center.x
             _shape.shapePosition.y -= collision.center.y
@@ -794,28 +716,23 @@ export default class Physics
         collision.origin.sleep = _options.sleep
 
         // Time tick update
-        this.time.on('tick', () =>
-        {
+        this.time.on('tick', () => {
             collision.model.container.position.set(collision.body.position.x, collision.body.position.y, collision.body.position.z)
             collision.model.container.quaternion.set(collision.body.quaternion.x, collision.body.quaternion.y, collision.body.quaternion.z, collision.body.quaternion.w)
 
-            if(this.models.container.visible && _options.mass > 0)
-            {
-                for(const _mesh of collision.model.container.children)
-                {
+            if (this.models.container.visible && _options.mass > 0) {
+                for (const _mesh of collision.model.container.children) {
                     _mesh.material = collision.body.sleepState === 2 ? this.models.materials.dynamicSleeping : this.models.materials.dynamic
                 }
             }
         })
 
         // Reset
-        collision.reset = () =>
-        {
+        collision.reset = () => {
             collision.body.position.copy(collision.origin.position)
             collision.body.quaternion.copy(collision.origin.quaternion)
 
-            if(collision.origin.sleep)
-            {
+            if (collision.origin.sleep) {
                 collision.body.sleep()
             }
         }

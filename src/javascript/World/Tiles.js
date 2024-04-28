@@ -1,9 +1,7 @@
 import * as THREE from 'three'
 
-export default class Tiles
-{
-    constructor(_options)
-    {
+export default class Tiles {
+    constructor(_options) {
         // Options
         this.resources = _options.resources
         this.objects = _options.objects
@@ -19,8 +17,7 @@ export default class Tiles
         this.setModels()
     }
 
-    setModels()
-    {
+    setModels() {
         this.models = {}
 
         this.models.items = [
@@ -53,8 +50,7 @@ export default class Tiles
 
         const totalChances = this.models.items.reduce((_totalChances, _item) => _totalChances + _item.chances, 0)
         let chances = 0
-        this.models.items = this.models.items.map((_item) =>
-        {
+        this.models.items = this.models.items.map((_item) => {
             // Update chances
             _item.minChances = chances
 
@@ -67,14 +63,12 @@ export default class Tiles
             return _item
         })
 
-        this.models.pick = () =>
-        {
+        this.models.pick = () => {
             const random = Math.random()
-            const model =  this.models.items.find((_item) => random >= _item.minChances && random <= _item.maxChances)
+            const model = this.models.items.find((_item) => random >= _item.minChances && random <= _item.maxChances)
             model.rotationIndex++
 
-            if(model.rotationIndex > 3)
-            {
+            if (model.rotationIndex > 3) {
                 model.rotationIndex = 0
             }
 
@@ -82,8 +76,7 @@ export default class Tiles
         }
     }
 
-    add(_options)
-    {
+    add(_options) {
         const tilePath = {}
         tilePath.start = _options.start
         tilePath.delta = _options.delta
@@ -97,8 +90,7 @@ export default class Tiles
         tilePath.angle = tilePath.directionVector.angle()
 
         // Create tiles
-        for(let i = 0; i < tilePath.count; i++)
-        {
+        for (let i = 0; i < tilePath.count; i++) {
             // Model
             const model = this.models.pick()
 
@@ -109,8 +101,7 @@ export default class Tiles
 
             const tangent = tilePath.tangentVector
 
-            if(i % 1 === 0)
-            {
+            if (i % 1 === 0) {
                 tangent.negate()
             }
 

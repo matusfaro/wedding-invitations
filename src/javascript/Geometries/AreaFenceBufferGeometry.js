@@ -1,10 +1,8 @@
 import * as THREE from 'three'
 
 // AreaFenceBufferGeometry
-class AreaFenceBufferGeometry
-{
-    constructor(_width, _height, _depth,)
-    {
+class AreaFenceBufferGeometry {
+    constructor(_width, _height, _depth,) {
         // Parameters
         this.parameters = {
             width: _width,
@@ -28,14 +26,14 @@ class AreaFenceBufferGeometry
         vertices[0 * 3 + 2] = 0
 
         vertices[1 * 3 + 0] = _width * 0.5
-        vertices[1 * 3 + 1] = - _height * 0.5
+        vertices[1 * 3 + 1] = -_height * 0.5
         vertices[1 * 3 + 2] = 0
 
-        vertices[2 * 3 + 0] = - _width * 0.5
-        vertices[2 * 3 + 1] = - _height * 0.5
+        vertices[2 * 3 + 0] = -_width * 0.5
+        vertices[2 * 3 + 1] = -_height * 0.5
         vertices[2 * 3 + 2] = 0
 
-        vertices[3 * 3 + 0] = - _width * 0.5
+        vertices[3 * 3 + 0] = -_width * 0.5
         vertices[3 * 3 + 1] = _height * 0.5
         vertices[3 * 3 + 2] = 0
 
@@ -44,14 +42,14 @@ class AreaFenceBufferGeometry
         vertices[4 * 3 + 2] = _depth
 
         vertices[5 * 3 + 0] = _width * 0.5
-        vertices[5 * 3 + 1] = - _height * 0.5
+        vertices[5 * 3 + 1] = -_height * 0.5
         vertices[5 * 3 + 2] = _depth
 
-        vertices[6 * 3 + 0] = - _width * 0.5
-        vertices[6 * 3 + 1] = - _height * 0.5
+        vertices[6 * 3 + 0] = -_width * 0.5
+        vertices[6 * 3 + 1] = -_height * 0.5
         vertices[6 * 3 + 2] = _depth
 
-        vertices[7 * 3 + 0] = - _width * 0.5
+        vertices[7 * 3 + 0] = -_width * 0.5
         vertices[7 * 3 + 1] = _height * 0.5
         vertices[7 * 3 + 2] = _depth
 
