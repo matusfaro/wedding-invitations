@@ -1,9 +1,6 @@
 import * as THREE from 'three'
-
 import Loader from './Utils/Loader.js'
 import EventEmitter from './Utils/EventEmitter.js'
-
-// Matcaps
 import matcapBeigeSource from '../models/matcaps/beige.png'
 import matcapBlackSource from '../models/matcaps/black.png'
 import matcapOrangeSource from '../models/matcaps/orange.png'
@@ -17,77 +14,54 @@ import matcapPurpleSource from '../models/matcaps/purple.png'
 import matcapBlueSource from '../models/matcaps/blue.png'
 import matcapYellowSource from '../models/matcaps/yellow.png'
 import matcapMetalSource from '../models/matcaps/metal.png'
-// import matcapGoldSource from '../models/matcaps/gold.png'
-// Intro
 import introStaticBaseSource from '../models/intro/static/base.glb'
 import introStaticCollisionSource from '../models/intro/static/collision.glb'
 import introStaticFloorShadowSource from '../models/intro/static/floorShadow.png'
-
 import introInstructionsLabelsSource from '../models/intro/instructions/labels.glb'
 import introInstructionsArrowsSource from '../models/intro/instructions/arrows.png'
 import introInstructionsControlsSource from '../models/intro/instructions/controls.png'
 import introInstructionsOtherSource from '../models/intro/instructions/other.png'
-
 import introArrowKeyBaseSource from '../models/intro/arrowKey/base.glb'
 import introArrowKeyCollisionSource from '../models/intro/arrowKey/collision.glb'
-
 import introBBaseSource from '../models/intro/b/base.glb'
 import introBCollisionSource from '../models/intro/b/collision.glb'
-
 import introRBaseSource from '../models/intro/r/base.glb'
 import introRCollisionSource from '../models/intro/r/collision.glb'
-
 import introUBaseSource from '../models/intro/u/base.glb'
 import introUCollisionSource from '../models/intro/u/collision.glb'
-
 import introNBaseSource from '../models/intro/n/base.glb'
 import introNCollisionSource from '../models/intro/n/collision.glb'
-
 import introOBaseSource from '../models/intro/o/base.glb'
 import introOCollisionSource from '../models/intro/o/collision.glb'
-
 import introSBaseSource from '../models/intro/s/base.glb'
 import introSCollisionSource from '../models/intro/s/collision.glb'
-
 import introIBaseSource from '../models/intro/i/base.glb'
 import introICollisionSource from '../models/intro/i/collision.glb'
-
 import introMBaseSource from '../models/intro/m/base.glb'
 import introMCollisionSource from '../models/intro/m/collision.glb'
-
 import introCreativeBaseSource from '../models/intro/creative/base.glb'
 import introCreativeCollisionSource from '../models/intro/creative/collision.glb'
-
 import introDevBaseSource from '../models/intro/dev/base.glb'
 import introDevCollisionSource from '../models/intro/dev/collision.glb'
-
-// Crossroads
 import crossroadsStaticFloorShadowSource from '../models/crossroads/static/floorShadow.png'
 import crossroadsStaticBaseSource from '../models/crossroads/static/base.glb'
 import crossroadsStaticCollisionSource from '../models/crossroads/static/collision.glb'
-
-// Car prius
 import carPriusChassisSource from '../models/car/prius/chassis.glb'
 import carPriusBackLightsBrakeSource from '../models/car/prius/backLightsBrake.glb'
 import carPriusBackLightsReverseSource from '../models/car/prius/backLightsReverse.glb'
 import carPriusFrontLightsSource from '../models/car/prius/frontLights.glb'
-
-// Car default
+import carPriusPlateSource from '../models/car/prius/plate.png'
 import carDefaultWheelSource from '../models/car/default/wheel.glb'
-
-// Projects
 import projectsBoardStructureSource from '../models/projects/board/structure.glb'
 import projectsBoardCollisionSource from '../models/projects/board/collision.glb'
 import projectsBoardStructureFloorShadowSource from '../models/projects/board/floorShadow.png'
 import projectsBoardPlaneSource from '../models/projects/board/plane.glb'
-
 import projectsDistinctionsAwwwardsBaseSource from '../models/projects/distinctions/awwwards/base.glb'
 import projectsDistinctionsAwwwardsCollisionSource from '../models/projects/distinctions/awwwards/collision.glb'
 import projectsDistinctionsFWABaseSource from '../models/projects/distinctions/fwa/base.glb'
 import projectsDistinctionsFWACollisionSource from '../models/projects/distinctions/fwa/collision.glb'
 import projectsDistinctionsCSSDABaseSource from '../models/projects/distinctions/cssda/base.glb'
 import projectsDistinctionsCSSDACollisionSource from '../models/projects/distinctions/cssda/collision.glb'
-
 import projectsThreejsJourneyFloorSource from '../models/projects/threejsJourney/floorTexture.png'
 import projectsMadboxFloorSource from '../models/projects/madbox/floorTexture.png'
 import projectsScoutFloorSource from '../models/projects/scout/floorTexture.png'
@@ -96,85 +70,55 @@ import projectsZenlyFloorSource from '../models/projects/zenly/floorTexture.png'
 import projectsCitrixRedbullFloorSource from '../models/projects/citrixRedbull/floorTexture.png'
 import projectsPriorHoldingsFloorSource from '../models/projects/priorHoldings/floorTexture.png'
 import projectsOranoFloorSource from '../models/projects/orano/floorTexture.png'
-// import projectsGleecChatFloorSource from '../models/projects/gleecChat/floorTexture.png'
 import projectsKepplerFloorSource from '../models/projects/keppler/floorTexture.png'
-
-// Information
 import informationStaticBaseSource from '../models/information/static/base.glb'
 import informationStaticCollisionSource from '../models/information/static/collision.glb'
 import informationStaticFloorShadowSource from '../models/information/static/floorShadow.png'
-
 import informationBaguetteBaseSource from '../models/information/baguette/base.glb'
 import informationBaguetteCollisionSource from '../models/information/baguette/collision.glb'
-
 import informationContactTwitterLabelSource from '../models/information/static/contactTwitterLabel.png'
 import informationContactGithubLabelSource from '../models/information/static/contactGithubLabel.png'
 import informationContactLinkedinLabelSource from '../models/information/static/contactLinkedinLabel.png'
 import informationContactMailLabelSource from '../models/information/static/contactMailLabel.png'
-
 import informationActivitiesSource from '../models/information/static/activities.png'
-
-// Playground
 import playgroundStaticFloorShadowSource from '../models/playground/static/floorShadow.png'
 import playgroundStaticBaseSource from '../models/playground/static/base.glb'
 import playgroundStaticCollisionSource from '../models/playground/static/collision.glb'
-
-// Brick
 import brickBaseSource from '../models/brick/base.glb'
 import brickCollisionSource from '../models/brick/collision.glb'
-
-// Horn
 import hornBaseSource from '../models/horn/base.glb'
 import hornCollisionSource from '../models/horn/collision.glb'
-
-// Awwwards trophy
 import webbyTrophyBaseSource from '../models/webbyTrophy/base.glb'
 import webbyTrophyCollisionSource from '../models/webbyTrophy/collision.glb'
-
-// Lemon
 import lemonBaseSource from '../models/lemon/base.glb'
 import lemonCollisionSource from '../models/lemon/collision.glb'
-
-// Bowling ball
 import bowlingBallBaseSource from '../models/bowlingBall/base.glb'
 import bowlingBallCollisionSource from '../models/bowlingBall/collision.glb'
-
-// Bowling pin
 import bowlingPinBaseSource from '../models/bowlingPin/base.glb'
 import bowlingPinCollisionSource from '../models/bowlingPin/collision.glb'
-
-// Area
 import areaKeyEnterSource from '../models/area/keyEnter.png'
 import areaEnterSource from '../models/area/enter.png'
 import areaOpenSource from '../models/area/open.png'
 import areaResetSource from '../models/area/reset.png'
 import areaQuestionMarkSource from '../models/area/questionMark.png'
-
-// Tiles
 import tilesABaseSource from '../models/tiles/a/base.glb'
 import tilesACollisionSource from '../models/tiles/a/collision.glb'
-
 import tilesBBaseSource from '../models/tiles/b/base.glb'
 import tilesBCollisionSource from '../models/tiles/b/collision.glb'
-
 import tilesCBaseSource from '../models/tiles/c/base.glb'
 import tilesCCollisionSource from '../models/tiles/c/collision.glb'
-
 import tilesDBaseSource from '../models/tiles/d/base.glb'
 import tilesDCollisionSource from '../models/tiles/d/collision.glb'
-
 import tilesEBaseSource from '../models/tiles/e/base.glb'
 import tilesECollisionSource from '../models/tiles/e/collision.glb'
-
-// Konami
 import konamiLabelSource from '../models/konami/label.png'
 import konamiLabelTouchSource from '../models/konami/label-touch.png'
-
-// Wigs
 import wig1Source from '../models/wigs/wig1.glb'
 import wig2Source from '../models/wigs/wig2.glb'
 import wig3Source from '../models/wigs/wig3.glb'
 import wig4Source from '../models/wigs/wig4.glb'
+import gerSource from '../models/ger/ger.glb'
+import gerCollisionSource from '../models/ger/collision.glb'
 
 export default class Resources extends EventEmitter {
     constructor() {
@@ -254,6 +198,7 @@ export default class Resources extends EventEmitter {
             {name: 'carPriusBackLightsBrake', source: carPriusBackLightsBrakeSource},
             {name: 'carPriusBackLightsReverse', source: carPriusBackLightsReverseSource},
             {name: 'carPriusFrontLights', source: carPriusFrontLightsSource},
+            {name: 'carPriusPlate', source: carPriusPlateSource, type: 'texture'},
 
             // Project
             {name: 'projectsBoardStructure', source: projectsBoardStructureSource},
@@ -383,9 +328,10 @@ export default class Resources extends EventEmitter {
             {name: 'wig3', source: wig3Source},
             {name: 'wig4', source: wig4Source},
 
-            // // Egg
-            // { name: 'eggBase', source: eggBaseSource },
-            // { name: 'eggCollision', source: eggCollisionSource },
+
+            // Ger
+            {name: 'ger', source: gerSource},
+            {name: 'gerCollision', source: gerCollisionSource},
         ])
 
         this.loader.on('fileEnd', (_resource, _data) => {

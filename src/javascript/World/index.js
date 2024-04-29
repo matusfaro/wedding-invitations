@@ -15,6 +15,7 @@ import Controls from './Controls.js'
 import Sounds from './Sounds.js'
 import {TweenLite} from 'gsap/TweenLite'
 import {Power2} from 'gsap/EasePack'
+import Ger from "./Ger";
 
 export default class {
     constructor(_options) {
@@ -61,6 +62,7 @@ export default class {
         this.areas.car = this.car
         this.setTiles()
         this.setWalls()
+        this.setGer()
         this.setSections()
     }
 
@@ -333,6 +335,14 @@ export default class {
         })
     }
 
+    setGer() {
+        this.ger = new Ger({
+            resources: this.resources,
+            objects: this.objects,
+            shadows: this.shadows,
+        })
+    }
+
     setObjects() {
         this.objects = new Objects({
             time: this.time,
@@ -384,6 +394,7 @@ export default class {
             zones: this.zones,
             walls: this.walls,
             tiles: this.tiles,
+            ger: this.ger,
             debug: this.debugFolder
         }
 

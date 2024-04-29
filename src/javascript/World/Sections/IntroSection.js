@@ -10,6 +10,7 @@ export default class IntroSection {
         this.areas = _options.areas
         this.walls = _options.walls
         this.tiles = _options.tiles
+        this.ger = _options.ger
         this.debug = _options.debug
         this.x = _options.x
         this.y = _options.y
@@ -25,6 +26,7 @@ export default class IntroSection {
         this.setTitles()
         this.setTiles()
         this.setDikes()
+        this.setGer()
     }
 
     setStatic() {
@@ -460,5 +462,11 @@ export default class IntroSection {
                     }
             })
         }
+    }
+
+    setGer() {
+        this.ger.add({
+            offset: new THREE.Vector2(0, 15),
+        })
     }
 }

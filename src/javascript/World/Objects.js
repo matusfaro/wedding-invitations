@@ -57,7 +57,7 @@ export default class Objects {
                 }
             },
 
-            // Shade
+            // Pure
             {
                 regex: /^pure([a-z]+)_?[0-9]{0,3}?/i,
                 apply: (_mesh, _options) => {
@@ -99,7 +99,7 @@ export default class Objects {
 
                     return mesh
                 }
-            }
+            },
         ]
 
         // Default
