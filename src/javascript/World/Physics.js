@@ -154,7 +154,7 @@ export default class Physics {
          * Upsize down
          */
         this.car.upsideDown = {}
-        this.car.upsideDown.state = 'watching' // 'wathing' | 'pending' | 'turning'
+        this.car.upsideDown.state = 'watching' // 'watching' | 'pending' | 'turning'
         this.car.upsideDown.pendingTimeout = null
         this.car.upsideDown.turningTimeout = null
 
@@ -180,7 +180,7 @@ export default class Physics {
 
             this.car.chassis.body = new CANNON.Body({mass: this.car.options.chassisMass})
             this.car.chassis.body.allowSleep = false
-            this.car.chassis.body.position.set(0, 0, 12)
+            this.car.chassis.body.position.set(3, 0, 12)
             this.car.chassis.body.sleep()
             this.car.chassis.body.addShape(this.car.chassis.shape, this.car.options.chassisOffset)
             this.car.chassis.body.quaternion.setFromAxisAngle(new CANNON.Vec3(0, 0, 1), -Math.PI * 0.5)

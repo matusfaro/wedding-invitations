@@ -13,8 +13,8 @@ export default class Ger {
             base: this.resources.items.ger.scene,
             collision: this.resources.items.gerCollision.scene,
             offset: new THREE.Vector3(_options.offset.x, _options.offset.y, 0),
-            mass: 0,
-            shadow: {sizeX: 3, sizeY: 2, offsetZ: 0.2},
+            mass: 1,
+            shadow: {sizeX: 9, sizeY: 6, offsetZ: 0.2},
         })
     }
 }

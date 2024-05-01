@@ -110,7 +110,7 @@ export default class Car {
 
         this.backLightsBrake.material = this.materials.pures.items.red.clone()
         this.backLightsBrake.material.transparent = true
-        this.backLightsBrake.material.opacity = 0.5
+        this.backLightsBrake.material.opacity = 0
 
         this.backLightsBrake.object = this.objects.getConvertedMesh(this.models.backLightsBrake.scene.children)
         for (const _child of this.backLightsBrake.object.children) {
@@ -123,6 +123,8 @@ export default class Car {
         this.frontLights = {}
 
         this.frontLights.material = this.materials.pures.items.white.clone()
+        this.frontLights.material.transparent = true
+        this.frontLights.material.opacity = 0
 
         this.frontLights.object = this.objects.getConvertedMesh(this.models.frontLights.scene.children)
         for (const _child of this.frontLights.object.children) {
@@ -136,7 +138,7 @@ export default class Car {
 
         this.backLightsReverse.material = this.materials.pures.items.white.clone()
         this.backLightsReverse.material.transparent = true
-        this.backLightsReverse.material.opacity = 0.5
+        this.backLightsReverse.material.opacity = 0
 
         this.backLightsReverse.object = this.objects.getConvertedMesh(this.models.backLightsReverse.scene.children)
         for (const _child of this.backLightsReverse.object.children) {
@@ -144,12 +146,16 @@ export default class Car {
         }
 
         this.chassis.object.add(this.backLightsReverse.object)
+        setTimeout(() => {
+            this.frontLights.material.opacity = 1
 
-        // Time tick
-        this.time.on('tick', () => {
-            this.backLightsBrake.material.opacity = this.physics.controls.actions.brake ? 1 : 0.5
-            this.backLightsReverse.material.opacity = this.physics.controls.actions.down ? 1 : 0.5
-        })
+            // Time tick
+            this.time.on('tick', () => {
+                this.backLightsBrake.material.opacity = this.physics.controls.actions.brake ? 1 : 0.5
+                this.backLightsReverse.material.opacity = this.physics.controls.actions.down ? 1 : 0.5
+            })
+
+        }, 2000)
     }
 
     setWheels() {

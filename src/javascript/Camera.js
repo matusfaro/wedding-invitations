@@ -39,13 +39,18 @@ export default class Camera {
 
         // Items
         this.angle.items = {
-            default: new THREE.Vector3(1.135, -1.45, 1.15),
-            projects: new THREE.Vector3(0.38, -1.4, 1.63)
+            // Angle for initial loading screen for selecting language
+            startScreen: new THREE.Vector3(0, -1, 100),
+            // startScreen: new THREE.Vector3(0.1, -1.4, 2.3),
+            // Angle for driving the car around
+            driving: new THREE.Vector3(1.135, -1.45, 1.15),
+            // Angle good for reading text on the ground
+            reading: new THREE.Vector3(0.38, -1.4, 1.63),
         }
 
         // Value
         this.angle.value = new THREE.Vector3()
-        this.angle.value.copy(this.angle.items.default)
+        this.angle.value.copy(this.angle.items.startScreen)
 
         // Set method
         this.angle.set = (_name) => {
