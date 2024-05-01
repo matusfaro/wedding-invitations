@@ -119,6 +119,11 @@ import wig3Source from '../models/wigs/wig3.glb'
 import wig4Source from '../models/wigs/wig4.glb'
 import gerSource from '../models/ger/ger.glb'
 import gerCollisionSource from '../models/ger/collision.glb'
+import caASource from '../models/alphabet/caA.glb'
+import caBSource from '../models/alphabet/caB.glb'
+import caCSource from '../models/alphabet/caC.glb'
+import caDSource from '../models/alphabet/caD.glb'
+import caESource from '../models/alphabet/caE.glb'
 
 export default class Resources extends EventEmitter {
     constructor() {
@@ -328,10 +333,16 @@ export default class Resources extends EventEmitter {
             {name: 'wig3', source: wig3Source},
             {name: 'wig4', source: wig4Source},
 
-
             // Ger
             {name: 'ger', source: gerSource},
             {name: 'gerCollision', source: gerCollisionSource},
+
+            // Alphabet
+            {name: 'caA', source: caASource},
+            {name: 'caB', source: caBSource},
+            {name: 'caC', source: caCSource},
+            {name: 'caD', source: caDSource},
+            {name: 'caE', source: caESource},
         ])
 
         this.loader.on('fileEnd', (_resource, _data) => {

@@ -10,6 +10,7 @@ export default class IntroSection {
         this.areas = _options.areas
         this.walls = _options.walls
         this.tiles = _options.tiles
+        this.alphabet = _options.alphabet
         this.ger = _options.ger
         this.debug = _options.debug
         this.x = _options.x
@@ -20,23 +21,13 @@ export default class IntroSection {
         this.container.matrixAutoUpdate = false
         this.container.updateMatrix()
 
-        this.setStatic()
-        this.setInstructions()
-        this.setOtherInstructions()
-        this.setTitles()
-        this.setTiles()
-        this.setDikes()
+        // this.setInstructions()
+        // this.setOtherInstructions()
+        // this.setTitles()
+        // this.setTiles()
+        // this.setDikes()
         this.setGer()
-    }
-
-    setStatic() {
-        this.objects.add({
-            base: this.resources.items.introStaticBase.scene,
-            collision: this.resources.items.introStaticCollision.scene,
-            floorShadowTexture: this.resources.items.introStaticFloorShadowTexture,
-            offset: new THREE.Vector3(0, 0, 0),
-            mass: 0
-        })
+        this.setName()
     }
 
     setInstructions() {
@@ -466,7 +457,14 @@ export default class IntroSection {
 
     setGer() {
         this.ger.add({
-            offset: new THREE.Vector2(0, 15),
+            offset: new THREE.Vector2(0, 10),
+        })
+    }
+
+    setName() {
+        this.alphabet.add({
+            text: 'DCBA',
+            offset: new THREE.Vector2(0, -10),
         })
     }
 }

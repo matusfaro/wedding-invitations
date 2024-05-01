@@ -16,6 +16,7 @@ import Sounds from './Sounds.js'
 import {TweenLite} from 'gsap/TweenLite'
 import {Power2} from 'gsap/EasePack'
 import Ger from "./Ger";
+import Alphabet from "./Alphabet";
 
 export default class {
     constructor(_options) {
@@ -63,6 +64,7 @@ export default class {
         this.setTiles()
         this.setWalls()
         this.setGer()
+        this.setAlphabet()
         this.setSections()
     }
 
@@ -80,10 +82,12 @@ export default class {
             TweenLite.fromTo(this.shadows, 3, {alpha: 0}, {alpha: 0.5, delay: 0.5})
 
             if (this.sections.intro) {
-                TweenLite.fromTo(this.sections.intro.instructions.arrows.label.material, 0.3, {opacity: 0}, {
-                    opacity: 1,
-                    delay: 0.5
-                })
+                if (this.sections.intro.instructions) {
+                    TweenLite.fromTo(this.sections.intro.instructions.arrows.label.material, 0.3, {opacity: 0}, {
+                        opacity: 1,
+                        delay: 0.5
+                    })
+                }
                 if (this.sections.intro.otherInstructions) {
                     TweenLite.fromTo(this.sections.intro.otherInstructions.label.material, 0.3, {opacity: 0}, {
                         opacity: 1,
@@ -277,7 +281,7 @@ export default class {
 
             window.requestAnimationFrame(() => {
                 TweenLite.to(this.startingScreen.loadingLabel.material, 0.3, {opacity: 0, delay: 0.4})
-                TweenLite.to(this.startingScreen.area.floorBorder.material.uniforms.uProgress, 0.3, {
+                TweenLite.to(this.startingScreen.language[this.startingScreen.selectedLanguage].area.floorBorder.material.uniforms.uProgress, 0.3, {
                     value: 0,
                     delay: 0.4
                 })
@@ -400,6 +404,13 @@ export default class {
         })
     }
 
+    setAlphabet() {
+        this.alphabet = new Alphabet({
+            resources: this.resources,
+            objects: this.objects,
+        })
+    }
+
     setObjects() {
         this.objects = new Objects({
             time: this.time,
@@ -452,6 +463,7 @@ export default class {
             walls: this.walls,
             tiles: this.tiles,
             ger: this.ger,
+            alphabet: this.alphabet,
             debug: this.debugFolder
         }
 
