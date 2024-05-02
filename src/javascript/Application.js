@@ -12,6 +12,7 @@ import {ShaderPass} from 'three/examples/jsm/postprocessing/ShaderPass.js'
 import {RenderPass} from 'three/examples/jsm/postprocessing/RenderPass.js'
 import BlurPass from './Passes/Blur.js'
 import GlowsPass from './Passes/Glows.js'
+import I18N from "./World/I18N";
 
 export default class Application {
     /**
@@ -27,6 +28,7 @@ export default class Application {
         this.resources = new Resources()
 
         this.setConfig()
+        this.setI18n()
         this.setDebug()
         this.setRenderer()
         this.setCamera()
@@ -52,6 +54,13 @@ export default class Application {
             this.passes.verticalBlurPass.strength = 1
             this.passes.verticalBlurPass.material.uniforms.uStrength.value = new THREE.Vector2(0, this.passes.verticalBlurPass.strength)
         }, {once: true})
+    }
+
+    /**
+     * Set I18N
+     */
+    setI18n() {
+        this.i18n = new I18N({config: this.config})
     }
 
     /**
@@ -201,6 +210,7 @@ export default class Application {
     setWorld() {
         this.world = new World({
             config: this.config,
+            i18n: this.i18n,
             debug: this.debug,
             resources: this.resources,
             time: this.time,

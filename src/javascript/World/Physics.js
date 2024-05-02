@@ -623,13 +623,13 @@ export default class Physics {
             // Define shape
             let shape = null
 
-            if (mesh.name.match(/^cube_?[0-9]{0,3}?|box[0-9]{0,3}?$/i)) {
+            if (mesh.name.match(/^(cube|box)[_.]?[0-9]{0,3}?$/i)) {
                 shape = 'box'
-            } else if (mesh.name.match(/^cylinder_?[0-9]{0,3}?$/i)) {
+            } else if (mesh.name.match(/^cylinder[_.]?[0-9]{0,3}?$/i)) {
                 shape = 'cylinder'
-            } else if (mesh.name.match(/^sphere_?[0-9]{0,3}?$/i)) {
+            } else if (mesh.name.match(/^sphere[_.]?[0-9]{0,3}?$/i)) {
                 shape = 'sphere'
-            } else if (mesh.name.match(/^center_?[0-9]{0,3}?$/i)) {
+            } else if (mesh.name.match(/^center[_.]?[0-9]{0,3}?$/i)) {
                 shape = 'center'
             }
 

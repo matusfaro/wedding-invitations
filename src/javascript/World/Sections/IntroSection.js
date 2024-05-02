@@ -4,6 +4,7 @@ export default class IntroSection {
     constructor(_options) {
         // Options
         this.config = _options.config
+        this.i18n = _options.i18n
         this.time = _options.time
         this.resources = _options.resources
         this.objects = _options.objects
@@ -457,13 +458,29 @@ export default class IntroSection {
 
     setGer() {
         this.ger.add({
-            offset: new THREE.Vector2(0, 10),
+            offset: new THREE.Vector2(3, 10),
         })
     }
 
     setName() {
         this.alphabet.add({
-            text: 'DCBA',
+            text: this.i18n.get('matusFaro'),
+            offset: new THREE.Vector2(-6, 6),
+        })
+        this.alphabet.add({
+            text: this.i18n.get('nominKhurelbaatar'),
+            offset: new THREE.Vector2(6, 6),
+        })
+
+        this.alphabet.add({
+            text: this.i18n.get('2024.8.4'),
+            offset: new THREE.Vector2(0, -4),
+        })
+    }
+
+    setAlphabetTest() {
+        this.alphabet.add({
+            text: 'ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГДЕЁЖЗИЙКЛМНОӨПРСТУҮФХЦЧШЩЪЫЬЭЮЯÁÄČĎÉÍĹĽŇÓÔŔŠŤÚÝŽ0123456789.,!?',
             offset: new THREE.Vector2(0, -10),
         })
     }

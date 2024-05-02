@@ -29,10 +29,10 @@ export default class Objects {
         this.parsers.items = [
             // Shade
             {
-                regex: /^shade([a-z]+)_?[0-9]{0,3}?/i,
+                regex: /^shade([a-z]+)[_.]?[0-9]{0,3}?/i,
                 apply: (_mesh, _options) => {
                     // Find material
-                    const match = _mesh.name.match(/^shade([a-z]+)_?[0-9]{0,3}?/i)
+                    const match = _mesh.name.match(/^shade([a-z]+)[_.]?[0-9]{0,3}?/i)
                     const materialName = `${match[1].substring(0, 1).toLowerCase()}${match[1].substring(1)}` // PastalCase to camelCase
                     let material = this.materials.shades.items[materialName]
 
@@ -59,10 +59,10 @@ export default class Objects {
 
             // Pure
             {
-                regex: /^pure([a-z]+)_?[0-9]{0,3}?/i,
+                regex: /^pure([a-z]+)[_.]?[0-9]{0,3}?/i,
                 apply: (_mesh, _options) => {
                     // Find material
-                    const match = _mesh.name.match(/^pure([a-z]+)_?[0-9]{0,3}?/i)
+                    const match = _mesh.name.match(/^pure([a-z]+)[_.]?[0-9]{0,3}?/i)
                     const materialName = match[1].toLowerCase()
                     let material = this.materials.pures.items[materialName]
 
@@ -81,7 +81,7 @@ export default class Objects {
 
             // Floor
             {
-                regex: /^floor_?[0-9]{0,3}?/i,
+                regex: /^floor[_.]?[0-9]{0,3}?/i,
                 apply: (_mesh, _options) => {
                     // Create floor manually because of missing UV
                     const geometry = new THREE.PlaneBufferGeometry(_mesh.scale.x, _mesh.scale.y, 10, 10)
@@ -195,7 +195,7 @@ export default class Objects {
 
         for (const _child of baseChildren) {
             // Find center
-            if (_child.name.match(/^center_?[0-9]{0,3}?/i)) {
+            if (_child.name.match(/^center[_.]?[0-9]{0,3}?/i)) {
                 center.set(_child.position.x, _child.position.y, _child.position.z)
             }
 

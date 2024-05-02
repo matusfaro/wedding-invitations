@@ -22,6 +22,7 @@ export default class {
     constructor(_options) {
         // Options
         this.config = _options.config
+        this.i18n = _options.i18n
         this.debug = _options.debug
         this.resources = _options.resources
         this.time = _options.time
@@ -277,7 +278,7 @@ export default class {
         }
 
         const start = (_language) => {
-            this.config.language = _language.code
+            this.config.language = _language
 
             window.requestAnimationFrame(() => {
                 TweenLite.to(this.startingScreen.loadingLabel.material, 0.3, {opacity: 0, delay: 0.4})
@@ -453,6 +454,7 @@ export default class {
         // Generic options
         const options = {
             config: this.config,
+            i18n: this.i18n,
             time: this.time,
             resources: this.resources,
             camera: this.camera,

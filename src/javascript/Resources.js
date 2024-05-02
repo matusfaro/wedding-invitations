@@ -119,11 +119,101 @@ import wig3Source from '../models/wigs/wig3.glb'
 import wig4Source from '../models/wigs/wig4.glb'
 import gerSource from '../models/ger/ger.glb'
 import gerCollisionSource from '../models/ger/collision.glb'
-import caASource from '../models/alphabet/caA.glb'
-import caBSource from '../models/alphabet/caB.glb'
-import caCSource from '../models/alphabet/caC.glb'
-import caDSource from '../models/alphabet/caD.glb'
-import caESource from '../models/alphabet/caE.glb'
+import collisionISource from '../models/alphabet/collisionI.glb'
+import collisionHSource from '../models/alphabet/collisionH.glb'
+import collisionDotSource from '../models/alphabet/collisionDot.glb'
+import ASource from '../models/alphabet/A.glb'
+import BSource from '../models/alphabet/B.glb'
+import CSource from '../models/alphabet/C.glb'
+import DSource from '../models/alphabet/D.glb'
+import ESource from '../models/alphabet/E.glb'
+import FSource from '../models/alphabet/F.glb'
+import GSource from '../models/alphabet/G.glb'
+import HSource from '../models/alphabet/H.glb'
+import ISource from '../models/alphabet/I.glb'
+import JSource from '../models/alphabet/J.glb'
+import KSource from '../models/alphabet/K.glb'
+import LSource from '../models/alphabet/L.glb'
+import MSource from '../models/alphabet/M.glb'
+import NSource from '../models/alphabet/N.glb'
+import OSource from '../models/alphabet/O.glb'
+import PSource from '../models/alphabet/P.glb'
+import QSource from '../models/alphabet/Q.glb'
+import RSource from '../models/alphabet/R.glb'
+import SSource from '../models/alphabet/S.glb'
+import TSource from '../models/alphabet/T.glb'
+import USource from '../models/alphabet/U.glb'
+import VSource from '../models/alphabet/V.glb'
+import WSource from '../models/alphabet/W.glb'
+import XSource from '../models/alphabet/X.glb'
+import YSource from '../models/alphabet/Y.glb'
+import ZSource from '../models/alphabet/Z.glb'
+import АSource from '../models/alphabet/А.glb'
+import БSource from '../models/alphabet/Б.glb'
+import ВSource from '../models/alphabet/В.glb'
+import ГSource from '../models/alphabet/Г.glb'
+import ДSource from '../models/alphabet/Д.glb'
+import ЕSource from '../models/alphabet/Е.glb'
+import ЁSource from '../models/alphabet/Ё.glb'
+import ЖSource from '../models/alphabet/Ж.glb'
+import ЗSource from '../models/alphabet/З.glb'
+import ИSource from '../models/alphabet/И.glb'
+import ЙSource from '../models/alphabet/Й.glb'
+import КSource from '../models/alphabet/К.glb'
+import ЛSource from '../models/alphabet/Л.glb'
+import МSource from '../models/alphabet/М.glb'
+import НSource from '../models/alphabet/Н.glb'
+import ОSource from '../models/alphabet/О.glb'
+import ӨSource from '../models/alphabet/Ө.glb'
+import ПSource from '../models/alphabet/П.glb'
+import РSource from '../models/alphabet/Р.glb'
+import СSource from '../models/alphabet/С.glb'
+import ТSource from '../models/alphabet/Т.glb'
+import УSource from '../models/alphabet/У.glb'
+import ҮSource from '../models/alphabet/Ү.glb'
+import ФSource from '../models/alphabet/Ф.glb'
+import ХSource from '../models/alphabet/Х.glb'
+import ЦSource from '../models/alphabet/Ц.glb'
+import ЧSource from '../models/alphabet/Ч.glb'
+import ШSource from '../models/alphabet/Ш.glb'
+import ЩSource from '../models/alphabet/Щ.glb'
+import ЪSource from '../models/alphabet/Ъ.glb'
+import ЫSource from '../models/alphabet/Ы.glb'
+import ЬSource from '../models/alphabet/Ь.glb'
+import ЭSource from '../models/alphabet/Э.glb'
+import ЮSource from '../models/alphabet/Ю.glb'
+import ЯSource from '../models/alphabet/Я.glb'
+import ÁSource from '../models/alphabet/AA.glb'
+import ÄSource from '../models/alphabet/AE.glb'
+import ČSource from '../models/alphabet/Č.glb'
+import ĎSource from '../models/alphabet/Ď.glb'
+import ÉSource from '../models/alphabet/EE.glb'
+import ÍSource from '../models/alphabet/II.glb'
+import ĹSource from '../models/alphabet/Ĺ.glb'
+import ĽSource from '../models/alphabet/Ľ.glb'
+import ŇSource from '../models/alphabet/Ň.glb'
+import ÓSource from '../models/alphabet/OO.glb'
+import ÔSource from '../models/alphabet/UO.glb'
+import ŔSource from '../models/alphabet/Ŕ.glb'
+import ŠSource from '../models/alphabet/Š.glb'
+import ŤSource from '../models/alphabet/Ť.glb'
+import ÚSource from '../models/alphabet/UU.glb'
+import ÝSource from '../models/alphabet/YY.glb'
+import ŽSource from '../models/alphabet/Ž.glb'
+import num0Source from '../models/alphabet/0.glb'
+import num1Source from '../models/alphabet/1.glb'
+import num2Source from '../models/alphabet/2.glb'
+import num3Source from '../models/alphabet/3.glb'
+import num4Source from '../models/alphabet/4.glb'
+import num5Source from '../models/alphabet/5.glb'
+import num6Source from '../models/alphabet/6.glb'
+import num7Source from '../models/alphabet/7.glb'
+import num8Source from '../models/alphabet/8.glb'
+import num9Source from '../models/alphabet/9.glb'
+import dotSource from '../models/alphabet/dot.glb'
+import commaSource from '../models/alphabet/comma.glb'
+import exclamationSource from '../models/alphabet/exclamation.glb'
+import questionSource from '../models/alphabet/question.glb'
 
 export default class Resources extends EventEmitter {
     constructor() {
@@ -338,11 +428,101 @@ export default class Resources extends EventEmitter {
             {name: 'gerCollision', source: gerCollisionSource},
 
             // Alphabet
-            {name: 'caA', source: caASource},
-            {name: 'caB', source: caBSource},
-            {name: 'caC', source: caCSource},
-            {name: 'caD', source: caDSource},
-            {name: 'caE', source: caESource},
+            {name: 'collisionH', source: collisionHSource},
+            {name: 'collisionI', source: collisionISource},
+            {name: 'collisionDot', source: collisionDotSource},
+            {name: 'A', source: ASource},
+            {name: 'B', source: BSource},
+            {name: 'C', source: CSource},
+            {name: 'D', source: DSource},
+            {name: 'E', source: ESource},
+            {name: 'F', source: FSource},
+            {name: 'G', source: GSource},
+            {name: 'H', source: HSource},
+            {name: 'I', source: ISource},
+            {name: 'J', source: JSource},
+            {name: 'K', source: KSource},
+            {name: 'L', source: LSource},
+            {name: 'M', source: MSource},
+            {name: 'N', source: NSource},
+            {name: 'O', source: OSource},
+            {name: 'P', source: PSource},
+            {name: 'Q', source: QSource},
+            {name: 'R', source: RSource},
+            {name: 'S', source: SSource},
+            {name: 'T', source: TSource},
+            {name: 'U', source: USource},
+            {name: 'V', source: VSource},
+            {name: 'W', source: WSource},
+            {name: 'X', source: XSource},
+            {name: 'Y', source: YSource},
+            {name: 'Z', source: ZSource},
+            {name: 'А', source: АSource},
+            {name: 'Б', source: БSource},
+            {name: 'В', source: ВSource},
+            {name: 'Г', source: ГSource},
+            {name: 'Д', source: ДSource},
+            {name: 'Е', source: ЕSource},
+            {name: 'Ё', source: ЁSource},
+            {name: 'Ж', source: ЖSource},
+            {name: 'З', source: ЗSource},
+            {name: 'И', source: ИSource},
+            {name: 'Й', source: ЙSource},
+            {name: 'К', source: КSource},
+            {name: 'Л', source: ЛSource},
+            {name: 'М', source: МSource},
+            {name: 'Н', source: НSource},
+            {name: 'О', source: ОSource},
+            {name: 'Ө', source: ӨSource},
+            {name: 'П', source: ПSource},
+            {name: 'Р', source: РSource},
+            {name: 'С', source: СSource},
+            {name: 'Т', source: ТSource},
+            {name: 'У', source: УSource},
+            {name: 'Ү', source: ҮSource},
+            {name: 'Ф', source: ФSource},
+            {name: 'Х', source: ХSource},
+            {name: 'Ц', source: ЦSource},
+            {name: 'Ч', source: ЧSource},
+            {name: 'Ш', source: ШSource},
+            {name: 'Щ', source: ЩSource},
+            {name: 'Ъ', source: ЪSource},
+            {name: 'Ы', source: ЫSource},
+            {name: 'Ь', source: ЬSource},
+            {name: 'Э', source: ЭSource},
+            {name: 'Ю', source: ЮSource},
+            {name: 'Я', source: ЯSource},
+            {name: 'Á', source: ÁSource},
+            {name: 'Ä', source: ÄSource},
+            {name: 'Č', source: ČSource},
+            {name: 'Ď', source: ĎSource},
+            {name: 'É', source: ÉSource},
+            {name: 'Í', source: ÍSource},
+            {name: 'Ĺ', source: ĹSource},
+            {name: 'Ľ', source: ĽSource},
+            {name: 'Ň', source: ŇSource},
+            {name: 'Ó', source: ÓSource},
+            {name: 'Ô', source: ÔSource},
+            {name: 'Ŕ', source: ŔSource},
+            {name: 'Š', source: ŠSource},
+            {name: 'Ť', source: ŤSource},
+            {name: 'Ú', source: ÚSource},
+            {name: 'Ý', source: ÝSource},
+            {name: 'Ž', source: ŽSource},
+            {name: '0', source: num0Source},
+            {name: '1', source: num1Source},
+            {name: '2', source: num2Source},
+            {name: '3', source: num3Source},
+            {name: '4', source: num4Source},
+            {name: '5', source: num5Source},
+            {name: '6', source: num6Source},
+            {name: '7', source: num7Source},
+            {name: '8', source: num8Source},
+            {name: '9', source: num9Source},
+            {name: '.', source: dotSource},
+            {name: ',', source: commaSource},
+            {name: '!', source: exclamationSource},
+            {name: '?', source: questionSource},
         ])
 
         this.loader.on('fileEnd', (_resource, _data) => {
