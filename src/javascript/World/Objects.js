@@ -104,10 +104,19 @@ export default class Objects {
 
         // Default
         this.parsers.default = {}
-        this.parsers.default.apply = (_mesh) => {
-            // Create clone mesh with normal material
-            const mesh = _mesh.clone()
-            mesh.material = this.materials.shades.items.white
+        this.parsers.default.apply = (_mesh, _options) => {
+
+            // Create clone mesh
+            const mesh = _options.duplicated ? _mesh.clone() : _mesh
+
+            mesh.material = this.materials.getRgb(
+                _mesh.material.color.r,
+                _mesh.material.color.g,
+                _mesh.material.color.b
+            )
+
+            mesh.matrixAutoUpdate = false
+            mesh.updateMatrix()
 
             return mesh
         }
@@ -187,7 +196,7 @@ export default class Objects {
     }
 
     getConvertedMesh(_children, _options = {}) {
-        const container = new THREE.Object3D()
+        let container = new THREE.Object3D()
         const center = new THREE.Vector3()
 
         // Go through each base child
@@ -197,6 +206,10 @@ export default class Objects {
             // Find center
             if (_child.name.match(/^center[_.]?[0-9]{0,3}?/i)) {
                 center.set(_child.position.x, _child.position.y, _child.position.z)
+            }
+
+            if (_child.type === 'Group') {
+                container.add(this.getConvertedMesh(_child.children, _options))
             }
 
             if (_child instanceof THREE.Mesh) {

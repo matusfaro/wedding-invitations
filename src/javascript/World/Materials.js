@@ -19,6 +19,7 @@ export default class Materials {
 
         this.setPures()
         this.setShades()
+        this.setRgbs()
         this.setFloorShadow()
         this.setTextures()
     }
@@ -130,11 +131,11 @@ export default class Materials {
         this.shades.items.metal.uniforms.matcap.value = this.resources.items.matcapMetalTexture
         this.items.metal = this.shades.items.metal
 
-        // // Gold
-        // this.shades.items.gold = new MatcapMaterial()
-        // this.shades.items.gold.name = 'shadeGold'
-        // this.shades.items.gold.uniforms.matcap.value = this.resources.items.matcapGoldTexture
-        // this.items.gold = this.shades.items.gold
+        // Gold
+        this.shades.items.gold = new MatcapMaterial()
+        this.shades.items.gold.name = 'shadeGold'
+        this.shades.items.gold.uniforms.matcap.value = this.resources.items.matcapGoldTexture
+        this.items.gold = this.shades.items.gold
 
         // Update materials uniforms
         this.shades.updateMaterials = () => {
@@ -204,5 +205,23 @@ export default class Materials {
         this.textures.items = {}
 
         this.textures.items.carPriusPlate = this.resources.items.carPriusPlateTexture
+    }
+
+
+    setRgbs() {
+        this.rgbs = {}
+        this.rgbs.items = {}
+    }
+
+    getRgb(r, g, b) {
+        const rgbKey = `${r}-${g}-${b}`
+        let material = this.rgbs.items[rgbKey]
+        if (!material) {
+            material = new THREE.MeshBasicMaterial({
+                color: new THREE.Color(r, g, b)
+            })
+            this.rgbs.items[rgbKey] = material
+        }
+        return material
     }
 }

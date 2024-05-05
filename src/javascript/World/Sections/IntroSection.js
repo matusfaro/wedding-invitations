@@ -457,8 +457,16 @@ export default class IntroSection {
     }
 
     setGer() {
-        this.ger.add({
+        this.ger.addGer({
             offset: new THREE.Vector2(3, 10),
+        })
+        this.ger.addPerson({
+            offset: new THREE.Vector2(3, 5),
+            name: 'Nomin'
+        })
+        this.ger.addPerson({
+            offset: new THREE.Vector2(2, 5),
+            name: 'Matus'
         })
     }
 
@@ -469,7 +477,7 @@ export default class IntroSection {
         })
         this.alphabet.add({
             text: this.i18n.get('nominKhurelbaatar'),
-            offset: new THREE.Vector2(6, 6),
+            offset: new THREE.Vector2(5, 6),
         })
 
         this.alphabet.add({
