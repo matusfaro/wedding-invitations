@@ -14,12 +14,20 @@ import matcapPurpleSource from '../models/matcaps/purple.png'
 import matcapBlueSource from '../models/matcaps/blue.png'
 import matcapYellowSource from '../models/matcaps/yellow.png'
 import matcapMetalSource from '../models/matcaps/metal.png'
+import gerFloorSource from '../models/ger/gerFloor.png'
+import straight1RoadSource from '../models/road/straightLong1.png'
+import straight2RoadSource from '../models/road/straightLong2.png'
+import straight3RoadSource from '../models/road/straightLong3.png'
 import introStaticBaseSource from '../models/intro/static/base.glb'
 import introStaticCollisionSource from '../models/intro/static/collision.glb'
 import introStaticFloorShadowSource from '../models/intro/static/floorShadow.png'
 import introInstructionsLabelsSource from '../models/intro/instructions/labels.glb'
-import introInstructionsArrowsSource from '../models/intro/instructions/arrows.png'
-import introInstructionsControlsSource from '../models/intro/instructions/controls.png'
+import introInstructionsArrowsCaSource from '../models/intro/instructions/arrows-ca.png'
+import introInstructionsControlsCaSource from '../models/intro/instructions/controls-ca.png'
+import introInstructionsArrowsSkSource from '../models/intro/instructions/arrows-sk.png'
+import introInstructionsControlsSkSource from '../models/intro/instructions/controls-sk.png'
+import introInstructionsArrowsMnSource from '../models/intro/instructions/arrows-mn.png'
+import introInstructionsControlsMnSource from '../models/intro/instructions/controls-mn.png'
 import introInstructionsOtherSource from '../models/intro/instructions/other.png'
 import introArrowKeyBaseSource from '../models/intro/arrowKey/base.glb'
 import introArrowKeyCollisionSource from '../models/intro/arrowKey/collision.glb'
@@ -123,6 +131,8 @@ import personNominSource from '../models/people/personNomin.glb'
 import personNominCollisionSource from '../models/people/personNominCollision.glb'
 import personMatusSource from '../models/people/personMatus.glb'
 import personMatusCollisionSource from '../models/people/personMatusCollision.glb'
+import horseSource from '../models/animals/horse.glb'
+import horseCollisionSource from '../models/animals/horseCollision.glb'
 import collisionISource from '../models/alphabet/collisionI.glb'
 import collisionHSource from '../models/alphabet/collisionH.glb'
 import collisionDotSource from '../models/alphabet/collisionDot.glb'
@@ -249,8 +259,12 @@ export default class Resources extends EventEmitter {
             {name: 'introStaticFloorShadow', source: introStaticFloorShadowSource, type: 'texture'},
 
             {name: 'introInstructionsLabels', source: introInstructionsLabelsSource},
-            {name: 'introInstructionsArrows', source: introInstructionsArrowsSource, type: 'texture'},
-            {name: 'introInstructionsControls', source: introInstructionsControlsSource, type: 'texture'},
+            {name: 'caIntroInstructionsArrows', source: introInstructionsArrowsCaSource, type: 'texture'},
+            {name: 'caIntroInstructionsControls', source: introInstructionsControlsCaSource, type: 'texture'},
+            {name: 'skIntroInstructionsArrows', source: introInstructionsArrowsSkSource, type: 'texture'},
+            {name: 'skIntroInstructionsControls', source: introInstructionsControlsSkSource, type: 'texture'},
+            {name: 'mnIntroInstructionsArrows', source: introInstructionsArrowsMnSource, type: 'texture'},
+            {name: 'mnIntroInstructionsControls', source: introInstructionsControlsMnSource, type: 'texture'},
             {name: 'introInstructionsOther', source: introInstructionsOtherSource, type: 'texture'},
 
             {name: 'introArrowKeyBase', source: introArrowKeyBaseSource},
@@ -394,6 +408,14 @@ export default class Resources extends EventEmitter {
             {name: 'bowlingPinBase', source: bowlingPinBaseSource},
             {name: 'bowlingPinCollision', source: bowlingPinCollisionSource},
 
+            // Floors
+            {name: 'gerFloor', source: gerFloorSource, type: 'texture'},
+
+            // Roads
+            {name: 'straight1Road', source: straight1RoadSource, type: 'texture'},
+            {name: 'straight2Road', source: straight2RoadSource, type: 'texture'},
+            {name: 'straight3Road', source: straight3RoadSource, type: 'texture'},
+
             // Areas
             {name: 'areaKeyEnter', source: areaKeyEnterSource, type: 'texture'},
             {name: 'areaEnter', source: areaEnterSource, type: 'texture'},
@@ -434,6 +456,10 @@ export default class Resources extends EventEmitter {
             {name: 'personNominCollision', source: personNominCollisionSource},
             {name: 'personMatus', source: personMatusSource},
             {name: 'personMatusCollision', source: personMatusCollisionSource},
+
+            // Animals
+            {name: 'horse', source: horseSource},
+            {name: 'horseCollision', source: horseCollisionSource},
 
             // Alphabet
             {name: 'collisionH', source: collisionHSource},

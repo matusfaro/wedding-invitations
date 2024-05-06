@@ -19,7 +19,10 @@ export default class I18N {
     }
 
     get(key) {
-        const langauge = this.config.language || 'ca'
-        return translations[langauge][key] || translations.ca[key] || key
+        return translations[this.getLanguage()][key] || translations.ca[key] || key
+    }
+
+    getLanguage() {
+        return this.config.language || 'ca'
     }
 }

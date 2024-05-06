@@ -17,6 +17,8 @@ import {TweenLite} from 'gsap/TweenLite'
 import {Power2} from 'gsap/EasePack'
 import Ger from "./Ger";
 import Alphabet from "./Alphabet";
+import Road from "./Road";
+import Animals from "./Animals";
 
 export default class {
     constructor(_options) {
@@ -64,7 +66,9 @@ export default class {
         this.areas.car = this.car
         this.setTiles()
         this.setWalls()
+        this.setRoad()
         this.setGer()
+        this.setAnimals()
         this.setAlphabet()
         this.setSections()
     }
@@ -81,6 +85,12 @@ export default class {
             TweenLite.fromTo(this.reveal, 3, {matcapsProgress: 0}, {matcapsProgress: 1})
             TweenLite.fromTo(this.reveal, 3, {floorShadowsProgress: 0}, {floorShadowsProgress: 1, delay: 0.5})
             TweenLite.fromTo(this.shadows, 3, {alpha: 0}, {alpha: 0.5, delay: 0.5})
+
+            let delay = 0.5
+            this.road.items.forEach(item => {
+                TweenLite.fromTo(item.material, 0.3, {opacity: 0}, {opacity: 1, delay: delay})
+                delay += 0.1
+            })
 
             if (this.sections.intro) {
                 if (this.sections.intro.instructions) {
@@ -288,7 +298,7 @@ export default class {
                 })
             })
 
-            this.camera.angle.set('reading')
+            this.camera.angle.set('driving')
 
             this.start()
 
@@ -397,8 +407,24 @@ export default class {
         })
     }
 
+    setRoad() {
+        this.road = new Road({
+            resources: this.resources,
+            objects: this.objects,
+            shadows: this.shadows,
+        })
+    }
+
     setGer() {
         this.ger = new Ger({
+            resources: this.resources,
+            objects: this.objects,
+            shadows: this.shadows,
+        })
+    }
+
+    setAnimals() {
+        this.animals = new Animals({
             resources: this.resources,
             objects: this.objects,
             shadows: this.shadows,
@@ -465,6 +491,8 @@ export default class {
             walls: this.walls,
             tiles: this.tiles,
             ger: this.ger,
+            animals: this.animals,
+            road: this.road,
             alphabet: this.alphabet,
             debug: this.debugFolder
         }

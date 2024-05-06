@@ -13,6 +13,8 @@ export default class IntroSection {
         this.tiles = _options.tiles
         this.alphabet = _options.alphabet
         this.ger = _options.ger
+        this.animals = _options.animals
+        this.road = _options.road
         this.debug = _options.debug
         this.x = _options.x
         this.y = _options.y
@@ -22,16 +24,19 @@ export default class IntroSection {
         this.container.matrixAutoUpdate = false
         this.container.updateMatrix()
 
-        // this.setInstructions()
+        this.setInstructions({
+            offset: new THREE.Vector2(4, -2)
+        })
         // this.setOtherInstructions()
         // this.setTitles()
         // this.setTiles()
         // this.setDikes()
         this.setGer()
-        this.setName()
+        this.setRoads()
+        this.setSkyResortName()
     }
 
-    setInstructions() {
+    setInstructions(_options) {
         this.instructions = {}
 
         /**
@@ -42,7 +47,9 @@ export default class IntroSection {
         // Label
         this.instructions.arrows.label = {}
 
-        this.instructions.arrows.label.texture = this.config.touch ? this.resources.items.introInstructionsControlsTexture : this.resources.items.introInstructionsArrowsTexture
+        this.instructions.arrows.label.texture = this.config.touch
+            ? this.resources.items[this.i18n.getLanguage() + 'IntroInstructionsControlsTexture']
+            : this.resources.items[this.i18n.getLanguage() + 'IntroInstructionsArrowsTexture']
         this.instructions.arrows.label.texture.magFilter = THREE.NearestFilter
         this.instructions.arrows.label.texture.minFilter = THREE.LinearFilter
 
@@ -54,9 +61,13 @@ export default class IntroSection {
             opacity: 0
         })
 
-        this.instructions.arrows.label.geometry = this.resources.items.introInstructionsLabels.scene.children.find((_mesh) => _mesh.name === 'arrows').geometry
+        this.instructions.arrows.label.geometry = new THREE.PlaneGeometry(512 / 45, 96 / 45)
 
         this.instructions.arrows.label.mesh = new THREE.Mesh(this.instructions.arrows.label.geometry, this.instructions.arrows.label.material)
+        this.instructions.arrows.label.mesh.position.y = -2.1 + _options.offset.y
+        this.instructions.arrows.label.mesh.position.x = 3.5 + _options.offset.x
+        this.instructions.arrows.label.mesh.matrixAutoUpdate = false
+        this.instructions.arrows.label.mesh.updateMatrix()
         this.container.add(this.instructions.arrows.label.mesh)
 
         if (!this.config.touch) {
@@ -64,7 +75,7 @@ export default class IntroSection {
             this.instructions.arrows.up = this.objects.add({
                 base: this.resources.items.introArrowKeyBase.scene,
                 collision: this.resources.items.introArrowKeyCollision.scene,
-                offset: new THREE.Vector3(0, 0, 0),
+                offset: new THREE.Vector3(_options.offset.x, _options.offset.y, 0),
                 rotation: new THREE.Euler(0, 0, 0),
                 duplicated: true,
                 shadow: {sizeX: 1, sizeY: 1, offsetZ: -0.2, alpha: 0.5},
@@ -74,7 +85,7 @@ export default class IntroSection {
             this.instructions.arrows.down = this.objects.add({
                 base: this.resources.items.introArrowKeyBase.scene,
                 collision: this.resources.items.introArrowKeyCollision.scene,
-                offset: new THREE.Vector3(0, -0.8, 0),
+                offset: new THREE.Vector3(_options.offset.x, _options.offset.y - 0.8, 0),
                 rotation: new THREE.Euler(0, 0, Math.PI),
                 duplicated: true,
                 shadow: {sizeX: 1, sizeY: 1, offsetZ: -0.2, alpha: 0.5},
@@ -84,7 +95,7 @@ export default class IntroSection {
             this.instructions.arrows.left = this.objects.add({
                 base: this.resources.items.introArrowKeyBase.scene,
                 collision: this.resources.items.introArrowKeyCollision.scene,
-                offset: new THREE.Vector3(-0.8, -0.8, 0),
+                offset: new THREE.Vector3(_options.offset.x - 0.8, _options.offset.y - 0.8, 0),
                 rotation: new THREE.Euler(0, 0, Math.PI * 0.5),
                 duplicated: true,
                 shadow: {sizeX: 1, sizeY: 1, offsetZ: -0.2, alpha: 0.5},
@@ -94,7 +105,7 @@ export default class IntroSection {
             this.instructions.arrows.right = this.objects.add({
                 base: this.resources.items.introArrowKeyBase.scene,
                 collision: this.resources.items.introArrowKeyCollision.scene,
-                offset: new THREE.Vector3(0.8, -0.8, 0),
+                offset: new THREE.Vector3(_options.offset.x + 0.8, _options.offset.y - 0.8, 0),
                 rotation: new THREE.Euler(0, 0, -Math.PI * 0.5),
                 duplicated: true,
                 shadow: {sizeX: 1, sizeY: 1, offsetZ: -0.2, alpha: 0.5},
@@ -457,32 +468,71 @@ export default class IntroSection {
     }
 
     setGer() {
+        this.container.add(this.road.createGerFloor({
+            offset: new THREE.Vector2(2.7, 8.5),
+        }))
         this.ger.addGer({
-            offset: new THREE.Vector2(3, 10),
+            offset: new THREE.Vector2(4, 10),
         })
         this.ger.addPerson({
-            offset: new THREE.Vector2(3, 5),
+            offset: new THREE.Vector2(4, 5),
             name: 'Nomin'
         })
         this.ger.addPerson({
-            offset: new THREE.Vector2(2, 5),
+            offset: new THREE.Vector2(3, 5),
             name: 'Matus'
         })
-    }
-
-    setName() {
         this.alphabet.add({
             text: this.i18n.get('matusFaro'),
-            offset: new THREE.Vector2(-6, 6),
+            offset: new THREE.Vector2(-5, 5),
         })
         this.alphabet.add({
             text: this.i18n.get('nominKhurelbaatar'),
-            offset: new THREE.Vector2(5, 6),
+            offset: new THREE.Vector2(6, 5),
+        })
+        this.animals.addHorse({
+            offset: new THREE.Vector2(-3, 10),
+            rotation: -20,
+        })
+        this.animals.addHorse({
+            offset: new THREE.Vector2(-2, 12),
+            rotation: 10,
+        })
+        this.animals.addHorse({
+            offset: new THREE.Vector2(-1, 15),
+            rotation: -30,
+        })
+    }
+
+    setRoads() {
+        const offset = new THREE.Vector2(0, 0)
+        const rotation = 0
+        this.container.add(this.road.createRoad({
+            type: 'straight1',
+            offset: new THREE.Vector2(offset.x + 3, offset.y - 30),
+            rotation: rotation
+        }))
+        this.container.add(this.road.createRoad({
+            type: 'straight2',
+            offset: new THREE.Vector2(offset.x + 3.1, offset.y - 91),
+            rotation: rotation
+        }))
+        this.container.add(this.road.createRoad({
+            type: 'straight3',
+            offset: new THREE.Vector2(offset.x + 3.1, offset.y - 152),
+            rotation: rotation
+        }))
+    }
+
+    setSkyResortName() {
+        this.alphabet.add({
+            text: this.i18n.get('SkyResort'),
+            offset: new THREE.Vector2(6, -170),
         })
 
         this.alphabet.add({
             text: this.i18n.get('2024.8.4'),
-            offset: new THREE.Vector2(0, -4),
+            offset: new THREE.Vector2(9, -172),
         })
     }
 
