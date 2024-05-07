@@ -9,8 +9,6 @@ import Car from './Car.js'
 import Areas from './Areas.js'
 import Tiles from './Tiles.js'
 import Walls from './Walls.js'
-import IntroSection from './Sections/IntroSection.js'
-import PlaygroundSection from './Sections/PlaygroundSection.js'
 import Controls from './Controls.js'
 import Sounds from './Sounds.js'
 import {TweenLite} from 'gsap/TweenLite'
@@ -19,6 +17,9 @@ import Ger from "./Ger";
 import Alphabet from "./Alphabet";
 import Road from "./Road";
 import Animals from "./Animals";
+import WeddingSection from "./Sections/WeddingSection";
+import Wedding from "./Wedding";
+import IntroSection from "./Sections/IntroSection";
 
 export default class {
     constructor(_options) {
@@ -70,6 +71,7 @@ export default class {
         this.setGer()
         this.setAnimals()
         this.setAlphabet()
+        this.setWedding()
         this.setSections()
     }
 
@@ -427,12 +429,18 @@ export default class {
         this.animals = new Animals({
             resources: this.resources,
             objects: this.objects,
-            shadows: this.shadows,
         })
     }
 
     setAlphabet() {
         this.alphabet = new Alphabet({
+            resources: this.resources,
+            objects: this.objects,
+        })
+    }
+
+    setWedding() {
+        this.wedding = new Wedding({
             resources: this.resources,
             objects: this.objects,
         })
@@ -494,6 +502,7 @@ export default class {
             animals: this.animals,
             road: this.road,
             alphabet: this.alphabet,
+            wedding: this.wedding,
             debug: this.debugFolder
         }
 
@@ -505,14 +514,22 @@ export default class {
         })
         this.container.add(this.sections.intro.container)
 
-        // Playground
-        this.sections.playground = new PlaygroundSection({
+        // Wedding
+        this.sections.wedding = new WeddingSection({
             ...options,
             x: 0,
-            y: -15
-            // x: - 15,
-            // y: - 4
+            y: -170
         })
-        this.container.add(this.sections.playground.container)
+        this.container.add(this.sections.wedding.container)
+
+        // // Playground
+        // this.sections.playground = new PlaygroundSection({
+        //     ...options,
+        //     x: 0,
+        //     y: -15
+        //     // x: - 15,
+        //     // y: - 4
+        // })
+        // this.container.add(this.sections.playground.container)
     }
 }

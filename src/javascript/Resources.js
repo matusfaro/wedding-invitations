@@ -133,6 +133,14 @@ import personMatusSource from '../models/people/personMatus.glb'
 import personMatusCollisionSource from '../models/people/personMatusCollision.glb'
 import horseSource from '../models/animals/horse.glb'
 import horseCollisionSource from '../models/animals/horseCollision.glb'
+import sheepSource from '../models/animals/sheep.glb'
+import sheepCollisionSource from '../models/animals/sheepCollision.glb'
+import chairSource from '../models/wedding/chair.glb'
+import chairCollisionSource from '../models/wedding/chairCollision.glb'
+import archSource from '../models/wedding/arch.glb'
+import archCollisionSource from '../models/wedding/archCollision.glb'
+import treeSource from '../models/wedding/tree.glb'
+import treeCollisionSource from '../models/wedding/treeCollision.glb'
 import collisionISource from '../models/alphabet/collisionI.glb'
 import collisionHSource from '../models/alphabet/collisionH.glb'
 import collisionDotSource from '../models/alphabet/collisionDot.glb'
@@ -460,6 +468,16 @@ export default class Resources extends EventEmitter {
             // Animals
             {name: 'horse', source: horseSource},
             {name: 'horseCollision', source: horseCollisionSource},
+            {name: 'sheep', source: sheepSource},
+            {name: 'sheepCollision', source: sheepCollisionSource},
+
+            // Wedding
+            {name: 'chair', source: chairSource},
+            {name: 'chairCollision', source: chairCollisionSource},
+            {name: 'arch', source: archSource},
+            {name: 'archCollision', source: archCollisionSource},
+            {name: 'tree', source: treeSource},
+            {name: 'treeCollision', source: treeCollisionSource},
 
             // Alphabet
             {name: 'collisionH', source: collisionHSource},
