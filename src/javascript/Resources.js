@@ -126,7 +126,9 @@ import wig2Source from '../models/wigs/wig2.glb'
 import wig3Source from '../models/wigs/wig3.glb'
 import wig4Source from '../models/wigs/wig4.glb'
 import gerSource from '../models/ger/ger.glb'
-import gerCollisionSource from '../models/ger/collision.glb'
+import gerCollisionSource from '../models/ger/gerCollision.glb'
+import fenceSource from '../models/ger/fence.glb'
+import fenceCollisionSource from '../models/ger/fenceCollision.glb'
 import personNominSource from '../models/people/personNomin.glb'
 import personNominCollisionSource from '../models/people/personNominCollision.glb'
 import personMatusSource from '../models/people/personMatus.glb'
@@ -460,6 +462,8 @@ export default class Resources extends EventEmitter {
             // Ger
             {name: 'ger', source: gerSource},
             {name: 'gerCollision', source: gerCollisionSource},
+            {name: 'fence', source: fenceSource},
+            {name: 'fenceCollision', source: fenceCollisionSource},
             {name: 'personNomin', source: personNominSource},
             {name: 'personNominCollision', source: personNominCollisionSource},
             {name: 'personMatus', source: personMatusSource},

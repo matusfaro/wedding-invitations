@@ -4,6 +4,14 @@ import revealSound from '../../sounds/reveal/reveal-1.mp3'
 
 import engineSound from '../../sounds/engines/1/low_off.mp3'
 
+import horse1Sound from '../../sounds/animals/horse1.mp3'
+import horse2Sound from '../../sounds/animals/horse2.mp3'
+import horse3Sound from '../../sounds/animals/horse3.mp3'
+import horse4Sound from '../../sounds/animals/horse4.mp3'
+import sheep1Sound from '../../sounds/animals/sheep1.mp3'
+import sheep2Sound from '../../sounds/animals/sheep2.mp3'
+import sheep3Sound from '../../sounds/animals/sheep3.mp3'
+import sheep4Sound from '../../sounds/animals/sheep4.mp3'
 import brick1Sound from '../../sounds/bricks/brick-1.mp3'
 import brick2Sound from '../../sounds/bricks/brick-2.mp3'
 // import brick3Sound from '../../sounds/bricks/brick-3.mp3'
@@ -67,6 +75,28 @@ export default class Sounds {
                 volumeMax: 1,
                 rateMin: 1,
                 rateMax: 1
+            },
+            {
+                name: 'sheep',
+                sounds: [sheep1Sound, sheep2Sound, sheep3Sound, sheep4Sound],
+                minDelta: 100,
+                velocityMin: 1,
+                velocityMultiplier: 0.75,
+                volumeMin: 0.2,
+                volumeMax: 0.85,
+                rateMin: 0.5,
+                rateMax: 0.75
+            },
+            {
+                name: 'horse',
+                sounds: [horse1Sound, horse2Sound, horse3Sound, horse4Sound],
+                minDelta: 100,
+                velocityMin: 1,
+                velocityMultiplier: 0.75,
+                volumeMin: 0.2,
+                volumeMax: 0.85,
+                rateMin: 0.5,
+                rateMax: 0.75
             },
             {
                 name: 'brick',

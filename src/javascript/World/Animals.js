@@ -13,6 +13,7 @@ export default class Animals {
         this.objects.add({
             base: this.resources.items.horse.scene,
             collision: this.resources.items.horseCollision.scene,
+            soundName: 'horse',
             offset: new THREE.Vector3(_options.offset.x, _options.offset.y, 0.8),
             rotation: new THREE.Euler(0, 0, (_options.rotation || 0) / 180 * Math.PI),
             mass: 3,
@@ -25,6 +26,7 @@ export default class Animals {
         this.objects.add({
             base: this.resources.items.sheep.scene,
             collision: this.resources.items.sheepCollision.scene,
+            soundName: 'sheep',
             offset: new THREE.Vector3(_options.offset.x, _options.offset.y, 0.8),
             rotation: new THREE.Euler(0, 0, (_options.rotation || 0) / 180 * Math.PI),
             mass: 2,

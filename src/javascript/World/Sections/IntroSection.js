@@ -474,6 +474,7 @@ export default class IntroSection {
         this.ger.addGer({
             offset: new THREE.Vector2(4, 10),
         })
+
         this.ger.addPerson({
             offset: new THREE.Vector2(4, 5),
             name: 'Nomin'
@@ -482,6 +483,7 @@ export default class IntroSection {
             offset: new THREE.Vector2(3, 5),
             name: 'Matus'
         })
+
         this.alphabet.add({
             text: this.i18n.get('matusFaro'),
             offset: new THREE.Vector2(-5, 5),
@@ -491,6 +493,18 @@ export default class IntroSection {
             offset: new THREE.Vector2(6, 5),
         });
 
+        [
+            {x: -8, y: 17, r: 15},
+            {x: -10.8, y: 15.8, r: 35},
+            {x: -13, y: 14, r: 45},
+            {x: -14, y: 11.5, r: 90},
+            {x: -13.5, y: 8.5, r: 110},
+        ].forEach(_fence => {
+            this.ger.addFence({
+                offset: new THREE.Vector2(_fence.x, _fence.y),
+                rotation: _fence.r,
+            })
+        })
     }
 
     setAnimals(_options) {

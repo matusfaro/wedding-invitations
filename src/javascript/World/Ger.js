@@ -14,7 +14,19 @@ export default class Ger {
             collision: this.resources.items.gerCollision.scene,
             offset: new THREE.Vector3(_options.offset.x, _options.offset.y, 0),
             mass: 1,
-            shadow: {sizeX: 9, sizeY: 6, offsetZ: 0.2},
+            shadow: {sizeX: 9, sizeY: 6, offsetZ: 1},
+        })
+    }
+
+    addFence(_options) {
+        this.objects.add({
+            base: this.resources.items.fence.scene,
+            collision: this.resources.items.fenceCollision.scene,
+            offset: new THREE.Vector3(_options.offset.x, _options.offset.y, 0),
+            rotation: new THREE.Euler(0, 0, (_options.rotation || 0) / 180 * Math.PI),
+            mass: 1,
+            shadow: {sizeX: 3, sizeY: 1, offsetZ: 1},
+            duplicated: true,
         })
     }
 
