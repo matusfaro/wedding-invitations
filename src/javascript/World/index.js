@@ -17,9 +17,9 @@ import Ger from "./Ger";
 import Alphabet from "./Alphabet";
 import Road from "./Road";
 import Animals from "./Animals";
-import WeddingSection from "./Sections/WeddingSection";
 import Wedding from "./Wedding";
-import IntroSection from "./Sections/IntroSection";
+import HomeSection from "./Sections/HomeSection";
+import WeddingSection from "./Sections/WeddingSection";
 
 export default class {
     constructor(_options) {
@@ -507,12 +507,20 @@ export default class {
         }
 
         // Intro
-        this.sections.intro = new IntroSection({
+        // this.sections.intro = new IntroSection({
+        //     ...options,
+        //     x: 0,
+        //     y: 0
+        // })
+        // this.container.add(this.sections.intro.container)
+
+        // Home
+        this.sections.home = new HomeSection({
             ...options,
             x: 0,
             y: 0
         })
-        this.container.add(this.sections.intro.container)
+        this.container.add(this.sections.home.container)
 
         // Wedding
         this.sections.wedding = new WeddingSection({
@@ -520,16 +528,6 @@ export default class {
             x: 0,
             y: -170
         })
-        this.container.add(this.sections.wedding.container)
-
-        // // Playground
-        // this.sections.playground = new PlaygroundSection({
-        //     ...options,
-        //     x: 0,
-        //     y: -15
-        //     // x: - 15,
-        //     // y: - 4
-        // })
-        // this.container.add(this.sections.playground.container)
+        // this.container.add(this.sections.wedding.container)
     }
 }

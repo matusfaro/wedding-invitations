@@ -13,8 +13,8 @@ export default class Road {
     createGerFloor(_options) {
         _options.type = 'gerFloorTexture'
         _options.color = 0xcec5a9
-        _options.width = 2160
-        _options.height = 2160
+        _options.width = 4096
+        _options.height = 4096
         return this.create(_options)
     }
 
@@ -63,9 +63,9 @@ export default class Road {
         this.objects.add({
             base: this.resources.items.tree.scene,
             collision: this.resources.items.treeCollision.scene,
-            offset: new THREE.Vector3(_options.offset.x, _options.offset.y, 2.5),
+            offset: new THREE.Vector3(_options.offset.x, _options.offset.y, 2),
             rotation: new THREE.Euler(0, 0, (_options.rotation || 0) / 180 * Math.PI),
-            mass: 5,
+            mass: 10,
             shadow: {sizeX: 1, sizeY: 1, alpha: 0.35},
             duplicated: true,
         })

@@ -13,6 +13,7 @@ export default class Ger {
             base: this.resources.items.ger.scene,
             collision: this.resources.items.gerCollision.scene,
             offset: new THREE.Vector3(_options.offset.x, _options.offset.y, 0),
+            rotation: new THREE.Euler(0, 0, (_options.rotation || 0) / 180 * Math.PI),
             mass: 1,
             shadow: {sizeX: 9, sizeY: 6, offsetZ: 1},
         })
@@ -24,7 +25,7 @@ export default class Ger {
             collision: this.resources.items.fenceCollision.scene,
             offset: new THREE.Vector3(_options.offset.x, _options.offset.y, 0),
             rotation: new THREE.Euler(0, 0, (_options.rotation || 0) / 180 * Math.PI),
-            mass: 1,
+            mass: 5,
             shadow: {sizeX: 3, sizeY: 1, offsetZ: 1},
             duplicated: true,
         })
@@ -35,6 +36,7 @@ export default class Ger {
             base: this.resources.items['person' + _options.name].scene,
             collision: this.resources.items['person' + _options.name + 'Collision'].scene,
             offset: new THREE.Vector3(_options.offset.x, _options.offset.y, 1.01),
+            rotation: new THREE.Euler(0, 0, (_options.rotation || 0) / 180 * Math.PI),
             mass: 3,
             shadow: {sizeX: 1.2, sizeY: 1.8, alpha: 0.35},
         })
