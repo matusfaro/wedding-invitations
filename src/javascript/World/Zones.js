@@ -7,6 +7,8 @@ export default class Zones {
         this.time = _options.time
         this.sizes = _options.sizes
         this.physics = _options.physics
+        this.camera = _options.camera
+        this.passes = _options.passes
         this.debug = _options.debug
 
         // Set up
@@ -55,13 +57,40 @@ export default class Zones {
         })
     }
 
-    add(_settings) {
+    addZone(_settings) {
         // Set up
         const zone = new Zone(_settings)
         this.container.add(zone.mesh)
 
         // Save
         this.items.push(zone)
+
+        return zone
+    }
+
+    addCameraZone(_settings) {
+        const zone = this.addZone({
+            position: {
+                x: _settings.x + (_settings.xLength / 2),
+                y: _settings.y + (_settings.yLength / 2)
+            },
+            halfExtents: {
+                x: _settings.xLength,
+                y: _settings.yLength
+            },
+        })
+
+        zone.on('in', () => {
+            this.camera.angle.set(_settings.cameraAngle)
+            TweenLite.to(this.passes.horizontalBlurPass.material.uniforms.uStrength.value, 2, {x: 0})
+            TweenLite.to(this.passes.verticalBlurPass.material.uniforms.uStrength.value, 2, {y: 0})
+        })
+
+        zone.on('out', () => {
+            this.camera.angle.set('driving')
+            TweenLite.to(this.passes.horizontalBlurPass.material.uniforms.uStrength.value, 2, {x: this.passes.horizontalBlurPass.strength})
+            TweenLite.to(this.passes.verticalBlurPass.material.uniforms.uStrength.value, 2, {y: this.passes.verticalBlurPass.strength})
+        })
 
         return zone
     }

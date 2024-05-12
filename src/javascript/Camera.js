@@ -44,6 +44,7 @@ export default class Camera {
             // startScreen: new THREE.Vector3(0.1, -1.4, 2.3),
             // Angle for driving the car around
             driving: new THREE.Vector3(1.135, -1.45, 1.15),
+            sideway: new THREE.Vector3(1.135, -1.30, 0.75),
             // Angle good for reading text on the ground
             reading: new THREE.Vector3(0.38, -1.4, 1.63),
         }

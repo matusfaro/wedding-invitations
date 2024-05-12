@@ -20,6 +20,7 @@ import Animals from "./Animals";
 import Wedding from "./Wedding";
 import HomeSection from "./Sections/HomeSection";
 import WeddingSection from "./Sections/WeddingSection";
+import IntroSection from "./Sections/IntroSection";
 
 export default class {
     constructor(_options) {
@@ -374,6 +375,8 @@ export default class {
         this.zones = new Zones({
             time: this.time,
             physics: this.physics,
+            camera: this.camera,
+            passes: this.passes,
             debug: this.debugFolder
         })
         this.container.add(this.zones.container)
@@ -507,18 +510,18 @@ export default class {
         }
 
         // Intro
-        // this.sections.intro = new IntroSection({
-        //     ...options,
-        //     x: 0,
-        //     y: 0
-        // })
-        // this.container.add(this.sections.intro.container)
+        this.sections.intro = new IntroSection({
+            ...options,
+            x: 0,
+            y: 0
+        })
+        this.container.add(this.sections.intro.container)
 
         // Home
         this.sections.home = new HomeSection({
             ...options,
-            x: 0,
-            y: 0
+            x: -15,
+            y: -75
         })
         this.container.add(this.sections.home.container)
 
@@ -526,7 +529,7 @@ export default class {
         this.sections.wedding = new WeddingSection({
             ...options,
             x: 0,
-            y: -170
+            y: -125
         })
         // this.container.add(this.sections.wedding.container)
     }

@@ -34,6 +34,7 @@ export default class Alphabet {
                 base: resource.scene,
                 collision: collision.scene,
                 duplicated: true,
+                materialName: _options.materialName || 'gold',
                 offset: new THREE.Vector3(
                     _options.offset.x + (_options.direction === 'x' ? index * 0.65 : 0),
                     _options.offset.y + (_options.direction !== 'x' ? index * 0.65 : 0),

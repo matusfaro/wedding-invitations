@@ -16,8 +16,18 @@ export default class Animals {
             soundName: 'horse',
             offset: new THREE.Vector3(_options.offset.x, _options.offset.y, 0.8),
             rotation: new THREE.Euler(0, 0, (_options.rotation || 0) / 180 * Math.PI),
-            mass: 3,
+            mass: 0.1,
             shadow: {sizeX: 1.2, sizeY: 1.8, alpha: 0.35},
+            duplicated: true,
+        })
+    }
+
+    addHorseHolder(_options) {
+        this.objects.add({
+            base: this.resources.items.horseHolder.scene,
+            soundName: 'horse',
+            offset: new THREE.Vector3(_options.offset.x, _options.offset.y, 0.8),
+            rotation: new THREE.Euler(0, 0, (_options.rotation || 0) / 180 * Math.PI),
             duplicated: true,
         })
     }
@@ -29,7 +39,7 @@ export default class Animals {
             soundName: 'sheep',
             offset: new THREE.Vector3(_options.offset.x, _options.offset.y, 0.8),
             rotation: new THREE.Euler(0, 0, (_options.rotation || 0) / 180 * Math.PI),
-            mass: 2,
+            mass: 0.1,
             shadow: {sizeX: 1.2, sizeY: 1.8, alpha: 0.35},
             duplicated: true,
         })

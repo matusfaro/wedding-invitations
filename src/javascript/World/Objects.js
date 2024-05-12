@@ -32,12 +32,15 @@ export default class Objects {
                 regex: /^shade([a-z]+)[_.]?[0-9]{0,3}?/i,
                 apply: (_mesh, _options) => {
                     // Find material
-                    const match = _mesh.name.match(/^shade([a-z]+)[_.]?[0-9]{0,3}?/i)
-                    const materials = match[1].split('X')
-                        // PastalCase to camelCase
-                        .map(m => `${m.substring(0, 1).toLowerCase()}${m.substring(1)}`)
-                    // Choose random material
-                    const materialName = materials.length === 1 ? materials[0] : materials[Math.floor(Math.random() * materials.length)]
+                    var materialName = _options.materialName
+                    if (!materialName) {
+                        const match = _mesh.name.match(/^shade([a-z]+)[_.]?[0-9]{0,3}?/i)
+                        const materials = match[1].split('X')
+                            // PastalCase to camelCase
+                            .map(m => `${m.substring(0, 1).toLowerCase()}${m.substring(1)}`)
+                        // Choose random material
+                        materialName = materials.length === 1 ? materials[0] : materials[Math.floor(Math.random() * materials.length)]
+                    }
                     let material = this.materials.shades.items[materialName]
 
                     // Default
@@ -287,20 +290,22 @@ export default class Objects {
         }
 
         // Create physics object
-        object.collision = this.physics.addObjectFromThree({
-            meshes: [..._options.collision.children],
-            offset,
-            rotation,
-            mass: _options.mass,
-            sleep
-        })
+        if (_options.collision) {
+            object.collision = this.physics.addObjectFromThree({
+                meshes: [..._options.collision.children],
+                offset,
+                rotation,
+                mass: _options.mass,
+                sleep
+            })
 
-        for (const _child of object.container.children) {
-            _child.position.sub(object.collision.center)
+            for (const _child of object.container.children) {
+                _child.position.sub(object.collision.center)
+            }
         }
 
         // Sound
-        if (_options.soundName) {
+        if (object.collision && _options.soundName) {
             object.collision.body.addEventListener('collide', (_event) => {
                 const relativeVelocity = _event.contact.getImpactVelocityAlongNormal()
                 this.sounds.play(_options.soundName, relativeVelocity)
@@ -314,7 +319,7 @@ export default class Objects {
         }
 
         // Time tick event
-        if (_options.mass > 0) {
+        if (object.collision && _options.mass > 0) {
             this.time.on('tick', () => {
                 object.container.position.copy(object.collision.body.position)
                 object.container.quaternion.copy(object.collision.body.quaternion)

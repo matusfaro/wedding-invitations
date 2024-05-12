@@ -14,6 +14,7 @@ import matcapPurpleSource from '../models/matcaps/purple.png'
 import matcapBlueSource from '../models/matcaps/blue.png'
 import matcapYellowSource from '../models/matcaps/yellow.png'
 import matcapMetalSource from '../models/matcaps/metal.png'
+import matcapGoldSource from '../models/matcaps/gold.png'
 import gerFloorSource from '../models/ger/gerFloor.png'
 import straight1RoadSource from '../models/road/straightLong1.png'
 import straight2RoadSource from '../models/road/straightLong2.png'
@@ -135,6 +136,7 @@ import personMatusSource from '../models/people/personMatus.glb'
 import personMatusCollisionSource from '../models/people/personMatusCollision.glb'
 import horseSource from '../models/animals/horse.glb'
 import horseCollisionSource from '../models/animals/horseCollision.glb'
+import horseHolderSource from '../models/animals/horseHolder.glb'
 import sheepSource from '../models/animals/sheep.glb'
 import sheepCollisionSource from '../models/animals/sheepCollision.glb'
 import chairSource from '../models/wedding/chair.glb'
@@ -261,7 +263,7 @@ export default class Resources extends EventEmitter {
             {name: 'matcapBlue', source: matcapBlueSource, type: 'texture'},
             {name: 'matcapYellow', source: matcapYellowSource, type: 'texture'},
             {name: 'matcapMetal', source: matcapMetalSource, type: 'texture'},
-            // { name: 'matcapGold', source: matcapGoldSource, type: 'texture' },
+            {name: 'matcapGold', source: matcapGoldSource, type: 'texture'},
 
             // Intro
             {name: 'introStaticBase', source: introStaticBaseSource},
@@ -472,6 +474,7 @@ export default class Resources extends EventEmitter {
             // Animals
             {name: 'horse', source: horseSource},
             {name: 'horseCollision', source: horseCollisionSource},
+            {name: 'horseHolder', source: horseHolderSource},
             {name: 'sheep', source: sheepSource},
             {name: 'sheepCollision', source: sheepCollisionSource},
 
