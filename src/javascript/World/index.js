@@ -521,7 +521,7 @@ export default class {
         this.sections.home = new HomeSection({
             ...options,
             x: -15,
-            y: -75
+            y: 75
         })
         this.container.add(this.sections.home.container)
 
@@ -529,7 +529,7 @@ export default class {
         this.sections.wedding = new WeddingSection({
             ...options,
             x: 0,
-            y: -145
+            y: 145
         })
         this.container.add(this.sections.wedding.container)
     }

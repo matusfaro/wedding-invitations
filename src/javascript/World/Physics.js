@@ -183,7 +183,7 @@ export default class Physics {
             this.car.chassis.body.position.set(3, 0, 12)
             this.car.chassis.body.sleep()
             this.car.chassis.body.addShape(this.car.chassis.shape, this.car.options.chassisOffset)
-            this.car.chassis.body.quaternion.setFromAxisAngle(new CANNON.Vec3(0, 0, 1), -Math.PI * 0.5)
+            this.car.chassis.body.quaternion.setFromAxisAngle(new CANNON.Vec3(0, 0, 1), Math.PI * 0.5)
 
             /**
              * Sound
@@ -353,7 +353,7 @@ export default class Physics {
             this.car.forwardSpeed = this.car.worldForward.dot(positionDelta)
             this.car.goingForward = this.car.forwardSpeed > 0
 
-            // Updise down
+            // Upside down
             const localUp = new CANNON.Vec3(0, 0, 1)
             const worldUp = new CANNON.Vec3()
             this.car.chassis.body.vectorToWorldFrame(localUp, worldUp)

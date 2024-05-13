@@ -86,8 +86,8 @@ export default class WeddingSection {
 
     setSeatMarkerOwnName() {
         let name
-        if (window.location.hash.length > 1) {
-            name = decodeURIComponent(window.location.hash).substring(1)
+        if (window.location.search.length > 1) {
+            name = decodeURIComponent(window.location.search).substring(1)
         } else {
             name = this.i18n.get('youSitHere')
         }

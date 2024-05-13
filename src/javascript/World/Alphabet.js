@@ -28,8 +28,21 @@ export default class Alphabet {
                     shadow = {sizeX: 0.2, sizeY: 0.2, offsetZ: -0.15, alpha: 0.35}
                     break
                 case '↓':
-                    rotationY = -Math.PI / 2
+                case '→':
+                case '↑':
+                    switch (letter) {
+                        case '↓':
+                            rotationY = -Math.PI / 2
+                            break
+                        case '→':
+                            rotationY = -Math.PI
+                            break
+                        case '↑':
+                            rotationY = Math.PI / 2
+                            break
+                    }
                     letter = '←'
+                // fallthrough
                 case '←':
                     collision = this.resources.items.collisionArrow
                     shadow = {sizeX: 1.2, sizeY: 1.8, offsetZ: -0.15, alpha: 0.35}

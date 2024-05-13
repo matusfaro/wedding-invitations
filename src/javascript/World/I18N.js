@@ -8,7 +8,7 @@ const translations = {
         nominKhurelbaatar: 'Nomin Khurelbaatar',
         khurelbaatar: 'Khurelbaatar',
         weddingInvitation1: 'Wedding',
-        weddingInvitation2: 'invitation',
+        weddingInvitation2: 'invitation →',
         theEnd: 'The End',
     },
     mn: { // АБВГДЕЁЖЗИЙКЛМНОӨПРСТУҮФХЦЧШЩЪЫЬЭЮЯ
@@ -20,7 +20,7 @@ const translations = {
         nominKhurelbaatar: 'Номин Хурэлбаатар',
         khurelbaatar: 'Хурэлбаатар',
         weddingInvitation1: 'Хуримын',
-        weddingInvitation2: 'урилга',
+        weddingInvitation2: '  урилга →',
         theEnd: 'Төгсгөл',
     },
     sk: {
@@ -32,7 +32,7 @@ const translations = {
         nominKhurelbaatar: 'Nomin Khurelbaatar',
         khurelbaatar: 'Khurelbaatar',
         weddingInvitation1: 'Svadobná',
-        weddingInvitation2: 'pozvánka',
+        weddingInvitation2: '  pozvánka →',
         theEnd: 'Koniec',
     },
 }
