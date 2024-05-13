@@ -9,6 +9,7 @@ const translations = {
         khurelbaatar: 'Khurelbaatar',
         weddingInvitation1: 'Wedding',
         weddingInvitation2: 'invitation',
+        theEnd: 'The End',
     },
     mn: { // АБВГДЕЁЖЗИЙКЛМНОӨПРСТУҮФХЦЧШЩЪЫЬЭЮЯ
         youSitHere: 'Энд суу',
@@ -20,6 +21,7 @@ const translations = {
         khurelbaatar: 'Хурэлбаатар',
         weddingInvitation1: 'Хуримын',
         weddingInvitation2: 'урилга',
+        theEnd: 'Төгсгөл',
     },
     sk: {
         youSitHere: 'Sedíš tu',
@@ -31,6 +33,7 @@ const translations = {
         khurelbaatar: 'Khurelbaatar',
         weddingInvitation1: 'Svadobná',
         weddingInvitation2: 'pozvánka',
+        theEnd: 'Koniec',
     },
 }
 

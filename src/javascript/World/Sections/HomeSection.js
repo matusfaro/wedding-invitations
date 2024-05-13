@@ -132,22 +132,11 @@ export default class HomeSection {
             disperseAmount: 2,
         })
 
-        // TODO readd loose animals
-        // this.setHorseFlock({
-        //     offset: new THREE.Vector2(this.x +12, this.y-43),
-        //     disperseAmount: 1.2,
-        //     amountPercent: 0.5
-        // })
-        // this.setSheepFlock({
-        //     offset: new THREE.Vector2(this.x +12, this.y-70),
-        //     disperseAmount: 1.2,
-        //     amountPercent: 1
-        // })
-        // this.setHorseFlock({
-        //     offset: new THREE.Vector2(this.x +-8, this.y-80),
-        //     disperseAmount: 2,
-        //     amountPercent: 1
-        // })
+        this.setHorseFlock({
+            offset: new THREE.Vector2(this.x + 23, this.y - 43),
+            disperseAmount: 1.3,
+            amountPercent: 1
+        })
     }
 
     setSheepFlock(_options) {

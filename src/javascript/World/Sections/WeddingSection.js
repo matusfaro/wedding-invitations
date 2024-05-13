@@ -24,6 +24,7 @@ export default class WeddingSection {
         this.setStage()
         this.setSeatMarkerOwnName()
         this.setSkyResortName()
+        this.setEnd()
     }
 
     setStage() {
@@ -125,6 +126,17 @@ export default class WeddingSection {
             offset: new THREE.Vector3(
                 this.x + 6,
                 this.y + 5,
+                1),
+        })
+    }
+
+    setEnd() {
+        this.alphabet.add({
+            text: this.i18n.get('theEnd'),
+            direction: 'x',
+            offset: new THREE.Vector3(
+                this.x + 2,
+                this.y - 16,
                 1),
         })
     }
