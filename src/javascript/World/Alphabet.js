@@ -7,9 +7,12 @@ export default class Alphabet {
         this.objects = _options.objects
     }
 
+    addArrow(_options) {
+    }
+
     add(_options) {
         _options.text.split('').forEach((letter, index) => {
-            let collision, shadow
+            let collision, shadow, rotationY = 0
             switch (letter) {
                 case ' ':
                     return
@@ -24,22 +27,48 @@ export default class Alphabet {
                     collision = this.resources.items.collisionI
                     shadow = {sizeX: 0.2, sizeY: 0.2, offsetZ: -0.15, alpha: 0.35}
                     break
+                case '↓':
+                    rotationY = -Math.PI / 2
+                    letter = '←'
+                case '←':
+                    collision = this.resources.items.collisionArrow
+                    shadow = {sizeX: 1.2, sizeY: 1.8, offsetZ: -0.15, alpha: 0.35}
+                    break
                 default:
                     collision = this.resources.items.collisionH
                     shadow = {sizeX: 1.2, sizeY: 1.8, offsetZ: -0.15, alpha: 0.35}
                     break
             }
+
             const resource = this.resources.items[letter.toUpperCase()] || this.resources.items['?']
+
+            let offsetX = _options.offset.x, offsetY = _options.offset.y, rotation = 0
+            switch (_options.direction) {
+                case 'x':
+                    offsetX += index * 0.65
+                    break
+                default:
+                case 'y':
+                    offsetY += index * 0.65
+                    rotation = Math.PI / 2
+                    break
+                case 'xy':
+                    offsetX += index * 0.45
+                    offsetY += index * 0.45
+                    rotation = Math.PI / 4
+                    break
+            }
+
             this.objects.add({
                 base: resource.scene,
                 collision: collision.scene,
                 duplicated: true,
                 materialName: _options.materialName || 'gold',
                 offset: new THREE.Vector3(
-                    _options.offset.x + (_options.direction === 'x' ? index * 0.65 : 0),
-                    _options.offset.y + (_options.direction !== 'x' ? index * 0.65 : 0),
-                    .5),
-                rotation: new THREE.Euler(0, 0, (_options.direction !== 'x' ? Math.PI / 2 : 0)),
+                    offsetX,
+                    offsetY,
+                    (_options.offset.z || 0) + .5),
+                rotation: new THREE.Euler(0, rotationY, rotation, 'ZYX'),
                 mass: 0.5,
                 shadow: shadow,
                 soundName: 'brick'

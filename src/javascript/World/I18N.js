@@ -1,15 +1,36 @@
 const translations = {
     ca: {
+        youSitHere: 'Sit here',
+        matus: 'Matus',
         matusFaro: 'Matus Faro',
+        Faro: 'Faro',
+        nomin: 'Nomin',
         nominKhurelbaatar: 'Nomin Khurelbaatar',
+        khurelbaatar: 'Khurelbaatar',
+        weddingInvitation1: 'Wedding',
+        weddingInvitation2: 'invitation',
     },
     mn: { // АБВГДЕЁЖЗИЙКЛМНОӨПРСТУҮФХЦЧШЩЪЫЬЭЮЯ
+        youSitHere: 'Энд суу',
+        matus: 'Матус',
         matusFaro: 'Матус Фаро',
+        faro: 'Фаро',
+        nomin: 'Номин',
         nominKhurelbaatar: 'Номин Хурэлбаатар',
+        khurelbaatar: 'Хурэлбаатар',
+        weddingInvitation1: 'Хуримын',
+        weddingInvitation2: 'урилга',
     },
     sk: {
+        youSitHere: 'Sedíš tu',
+        matus: 'Matúš',
         matusFaro: 'Matúš Faro',
+        faro: 'Faro',
+        nomin: 'Nomin',
         nominKhurelbaatar: 'Nomin Khurelbaatar',
+        khurelbaatar: 'Khurelbaatar',
+        weddingInvitation1: 'Svadobná',
+        weddingInvitation2: 'pozvánka',
     },
 }
 

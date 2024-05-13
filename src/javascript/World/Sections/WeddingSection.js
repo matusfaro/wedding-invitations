@@ -22,6 +22,7 @@ export default class WeddingSection {
         this.container.updateMatrix()
 
         this.setStage()
+        this.setSeatMarkerOwnName()
         this.setSkyResortName()
     }
 
@@ -82,20 +83,49 @@ export default class WeddingSection {
         })
     }
 
+    setSeatMarkerOwnName() {
+        let name
+        if (window.location.hash.length > 1) {
+            name = decodeURIComponent(window.location.hash).substring(1)
+        } else {
+            name = this.i18n.get('youSitHere')
+        }
+        const words = name.split(' ');
+        words.forEach((word, index) => {
+            this.alphabet.add({
+                text: word,
+                direction: 'xy',
+                offset: new THREE.Vector3(
+                    this.x - 2,
+                    this.y + 4,
+                    1.5 + words.length - index),
+            })
+        })
+        this.alphabet.add({
+            text: '↓',
+            direction: 'xy',
+            offset: new THREE.Vector3(
+                this.x - 2,
+                this.y + 4,
+                1.5),
+        })
+    }
+
     setSkyResortName() {
         this.alphabet.add({
-            text: this.i18n.get('SkyResort'),
+            text: 'Sky Resort',
+            direction: 'xy',
             offset: new THREE.Vector2(
                 this.x + 6,
                 this.y + 4),
         })
-
         this.alphabet.add({
             text: this.i18n.get('2024.8.4'),
-            offset: new THREE.Vector2(
-                this.x + 9,
-                this.y + 2),
+            direction: 'xy',
+            offset: new THREE.Vector3(
+                this.x + 6,
+                this.y + 5,
+                1),
         })
     }
-
 }

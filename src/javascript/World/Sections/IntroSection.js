@@ -24,12 +24,31 @@ export default class IntroSection {
         this.container.matrixAutoUpdate = false
         this.container.updateMatrix()
 
+        this.setSign()
         this.setForest()
         // this.setInstructions({
         //     offset: new THREE.Vector2(4, -2)
         // })
         this.setRoads()
         this.setRoadBlock()
+    }
+
+    setSign() {
+        this.alphabet.add({
+            text: this.i18n.get('weddingInvitation1'),
+            offset: new THREE.Vector3(this.x + 0, this.y, 1),
+            direction: 'y',
+        });
+        this.alphabet.add({
+            text: this.i18n.get('weddingInvitation2'),
+            offset: new THREE.Vector2(this.x + 0, this.y),
+            direction: 'y',
+        });
+        this.alphabet.add({
+            text: '←',
+            offset: new THREE.Vector3(this.x + 0, this.y - 1.2, 0.3),
+            direction: 'y',
+        });
     }
 
     setForest() {
@@ -42,7 +61,6 @@ export default class IntroSection {
             {x: -4, y: -8},
             {x: -8, y: -4},
             {x: -3, y: -2},
-            {x: -1, y: 1},
             {x: -7, y: 5},
             {x: -4, y: 7},
             {x: -1, y: 12},
@@ -179,7 +197,7 @@ export default class IntroSection {
     }
 
     setRoads() {
-        const offset = new THREE.Vector2(0, 44)
+        const offset = new THREE.Vector2(0, 24)
         const rotation = 0
         this.container.add(this.road.createRoad({
             type: 'straight1',

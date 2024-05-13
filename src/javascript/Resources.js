@@ -240,6 +240,8 @@ import dotSource from '../models/alphabet/dot.glb'
 import commaSource from '../models/alphabet/comma.glb'
 import exclamationSource from '../models/alphabet/exclamation.glb'
 import questionSource from '../models/alphabet/question.glb'
+import arrowLeftSource from '../models/alphabet/arrow.glb'
+import arrowLeftCollisionSource from '../models/alphabet/arrowCollision.glb'
 
 export default class Resources extends EventEmitter {
     constructor() {
@@ -490,6 +492,7 @@ export default class Resources extends EventEmitter {
             {name: 'collisionH', source: collisionHSource},
             {name: 'collisionI', source: collisionISource},
             {name: 'collisionDot', source: collisionDotSource},
+            {name: 'collisionArrow', source: arrowLeftCollisionSource},
             {name: 'A', source: ASource},
             {name: 'B', source: BSource},
             {name: 'C', source: CSource},
@@ -582,6 +585,7 @@ export default class Resources extends EventEmitter {
             {name: ',', source: commaSource},
             {name: '!', source: exclamationSource},
             {name: '?', source: questionSource},
+            {name: '←', source: arrowLeftSource},
         ])
 
         this.loader.on('fileEnd', (_resource, _data) => {

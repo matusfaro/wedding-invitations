@@ -529,8 +529,8 @@ export default class {
         this.sections.wedding = new WeddingSection({
             ...options,
             x: 0,
-            y: -125
+            y: -145
         })
-        // this.container.add(this.sections.wedding.container)
+        this.container.add(this.sections.wedding.container)
     }
 }

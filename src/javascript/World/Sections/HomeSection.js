@@ -44,7 +44,7 @@ export default class HomeSection {
 
     setGer() {
         this.container.add(this.road.createGerFloor({
-            offset: new THREE.Vector2(this.x, this.y + 4),
+            offset: new THREE.Vector2(this.x, this.y + 20),
         }))
         this.ger.addGer({
             offset: new THREE.Vector2(this.x + 4, this.y + 10),
@@ -65,13 +65,23 @@ export default class HomeSection {
         })
 
         this.alphabet.add({
-            text: this.i18n.get('nominKhurelbaatar'),
-            offset: new THREE.Vector2(this.x + 9, this.y + 11),
+            text: this.i18n.get('nomin'),
+            offset: new THREE.Vector3(this.x + 10, this.y + 11, 1),
             direction: 'y',
         });
         this.alphabet.add({
-            text: this.i18n.get('matusFaro'),
-            offset: new THREE.Vector2(this.x + 9, this.y + 0),
+            text: this.i18n.get('khurelbaatar'),
+            offset: new THREE.Vector2(this.x + 10, this.y + 10),
+            direction: 'y',
+        });
+        this.alphabet.add({
+            text: this.i18n.get('matus'),
+            offset: new THREE.Vector3(this.x + 10, this.y + 3, 1),
+            direction: 'y',
+        });
+        this.alphabet.add({
+            text: this.i18n.get('faro'),
+            offset: new THREE.Vector2(this.x + 10, this.y + 4),
             direction: 'y',
         });
     }
@@ -94,33 +104,32 @@ export default class HomeSection {
         //     })
         // })
         this.animals.addHorseHolder({
-            offset: new THREE.Vector2(this.x + 0, this.y + 0),
-            rotation: 35,
+            offset: new THREE.Vector2(this.x + 0, this.y + 22),
+            rotation: 115,
         })
 
         this.animals.addHorse({
-            offset: new THREE.Vector2(this.x - 2.5, this.y + 3),
-            rotation: -30,
+            offset: new THREE.Vector2(this.x + 2.4, this.y + 23),
+            rotation: -30 + 90,
         })
         this.animals.addHorse({
-            offset: new THREE.Vector2(this.x - 1.6, this.y + 1.35),
-            rotation: 10,
+            offset: new THREE.Vector2(this.x + .8, this.y + 21.7),
+            rotation: 10 + 90,
         })
         this.animals.addHorse({
-            offset: new THREE.Vector2(this.x + 0.7, this.y - 0.3),
-            rotation: 190,
+            offset: new THREE.Vector2(this.x - 1.5, this.y + 21.3),
+            rotation: 190 + 90,
         })
         this.animals.addHorse({
-            offset: new THREE.Vector2(this.x + 1.5, this.y - 2.7),
-            rotation: 105,
+            offset: new THREE.Vector2(this.x - 2.7, this.y + 20.2),
+            rotation: 105 + 45,
         })
     }
 
     setAnimals(_options) {
         this.setSheepFlock({
-            offset: new THREE.Vector2(this.x + 1, this.y + 16),
-            disperseAmount: 1.8,
-            amountPercent: 0.5
+            offset: new THREE.Vector2(this.x - 6, this.y - 10),
+            disperseAmount: 2,
         })
 
         // TODO readd loose animals
@@ -160,7 +169,7 @@ export default class HomeSection {
             {x: 5, y: 5, r: 50},
             {x: 7, y: 6.5, r: 22},
             {x: 6, y: 8, r: 99},
-            {x: 5.5, y: 17, r: -65},
+            {x: 5.5, y: 18, r: -65},
 
             {x: 8, y: 0, r: 0},
             {x: 7, y: 2, r: 80},

@@ -7,6 +7,7 @@ module.exports = webpackMerge(
         mode: 'development',
         devServer:
             {
+                host: '0.0.0.0',
                 hot: false,
                 inline: false,
                 contentBase: './dist',
