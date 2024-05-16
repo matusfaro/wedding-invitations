@@ -56,7 +56,7 @@ void main() {
 
     // Reveal
     float distanceToCenter = length(worldPosition);
-    float zAmplitude = 3.2;
+    float zAmplitude = 4.2;
     float revealProgress = (uRevealProgress - distanceToCenter / 30.0) * 5.0;
     revealProgress = 1.0 - clamp(revealProgress, - 0.1, 1.0);
     revealProgress = pow(revealProgress, 2.0);

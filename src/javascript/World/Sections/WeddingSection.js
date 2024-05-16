@@ -136,7 +136,7 @@ export default class WeddingSection {
             direction: 'x',
             offset: new THREE.Vector3(
                 this.x + 2,
-                this.y - 16,
+                this.y + 20,
                 1),
         })
     }

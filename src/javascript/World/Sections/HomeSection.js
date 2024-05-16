@@ -129,12 +129,12 @@ export default class HomeSection {
     setAnimals(_options) {
         this.setSheepFlock({
             offset: new THREE.Vector2(this.x - 6, this.y - 10),
-            disperseAmount: 2,
+            disperseAmount: 1.3,
         })
 
         this.setHorseFlock({
-            offset: new THREE.Vector2(this.x + 23, this.y - 43),
-            disperseAmount: 1.3,
+            offset: new THREE.Vector2(this.x + 23, this.y),
+            disperseAmount: 1.4,
             amountPercent: 1
         })
     }

@@ -110,7 +110,7 @@ export default class IntroSection {
     }
 
     setRoads() {
-        const offset = new THREE.Vector2(0, 170)
+        const offset = new THREE.Vector2(0, 145)
         const rotation = 0
         this.container.add(this.road.createRoad({
             type: 'straight1',
