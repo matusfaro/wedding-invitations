@@ -31,6 +31,17 @@ export default class Ger {
         })
     }
 
+    addBucket(_options) {
+        this.objects.add({
+            base: this.resources.items.bucket.scene,
+            collision: this.resources.items.bucketCollision.scene,
+            offset: new THREE.Vector3(_options.offset.x - 12, _options.offset.y - 3, 0),
+            mass: 0.3,
+            shadow: {sizeX: 1, sizeY: 1, offsetZ: 1},
+            duplicated: true,
+        })
+    }
+
     addPerson(_options) {
         this.objects.add({
             base: this.resources.items['person' + _options.name].scene,

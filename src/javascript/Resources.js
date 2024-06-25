@@ -130,6 +130,8 @@ import gerSource from '../models/ger/ger.glb'
 import gerCollisionSource from '../models/ger/gerCollision.glb'
 import fenceSource from '../models/ger/fence.glb'
 import fenceCollisionSource from '../models/ger/fenceCollision.glb'
+import bucketSource from '../models/ger/bucket.glb'
+import bucketCollisionSource from '../models/ger/bucketCollision.glb'
 import personNominSource from '../models/people/personNomin.glb'
 import personNominCollisionSource from '../models/people/personNominCollision.glb'
 import personMatusSource from '../models/people/personMatus.glb'
@@ -468,6 +470,8 @@ export default class Resources extends EventEmitter {
             {name: 'gerCollision', source: gerCollisionSource},
             {name: 'fence', source: fenceSource},
             {name: 'fenceCollision', source: fenceCollisionSource},
+            {name: 'bucket', source: bucketSource},
+            {name: 'bucketCollision', source: bucketCollisionSource},
             {name: 'personNomin', source: personNominSource},
             {name: 'personNominCollision', source: personNominCollisionSource},
             {name: 'personMatus', source: personMatusSource},

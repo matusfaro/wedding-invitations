@@ -132,12 +132,12 @@ export default class WeddingSection {
 
     setEnd() {
         this.alphabet.add({
-            text: this.i18n.get('theEnd'),
+            text: this.i18n.get('seeYouSoon'),
             direction: 'x',
             offset: new THREE.Vector3(
                 this.x + 2,
-                this.y + 20,
-                1),
+                this.y + 35,
+                0),
         })
     }
 }

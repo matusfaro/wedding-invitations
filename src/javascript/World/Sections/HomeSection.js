@@ -50,6 +50,9 @@ export default class HomeSection {
             offset: new THREE.Vector2(this.x + 4, this.y + 10),
             rotation: 65,
         })
+        this.ger.addBucket({
+            offset: new THREE.Vector2(this.x + 5, this.y + 7.5),
+        })
     }
 
     setPeople() {
