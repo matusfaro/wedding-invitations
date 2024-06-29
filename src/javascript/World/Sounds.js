@@ -42,6 +42,20 @@ import horn1Sound from '../../sounds/horns/horn-1.mp3'
 import horn2Sound from '../../sounds/horns/horn-2.mp3'
 import horn3Sound from '../../sounds/horns/horn-3.mp3'
 
+import ouchNominOuch from '../../sounds/people/nomin-ouch.mp3'
+import ouchNominSlovak1 from '../../sounds/people/nomin-slovak1.mp3'
+import ouchNominSlovak2 from '../../sounds/people/nomin-slovak2.mp3'
+
+import ouchNominMongol1 from '../../sounds/people/nomin-mongol1.mp3'
+import ouchNominEnglish1 from '../../sounds/people/nomin-english1.mp3'
+import ouchMatusOuch from '../../sounds/people/matus-ouch.mp3'
+import ouchMatusSlovak1 from '../../sounds/people/matus-slovak1.mp3'
+import ouchMatusSlovak2 from '../../sounds/people/matus-slovak2.mp3'
+import ouchMatusMongol1 from '../../sounds/people/matus-mongol1.mp3'
+import ouchMatusMongol2 from '../../sounds/people/matus-mongol2.mp3'
+import ouchMatusMongol3 from '../../sounds/people/matus-mongol3.mp3'
+import ouchMatusEnglish1 from '../../sounds/people/matus-english1.mp3'
+
 export default class Sounds {
     constructor(_options) {
         // Options
@@ -196,7 +210,73 @@ export default class Sounds {
                 volumeMax: 1,
                 rateMin: 0.75,
                 rateMax: 1
-            }
+            },
+            {
+                name: 'ouch-nomin-sk',
+                sounds: [ouchNominSlovak1, ouchNominSlovak2, ouchNominOuch],
+                minDelta: 1000,
+                velocityMin: 0,
+                velocityMultiplier: 1,
+                volumeMin: 1,
+                volumeMax: 1,
+                rateMin: 1,
+                rateMax: 1
+            },
+            {
+                name: 'ouch-nomin-mn',
+                sounds: [ouchNominMongol1, ouchNominOuch],
+                minDelta: 1000,
+                velocityMin: 0,
+                velocityMultiplier: 1,
+                volumeMin: 1,
+                volumeMax: 1,
+                rateMin: 1,
+                rateMax: 1
+            },
+            {
+                name: 'ouch-nomin-ca',
+                sounds: [ouchNominEnglish1, ouchNominOuch],
+                minDelta: 1000,
+                velocityMin: 0,
+                velocityMultiplier: 1,
+                volumeMin: 1,
+                volumeMax: 1,
+                rateMin: 1,
+                rateMax: 1
+            },
+            {
+                name: 'ouch-matus-sk',
+                sounds: [ouchMatusSlovak1, ouchMatusSlovak2, ouchMatusOuch],
+                minDelta: 1000,
+                velocityMin: 0,
+                velocityMultiplier: 1,
+                volumeMin: 1,
+                volumeMax: 1,
+                rateMin: 1,
+                rateMax: 1
+            },
+            {
+                name: 'ouch-matus-mn',
+                sounds: [ouchMatusMongol1, ouchMatusMongol2, ouchMatusMongol3, ouchMatusOuch],
+                minDelta: 1000,
+                velocityMin: 0,
+                velocityMultiplier: 1,
+                volumeMin: 1,
+                volumeMax: 1,
+                rateMin: 1,
+                rateMax: 1
+            },
+            {
+                name: 'ouch-matus-ca',
+                sounds: [ouchMatusEnglish1, ouchMatusOuch],
+                minDelta: 1000,
+                velocityMin: 0,
+                velocityMultiplier: 1,
+                volumeMin: 1,
+                volumeMax: 1,
+                rateMin: 1,
+                rateMax: 1
+            },
         ]
 
         for (const _settings of this.settings) {

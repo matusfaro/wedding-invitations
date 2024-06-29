@@ -412,6 +412,7 @@ export default class {
 
     setGer() {
         this.ger = new Ger({
+            config: this.config,
             resources: this.resources,
             objects: this.objects,
             shadows: this.shadows,

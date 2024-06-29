@@ -3,6 +3,7 @@ import * as THREE from "three";
 export default class Ger {
     constructor(_options) {
         // Options
+        this.config = _options.config
         this.resources = _options.resources
         this.objects = _options.objects
         this.shadows = _options.shadows
@@ -50,6 +51,7 @@ export default class Ger {
             rotation: new THREE.Euler(0, 0, (_options.rotation || 0) / 180 * Math.PI),
             mass: 3,
             shadow: {sizeX: 1.2, sizeY: 1.8, alpha: 0.35},
+            soundName: 'ouch-' + _options.name.toLowerCase() + '-' + this.config.language,
         })
     }
 }
