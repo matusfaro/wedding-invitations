@@ -11,6 +11,8 @@ const translations = {
         weddingInvitation2: 'invitation →',
         theEnd: 'The End',
         seeYouSoon: 'See you soon!',
+        sixPm: ' 5 pm',
+        invitesYou: 'Invites you to our wedding',
     },
     mn: { // АБВГДЕЁЖЗИЙКЛМНОӨПРСТУҮФХЦЧШЩЪЫЬЭЮЯ
         youSitHere: 'Энд суу',
@@ -20,10 +22,12 @@ const translations = {
         nomin: 'Номин',
         nominKhurelbaatar: 'Номин Хурэлбаатар',
         khurelbaatar: 'Хурэлбаатар',
-        weddingInvitation1: 'Хуримын',
-        weddingInvitation2: '  урилга →',
+        weddingInvitation1: 'Тавтай',
+        weddingInvitation2: '  морилно уу →',
         theEnd: 'Төгсгөл',
-        seeYouSoon: 'Godahgui',
+        seeYouSoon: 'Удахгүй уулзацгаая',
+        sixPm: '17 цагт болно',
+        invitesYou: 'Нарын гэрлэх ёслолд урьж байна',
     },
     sk: {
         youSitHere: 'Sedíš tu',
@@ -37,6 +41,8 @@ const translations = {
         weddingInvitation2: '  pozvánka →',
         theEnd: 'Koniec',
         seeYouSoon: 'Uvidíme sa!',
+        sixPm: '   17h',
+        invitesYou: 'Vás pozývajú na svadbu',
     },
 }
 

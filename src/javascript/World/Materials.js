@@ -21,7 +21,6 @@ export default class Materials {
         this.setShades()
         this.setRgbs()
         this.setFloorShadow()
-        this.setTextures()
     }
 
     setPures() {
@@ -198,13 +197,6 @@ export default class Materials {
 
             folder.addColor(this.items.floorShadow, 'shadowColor').onChange(this.items.floorShadow.updateMaterials)
         }
-    }
-
-    setTextures() {
-        this.textures = {}
-        this.textures.items = {}
-
-        this.textures.items.carPriusPlate = this.resources.items.carPriusPlateTexture
     }
 
 

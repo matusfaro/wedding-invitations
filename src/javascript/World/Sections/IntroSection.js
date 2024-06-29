@@ -10,7 +10,6 @@ export default class IntroSection {
         this.objects = _options.objects
         this.areas = _options.areas
         this.walls = _options.walls
-        this.tiles = _options.tiles
         this.alphabet = _options.alphabet
         this.ger = _options.ger
         this.animals = _options.animals
@@ -24,23 +23,60 @@ export default class IntroSection {
         this.container.matrixAutoUpdate = false
         this.container.updateMatrix()
 
-        this.setSign()
+        this.setSigns()
         this.setForest()
         this.setRoads()
         this.setRoadBlock()
     }
 
-    setSign() {
+    setSigns() {
+        const textMaterial = 'red'
+
         this.alphabet.add({
             text: this.i18n.get('weddingInvitation1'),
             offset: new THREE.Vector3(this.x - 1, this.y, 1),
             direction: 'y',
+            materialName: textMaterial,
         });
         this.alphabet.add({
             text: this.i18n.get('weddingInvitation2'),
             offset: new THREE.Vector2(this.x - 1, this.y),
             direction: 'y',
+            materialName: textMaterial,
         });
+
+        if (this.config.language === 'mn') {
+            let name
+            if (window.location.search.length > 1) {
+                name = decodeURIComponent(window.location.search).substring(1)
+            } else {
+                name = ''
+            }
+
+            let sign1, sign2
+            if (name) {
+                sign1 = 'Эрхэм хүндэт'
+                sign2 = name + ' Таныг'
+            } else {
+                sign1 = 'Эрхэм хүндэт таныг'
+            }
+
+            this.alphabet.add({
+                text: sign1,
+                offset: new THREE.Vector2(this.x - 10, this.y + 22),
+                direction: 'xy',
+                materialName: textMaterial,
+            });
+
+            if (sign2) {
+                this.alphabet.add({
+                    text: sign2,
+                    offset: new THREE.Vector2(this.x - 10, this.y + 28),
+                    direction: 'xy',
+                    materialName: textMaterial,
+                });
+            }
+        }
     }
 
     setForest() {

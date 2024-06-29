@@ -22,9 +22,9 @@ export default class WeddingSection {
         this.container.updateMatrix()
 
         this.setStage()
-        this.setSeatMarkerOwnName()
-        this.setSkyResortName()
-        this.setEnd()
+        const textMaterial = 'purple'
+        this.setSeatMarkerOwnName(textMaterial)
+        this.setText(textMaterial)
     }
 
     setStage() {
@@ -84,60 +84,96 @@ export default class WeddingSection {
         })
     }
 
-    setSeatMarkerOwnName() {
-        let name
-        if (window.location.search.length > 1) {
-            name = decodeURIComponent(window.location.search).substring(1)
-        } else {
-            name = this.i18n.get('youSitHere')
-        }
-        const words = name.split(' ');
-        words.forEach((word, index) => {
+    setSeatMarkerOwnName(textMaterial) {
+        if (this.config.language !== 'mn') {
+            let name
+            if (window.location.search.length > 1) {
+                name = decodeURIComponent(window.location.search).substring(1)
+            } else {
+                name = this.i18n.get('youSitHere')
+            }
+            const words = name.split(' ');
+            words.forEach((word, index) => {
+                this.alphabet.add({
+                    text: word,
+                    direction: 'xy',
+                    offset: new THREE.Vector3(
+                        this.x - 2,
+                        this.y - 2,
+                        1.5 + words.length - index),
+                    materialName: textMaterial,
+                })
+            })
             this.alphabet.add({
-                text: word,
+                text: '↓',
                 direction: 'xy',
                 offset: new THREE.Vector3(
                     this.x - 2,
-                    this.y + 4,
-                    1.5 + words.length - index),
+                    this.y - 2,
+                    1.5),
+                materialName: textMaterial,
             })
-        })
-        this.alphabet.add({
-            text: '↓',
-            direction: 'xy',
-            offset: new THREE.Vector3(
-                this.x - 2,
-                this.y + 4,
-                1.5),
-        })
+        }
     }
 
-    setSkyResortName() {
-        this.alphabet.add({
-            text: 'Sky Resort',
-            direction: 'xy',
-            offset: new THREE.Vector2(
-                this.x + 6,
-                this.y + 4),
-        })
+    setText(textMaterial) {
+
+        if (this.config.language === 'mn') {
+            this.alphabet.add({
+                text: 'Хүндэтгэлийн',
+                direction: 'xy',
+                offset: new THREE.Vector3(
+                    this.x - 5,
+                    this.y - 14,
+                    1),
+                materialName: textMaterial,
+            })
+            this.alphabet.add({
+                text: 'арга хэмжээ',
+                direction: 'xy',
+                offset: new THREE.Vector2(
+                    this.x - 5,
+                    this.y - 14),
+                materialName: textMaterial,
+            })
+        }
+
         this.alphabet.add({
             text: this.i18n.get('2024.8.4'),
             direction: 'xy',
             offset: new THREE.Vector3(
-                this.x + 6,
-                this.y + 5,
-                1),
+                this.x + 4 + 2,
+                this.y + 6 - 8,
+                2),
+            materialName: textMaterial,
         })
-    }
+        this.alphabet.add({
+            text: 'Sky Resort',
+            direction: 'xy',
+            offset: new THREE.Vector3(
+                this.x + 5 + 2,
+                this.y + 5 - 8,
+                1),
+            materialName: textMaterial,
+        })
+        this.alphabet.add({
+            text: this.i18n.get('sixPm'),
+            direction: 'xy',
+            offset: new THREE.Vector3(
+                this.x + 6 + 2,
+                this.y + 4 - 8,
+                0),
+            materialName: textMaterial,
+        })
 
-    setEnd() {
         this.alphabet.add({
             text: this.i18n.get('seeYouSoon'),
             direction: 'x',
             offset: new THREE.Vector3(
-                this.x + 2,
+                this.x - 2,
                 this.y + 35,
                 0),
+            materialName: textMaterial,
         })
     }
 }

@@ -110,17 +110,6 @@ export default class Sounds {
                 rateMax: 0.75
             },
             {
-                name: 'bowlingPin',
-                sounds: [bowlingPin1Sound],
-                minDelta: 0,
-                velocityMin: 1,
-                velocityMultiplier: 0.5,
-                volumeMin: 0.35,
-                volumeMax: 1,
-                rateMin: 0.1,
-                rateMax: 0.85
-            },
-            {
                 name: 'bowlingBall',
                 sounds: [bowlingPin1Sound, bowlingPin1Sound, bowlingPin1Sound],
                 minDelta: 0,

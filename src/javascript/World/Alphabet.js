@@ -7,9 +7,6 @@ export default class Alphabet {
         this.objects = _options.objects
     }
 
-    addArrow(_options) {
-    }
-
     add(_options) {
         _options.text.split('').forEach((letter, index) => {
             let collision, shadow, rotationY = 0

@@ -10,7 +10,6 @@ export default class HomeSection {
         this.objects = _options.objects
         this.areas = _options.areas
         this.walls = _options.walls
-        this.tiles = _options.tiles
         this.alphabet = _options.alphabet
         this.ger = _options.ger
         this.animals = _options.animals
@@ -67,25 +66,36 @@ export default class HomeSection {
             name: 'Matus'
         })
 
+        const textMaterial = 'green'
         this.alphabet.add({
             text: this.i18n.get('nomin'),
             offset: new THREE.Vector3(this.x + 10, this.y + 11, 1),
             direction: 'y',
+            materialName: textMaterial,
         });
         this.alphabet.add({
             text: this.i18n.get('khurelbaatar'),
             offset: new THREE.Vector2(this.x + 10, this.y + 10),
             direction: 'y',
+            materialName: textMaterial,
         });
         this.alphabet.add({
             text: this.i18n.get('matus'),
             offset: new THREE.Vector3(this.x + 10, this.y + 3, 1),
             direction: 'y',
+            materialName: textMaterial,
         });
         this.alphabet.add({
             text: this.i18n.get('faro'),
             offset: new THREE.Vector2(this.x + 10, this.y + 4),
             direction: 'y',
+            materialName: textMaterial,
+        });
+        this.alphabet.add({
+            text: this.i18n.get('invitesYou'),
+            offset: new THREE.Vector2(this.x + 14, this.y + 1),
+            direction: 'y',
+            materialName: textMaterial,
         });
     }
 

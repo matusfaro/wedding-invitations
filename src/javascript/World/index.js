@@ -7,7 +7,6 @@ import Zones from './Zones.js'
 import Objects from './Objects.js'
 import Car from './Car.js'
 import Areas from './Areas.js'
-import Tiles from './Tiles.js'
 import Walls from './Walls.js'
 import Controls from './Controls.js'
 import Sounds from './Sounds.js'
@@ -66,7 +65,6 @@ export default class {
         this.setObjects()
         this.setCar()
         this.areas.car = this.car
-        this.setTiles()
         this.setWalls()
         this.setRoad()
         this.setGer()
@@ -397,14 +395,6 @@ export default class {
         this.container.add(this.areas.container)
     }
 
-    setTiles() {
-        this.tiles = new Tiles({
-            resources: this.resources,
-            objects: this.objects,
-            debug: this.debug
-        })
-    }
-
     setWalls() {
         this.walls = new Walls({
             resources: this.resources,
@@ -500,7 +490,6 @@ export default class {
             areas: this.areas,
             zones: this.zones,
             walls: this.walls,
-            tiles: this.tiles,
             ger: this.ger,
             animals: this.animals,
             road: this.road,
