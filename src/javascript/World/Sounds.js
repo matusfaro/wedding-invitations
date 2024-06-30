@@ -224,7 +224,7 @@ export default class Sounds {
             },
             {
                 name: 'ouch-nomin-sk',
-                sounds: [ouchNominSlovak1, ouchNominSlovak2, ouchNominOuch],
+                sounds: [ouchNominSlovak1, ouchNominSlovak2, ouchNominSlovak1, ouchNominSlovak2, ouchNominOuch],
                 minDelta: 1000,
                 velocityMin: 0,
                 velocityMultiplier: 1,
@@ -235,7 +235,7 @@ export default class Sounds {
             },
             {
                 name: 'ouch-nomin-mn',
-                sounds: [ouchNominMongol1, ouchNominOuch],
+                sounds: [ouchNominMongol1, ouchNominMongol1, ouchNominOuch],
                 minDelta: 1000,
                 velocityMin: 0,
                 velocityMultiplier: 1,
@@ -246,7 +246,7 @@ export default class Sounds {
             },
             {
                 name: 'ouch-nomin-ca',
-                sounds: [ouchNominEnglish1, ouchNominOuch],
+                sounds: [ouchNominEnglish1, ouchNominEnglish1, ouchNominOuch],
                 minDelta: 1000,
                 velocityMin: 0,
                 velocityMultiplier: 1,
@@ -257,7 +257,7 @@ export default class Sounds {
             },
             {
                 name: 'ouch-matus-sk',
-                sounds: [ouchMatusSlovak1, ouchMatusSlovak2, ouchMatusOuch],
+                sounds: [ouchMatusSlovak1, ouchMatusSlovak2, ouchMatusSlovak1, ouchMatusSlovak2, ouchMatusOuch],
                 minDelta: 1000,
                 velocityMin: 0,
                 velocityMultiplier: 1,
@@ -279,7 +279,7 @@ export default class Sounds {
             },
             {
                 name: 'ouch-matus-ca',
-                sounds: [ouchMatusEnglish1, ouchMatusOuch],
+                sounds: [ouchMatusEnglish1, ouchMatusEnglish1, ouchMatusOuch],
                 minDelta: 1000,
                 velocityMin: 0,
                 velocityMultiplier: 1,

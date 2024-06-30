@@ -100,22 +100,22 @@ export default class HomeSection {
     }
 
     setStable(_options) {
-        // [
-        //     {x: -7.4, y: -2.2, r: -125},
-        //     {x: -6, y: 0.4, r: -110},
-        //     {x: -6, y: 3.2, r: -70},
-        //     {x: -8, y: 4.5, r: 0},
-        //     {x: -10.8, y: 3.8, r: 35},
-        //     {x: -13, y: 2, r: 45},
-        //     {x: -14, y: -.5, r: 90},
-        //     {x: -12.5, y: -3.2, r: 145},
-        //     {x: -9.7, y: -3.7, r: 200},
-        // ].forEach(_fence => {
-        //     this.ger.addFence({
-        //         offset: new THREE.Vector2(this.x + _fence.x, this.y + _fence.y),
-        //         rotation: _fence.r,
-        //     })
-        // })
+        [
+            {x: -7.4, y: -2.2, r: -125},
+            {x: -6, y: 0.4, r: -110},
+            {x: -6, y: 3.2, r: -70},
+            {x: -8, y: 4.5, r: 0},
+            {x: -10.8, y: 3.8, r: 35},
+            {x: -13, y: 2, r: 45},
+            {x: -14, y: -.5, r: 90},
+            {x: -12.5, y: -3.2, r: 145},
+            {x: -9.7, y: -3.7, r: 200},
+        ].forEach(_fence => {
+            this.ger.addFence({
+                offset: new THREE.Vector2(this.x + _fence.x - 8, this.y + _fence.y + 11),
+                rotation: _fence.r,
+            })
+        })
         this.animals.addHorseHolder({
             offset: new THREE.Vector2(this.x + 0, this.y + 22),
             rotation: 115,

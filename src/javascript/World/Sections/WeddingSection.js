@@ -171,7 +171,7 @@ export default class WeddingSection {
             direction: 'x',
             offset: new THREE.Vector3(
                 this.x - 2,
-                this.y + 35,
+                this.y + 40,
                 0),
             materialName: textMaterial,
         })

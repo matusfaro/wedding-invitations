@@ -27,7 +27,7 @@ export default class Ger {
             collision: this.resources.items.fenceCollision.scene,
             offset: new THREE.Vector3(_options.offset.x, _options.offset.y, 0),
             rotation: new THREE.Euler(0, 0, (_options.rotation || 0) / 180 * Math.PI),
-            mass: 5,
+            mass: 2,
             shadow: {sizeX: 3, sizeY: 1, offsetZ: 1},
             duplicated: true,
             soundName: 'woodHit'
