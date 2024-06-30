@@ -430,13 +430,17 @@ export default class Physics {
             /**
              * Steering
              */
+            let isJoystickPointingBack = false
             if (this.controls.touch) {
                 let deltaAngle = 0
 
                 if (this.controls.touch.joystick.active) {
                     // Calculate delta between joystick and car angles
                     deltaAngle = (this.controls.touch.joystick.angle.value - this.car.angle + Math.PI) % (Math.PI * 2) - Math.PI
-                    deltaAngle = deltaAngle < -Math.PI ? deltaAngle + Math.PI * 2 : deltaAngle
+                    if (deltaAngle < -Math.PI) {
+                        isJoystickPointingBack = true
+                        deltaAngle = deltaAngle + Math.PI * 2
+                    }
                 }
 
                 // Update steering directly
@@ -487,21 +491,35 @@ export default class Physics {
             /**
              * Accelerate
              */
-            const accelerationSpeed = this.controls.actions.boost ? this.car.options.controlsAcceleratingSpeedBoost : this.car.options.controlsAcceleratingSpeed
-            const accelerateStrength = this.time.delta * accelerationSpeed
-            const controlsAcceleratinMaxSpeed = this.controls.actions.boost ? this.car.options.controlsAcceleratinMaxSpeedBoost : this.car.options.controlsAcceleratinMaxSpeed
+            let isUp, isDown, accelerateStrength, controlsAcceleratinMaxSpeed
+            if (this.controls.actions.up || this.controls.actions.down || !this.controls.touch || !this.controls.touch.joystick.active) {
+                // We are either controlled by buttons or neither buttons or joystick is used
+                isUp = this.controls.actions.up
+                isDown = this.controls.actions.down
 
-            // Accelerate up
-            if (this.controls.actions.up) {
+                const accelerationSpeed = this.controls.actions.boost ? this.car.options.controlsAcceleratingSpeedBoost : this.car.options.controlsAcceleratingSpeed
+                accelerateStrength = this.time.delta * accelerationSpeed
+                controlsAcceleratinMaxSpeed = this.controls.actions.boost ? this.car.options.controlsAcceleratinMaxSpeedBoost : this.car.options.controlsAcceleratinMaxSpeed
+
+            } else {
+                // We are controlled by joystick and buttons are not used
+                isUp = !isJoystickPointingBack
+                isDown = isJoystickPointingBack
+
+                const accelerationSpeed = this.controls.touch.joystick.acceleration.strength * this.car.options.controlsAcceleratingSpeedBoost
+                accelerateStrength = this.time.delta * accelerationSpeed
+                controlsAcceleratinMaxSpeed = this.controls.touch.joystick.acceleration.strength * this.car.options.controlsAcceleratinMaxSpeedBoost
+            }
+
+            if (isUp) {
+                // Accelerate up
                 if (this.car.speed < controlsAcceleratinMaxSpeed || !this.car.goingForward) {
                     this.car.accelerating = accelerateStrength
                 } else {
                     this.car.accelerating = 0
                 }
-            }
-
-            // Accelerate Down
-            else if (this.controls.actions.down) {
+            } else if (isDown) {
+                // Accelerate Down
                 if (this.car.speed < controlsAcceleratinMaxSpeed || this.car.goingForward) {
                     this.car.accelerating = -accelerateStrength
                 } else {
@@ -510,6 +528,7 @@ export default class Physics {
             } else {
                 this.car.accelerating = 0
             }
+
 
             this.car.vehicle.applyEngineForce(-this.car.accelerating, this.car.wheels.indexes.backLeft)
             this.car.vehicle.applyEngineForce(-this.car.accelerating, this.car.wheels.indexes.backRight)
