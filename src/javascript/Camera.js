@@ -110,7 +110,7 @@ export default class Camera {
         this.zoom.easing = 0.1
         this.zoom.minDistance = 14
         this.zoom.amplitude = 15
-        this.zoom.value = 0.5
+        this.zoom.value = 0.8
         this.zoom.targetValue = this.zoom.value
         this.zoom.distance = this.zoom.minDistance + this.zoom.amplitude * this.zoom.value
 

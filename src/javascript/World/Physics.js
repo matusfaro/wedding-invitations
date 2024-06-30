@@ -437,9 +437,10 @@ export default class Physics {
                 if (this.controls.touch.joystick.active) {
                     // Calculate delta between joystick and car angles
                     deltaAngle = (this.controls.touch.joystick.angle.value - this.car.angle + Math.PI) % (Math.PI * 2) - Math.PI
-                    if (deltaAngle < -Math.PI) {
+                    // Calculate whether pointing towards front or back
+                    if (Math.abs(deltaAngle) > Math.PI / 2) {
                         isJoystickPointingBack = true
-                        deltaAngle = deltaAngle + Math.PI * 2
+                        deltaAngle = (deltaAngle % Math.PI / 2)
                     }
                 }
 
@@ -506,9 +507,9 @@ export default class Physics {
                 isUp = !isJoystickPointingBack
                 isDown = isJoystickPointingBack
 
-                const accelerationSpeed = this.controls.touch.joystick.acceleration.strength * this.car.options.controlsAcceleratingSpeedBoost
+                const accelerationSpeed = this.controls.touch.joystick.acceleration.strength * this.car.options.controlsAcceleratingSpeed
                 accelerateStrength = this.time.delta * accelerationSpeed
-                controlsAcceleratinMaxSpeed = this.controls.touch.joystick.acceleration.strength * this.car.options.controlsAcceleratinMaxSpeedBoost
+                controlsAcceleratinMaxSpeed = this.controls.touch.joystick.acceleration.strength * this.car.options.controlsAcceleratinMaxSpeed
             }
 
             if (isUp) {
