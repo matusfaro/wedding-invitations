@@ -46,17 +46,10 @@ export default class IntroSection {
         });
 
         if (this.config.language === 'mn') {
-            let name
-            if (window.location.search.length > 1) {
-                name = decodeURIComponent(window.location.search).substring(1)
-            } else {
-                name = ''
-            }
-
             let sign1, sign2
-            if (name) {
+            if (this.config.name) {
                 sign1 = 'Эрхэм хүндэт'
-                sign2 = name + ' Таныг'
+                sign2 = this.config.name + ' Таныг'
             } else {
                 sign1 = 'Эрхэм хүндэт таныг'
             }

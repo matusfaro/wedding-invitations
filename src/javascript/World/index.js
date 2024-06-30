@@ -46,6 +46,7 @@ export default class {
         this.container.matrixAutoUpdate = false
 
         // this.setAxes()
+        this.setName()
         this.setSounds()
         this.setControls()
         this.setFloor()
@@ -73,6 +74,16 @@ export default class {
         this.setAlphabet()
         this.setWedding()
         this.setSections()
+    }
+
+    setName() {
+        let name = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)
+        if (name) {
+            name = decodeURIComponent(name)
+        } else {
+            name = undefined
+        }
+        this.config.name = name
     }
 
     setReveal() {
