@@ -88,7 +88,7 @@ export default class Controls extends EventEmitter {
                     break
 
                 case 'h':
-                    this.car.shootKlaxon()
+                    this.car.pressKlaxon()
                     break
 
                 // case ' ':
@@ -744,7 +744,7 @@ export default class Controls extends EventEmitter {
             if (touch) {
                 this.touch.klaxon.touchIdentifier = touch.identifier
 
-                this.car.shootKlaxon()
+                this.car.pressKlaxon()
 
                 this.touch.klaxon.$border.style.opacity = '0.5'
 

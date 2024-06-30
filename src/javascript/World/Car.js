@@ -246,19 +246,20 @@ export default class Car {
         this.klaxon = {}
         this.klaxon.waitDuration = 150
         this.klaxon.can = true
+    }
 
-        window.addEventListener('keydown', (_event) => {
-            // Play horn sound
-            if (_event.key === 'h' && this.klaxon.can) {
-                this.klaxon.can = false
-                window.setTimeout(() => {
-                    this.klaxon.can = true
-                }, this.klaxon.waitDuration)
+    pressKlaxon() {
+        if (this.klaxon.can) {
+            this.klaxon.can = false
+            window.setTimeout(() => {
+                this.klaxon.can = true
+            }, this.klaxon.waitDuration)
 
-                this.physics.car.jump(false, 20)
-                this.sounds.play(Math.random() < 0.002 ? 'carHorn2' : 'carHorn1')
-            }
-        })
+            this.physics.car.jump(false, 20)
+            this.sounds.play(Math.random() < 0.002 ? 'carHorn2' : 'carHorn1')
+        } else {
+            this.shootKlaxon()
+        }
     }
 
     shootKlaxon() {
