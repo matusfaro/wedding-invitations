@@ -5,6 +5,25 @@ export default class Alphabet {
         // Options
         this.resources = _options.resources
         this.objects = _options.objects
+        this.controls = _options.controls
+        this.items = []
+
+        /**
+         * Actions
+         */
+        this.controls.on('action', (_name) => {
+            switch (_name) {
+                case 'reset':
+                    this.reset()
+                    break
+            }
+        })
+    }
+
+    reset() {
+        for (const letter of this.items) {
+            letter.collision.reset()
+        }
     }
 
     add(_options) {
@@ -69,7 +88,7 @@ export default class Alphabet {
                     break
             }
 
-            this.objects.add({
+            this.items.push(this.objects.add({
                 base: resource.scene,
                 collision: collision.scene,
                 duplicated: true,
@@ -82,7 +101,7 @@ export default class Alphabet {
                 mass: 1,
                 shadow: shadow,
                 soundName: 'brick'
-            })
+            }))
         })
     }
 }

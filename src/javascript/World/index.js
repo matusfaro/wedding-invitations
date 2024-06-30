@@ -442,6 +442,7 @@ export default class {
         this.alphabet = new Alphabet({
             resources: this.resources,
             objects: this.objects,
+            controls: this.controls,
         })
     }
 

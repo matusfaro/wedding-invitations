@@ -1,6 +1,7 @@
 import mobileBowlingBall from '../../images/mobile/bowlingball.png'
 import mobileTriangle from '../../images/mobile/triangle.png'
 import mobileKlaxon from '../../images/mobile/klaxon.png'
+import mobileReset from '../../images/mobile/reset.png'
 import EventEmitter from '../Utils/EventEmitter'
 import mobileDoubleTriangle from '../../images/mobile/doubleTriangle.png'
 
@@ -542,6 +543,81 @@ export default class Controls extends EventEmitter {
         // this.touch.brake.$element.addEventListener('touchstart', this.touch.brake.events.touchstart)
 
         /**
+         * Reset
+         */
+        this.touch.reset = {}
+
+        // Element
+        this.touch.reset.$element = document.createElement('div')
+        this.touch.reset.$element.style.userSelect = 'none'
+        this.touch.reset.$element.style.position = 'fixed'
+        this.touch.reset.$element.style.top = 'calc(70px * 0 + 15px)'
+        this.touch.reset.$element.style.right = '0px'
+        this.touch.reset.$element.style.width = '95px'
+        this.touch.reset.$element.style.height = '70px'
+        this.touch.reset.$element.style.transition = 'opacity 0.3s 0.2s'
+        this.touch.reset.$element.style.willChange = 'opacity'
+        this.touch.reset.$element.style.opacity = '0'
+        // this.touch.reset.$element.style.backgroundColor = '#ff0000'
+        document.body.appendChild(this.touch.reset.$element)
+
+        this.touch.reset.$border = document.createElement('div')
+        this.touch.reset.$border.style.position = 'absolute'
+        this.touch.reset.$border.style.top = 'calc(50% - 30px)'
+        this.touch.reset.$border.style.left = 'calc(50% - 30px)'
+        this.touch.reset.$border.style.width = '60px'
+        this.touch.reset.$border.style.height = '60px'
+        this.touch.reset.$border.style.border = '2px solid #ffffff'
+        this.touch.reset.$border.style.borderRadius = '10px'
+        this.touch.reset.$border.style.boxSizing = 'border-box'
+        this.touch.reset.$border.style.opacity = '0.25'
+        this.touch.reset.$border.style.willChange = 'opacity'
+        this.touch.reset.$element.appendChild(this.touch.reset.$border)
+
+        this.touch.reset.$icon = document.createElement('div')
+        this.touch.reset.$icon.style.position = 'absolute'
+        this.touch.reset.$icon.style.top = 'calc(50% - 11px)'
+        this.touch.reset.$icon.style.left = 'calc(50% - 11px)'
+        this.touch.reset.$icon.style.width = '22px'
+        this.touch.reset.$icon.style.height = '22px'
+        this.touch.reset.$icon.style.backgroundImage = `url(${mobileReset})`
+        this.touch.reset.$icon.style.backgroundSize = 'cover'
+        this.touch.reset.$icon.style.transform = 'rotate(180deg)'
+        this.touch.reset.$element.appendChild(this.touch.reset.$icon)
+
+        // Events
+        this.touch.reset.events = {}
+        this.touch.reset.touchIdentifier = null
+        this.touch.reset.events.touchstart = (_event) => {
+            _event.preventDefault()
+
+            const touch = _event.changedTouches[0]
+
+            if (touch) {
+                this.touch.reset.touchIdentifier = touch.identifier
+
+                this.trigger('action', ['reset'])
+
+                this.touch.reset.$border.style.opacity = '0.5'
+
+                document.addEventListener('touchend', this.touch.reset.events.touchend)
+            }
+        }
+
+        this.touch.reset.events.touchend = (_event) => {
+            const touches = [..._event.changedTouches]
+            const touch = touches.find((_touch) => _touch.identifier === this.touch.reset.touchIdentifier)
+
+            if (touch) {
+                this.touch.reset.$border.style.opacity = '0.25'
+
+                document.removeEventListener('touchend', this.touch.reset.events.touchend)
+            }
+        }
+
+        this.touch.reset.$element.addEventListener('touchstart', this.touch.reset.events.touchstart)
+
+        /**
          * Backward
          */
         this.touch.backward = {}
@@ -654,10 +730,10 @@ export default class Controls extends EventEmitter {
 
         this.touch.bowlingball.$icon = document.createElement('div')
         this.touch.bowlingball.$icon.style.position = 'absolute'
-        this.touch.bowlingball.$icon.style.top = 'calc(50% - 7px)'
-        this.touch.bowlingball.$icon.style.left = 'calc(50% - 7px)'
-        this.touch.bowlingball.$icon.style.width = '15px'
-        this.touch.bowlingball.$icon.style.height = '15px'
+        this.touch.bowlingball.$icon.style.top = 'calc(50% - 11px)'
+        this.touch.bowlingball.$icon.style.left = 'calc(50% - 11px)'
+        this.touch.bowlingball.$icon.style.width = '22px'
+        this.touch.bowlingball.$icon.style.height = '22px'
         this.touch.bowlingball.$icon.style.backgroundImage = `url(${mobileBowlingBall})`
         this.touch.bowlingball.$icon.style.backgroundSize = 'cover'
         this.touch.bowlingball.$icon.style.transform = 'rotate(180deg)'
@@ -729,10 +805,10 @@ export default class Controls extends EventEmitter {
 
         this.touch.klaxon.$icon = document.createElement('div')
         this.touch.klaxon.$icon.style.position = 'absolute'
-        this.touch.klaxon.$icon.style.top = 'calc(50% - 7px)'
-        this.touch.klaxon.$icon.style.left = 'calc(50% - 7px)'
-        this.touch.klaxon.$icon.style.width = '15px'
-        this.touch.klaxon.$icon.style.height = '15px'
+        this.touch.klaxon.$icon.style.top = 'calc(50% - 11px)'
+        this.touch.klaxon.$icon.style.left = 'calc(50% - 11px)'
+        this.touch.klaxon.$icon.style.width = '22px'
+        this.touch.klaxon.$icon.style.height = '22px'
         this.touch.klaxon.$icon.style.backgroundImage = `url(${mobileKlaxon})`
         this.touch.klaxon.$icon.style.backgroundSize = 'cover'
         this.touch.klaxon.$icon.style.transform = 'rotate(180deg)'
@@ -775,6 +851,7 @@ export default class Controls extends EventEmitter {
          */
         this.touch.reveal = () => {
             this.touch.joystick.$element.style.opacity = 1
+            this.touch.reset.$element.style.opacity = 1
             this.touch.backward.$element.style.opacity = 1
             // this.touch.brake.$element.style.opacity = 1
             this.touch.forward.$element.style.opacity = 1
