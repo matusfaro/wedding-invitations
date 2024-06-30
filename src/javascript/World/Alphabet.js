@@ -79,7 +79,7 @@ export default class Alphabet {
                     offsetY,
                     (_options.offset.z || 0) + .5),
                 rotation: new THREE.Euler(0, rotationY, rotation, 'ZYX'),
-                mass: 0.5,
+                mass: 1,
                 shadow: shadow,
                 soundName: 'brick'
             })

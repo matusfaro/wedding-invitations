@@ -34,7 +34,6 @@ export default class Car {
         this.setLights()
         this.setWheels()
         this.setTransformControls()
-        this.setShootingBall()
         this.setKlaxon()
     }
 
@@ -218,33 +217,29 @@ export default class Car {
         }
     }
 
-    setShootingBall() {
-        window.addEventListener('keydown', (_event) => {
-            if (_event.key === 'b') {
-                const angle = Math.random() * Math.PI * 2
-                const distance = 10
-                const x = this.position.x + Math.cos(angle) * distance
-                const y = this.position.y + Math.sin(angle) * distance
-                const z = 2 + 2 * Math.random()
-                const bowlingBall = this.objects.add({
-                    base: this.resources.items.bowlingBallBase.scene,
-                    collision: this.resources.items.bowlingBallCollision.scene,
-                    offset: new THREE.Vector3(x, y, z),
-                    rotation: new THREE.Euler(Math.PI * 0.5, 0, 0),
-                    duplicated: true,
-                    shadow: {sizeX: 1.5, sizeY: 1.5, offsetZ: -0.15, alpha: 0.35},
-                    mass: 5,
-                    soundName: 'bowlingBall',
-                    sleep: false
-                })
-
-                const carPosition = new CANNON.Vec3(this.position.x, this.position.y, this.position.z + 1)
-                let direction = carPosition.vsub(bowlingBall.collision.body.position)
-                direction.normalize()
-                direction = direction.scale(100)
-                bowlingBall.collision.body.applyImpulse(direction, bowlingBall.collision.body.position)
-            }
+    shootBall() {
+        const angle = Math.random() * Math.PI * 2
+        const distance = 10
+        const x = this.position.x + Math.cos(angle) * distance
+        const y = this.position.y + Math.sin(angle) * distance
+        const z = 2 + 2 * Math.random()
+        const bowlingBall = this.objects.add({
+            base: this.resources.items.bowlingBallBase.scene,
+            collision: this.resources.items.bowlingBallCollision.scene,
+            offset: new THREE.Vector3(x, y, z),
+            rotation: new THREE.Euler(Math.PI * 0.5, 0, 0),
+            duplicated: true,
+            shadow: {sizeX: 1.5, sizeY: 1.5, offsetZ: -0.15, alpha: 0.35},
+            mass: 5,
+            soundName: 'bowlingBall',
+            sleep: false
         })
+
+        const carPosition = new CANNON.Vec3(this.position.x, this.position.y, this.position.z + 1)
+        let direction = carPosition.vsub(bowlingBall.collision.body.position)
+        direction.normalize()
+        direction = direction.scale(100)
+        bowlingBall.collision.body.applyImpulse(direction, bowlingBall.collision.body.position)
     }
 
     setKlaxon() {
@@ -263,25 +258,25 @@ export default class Car {
                 this.physics.car.jump(false, 20)
                 this.sounds.play(Math.random() < 0.002 ? 'carHorn2' : 'carHorn1')
             }
+        })
+    }
 
-            // Rain horns
-            if (_event.key === 'k') {
-                const x = this.position.x + (Math.random() - 0.5) * 3
-                const y = this.position.y + (Math.random() - 0.5) * 3
-                const z = 6 + 2 * Math.random()
+    shootKlaxon() {
+        // Rain horns
+        const x = this.position.x + (Math.random() - 0.5) * 3
+        const y = this.position.y + (Math.random() - 0.5) * 3
+        const z = 6 + 2 * Math.random()
 
-                this.objects.add({
-                    base: this.resources.items.hornBase.scene,
-                    collision: this.resources.items.hornCollision.scene,
-                    offset: new THREE.Vector3(x, y, z),
-                    rotation: new THREE.Euler(Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2),
-                    duplicated: true,
-                    shadow: {sizeX: 1.5, sizeY: 1.5, offsetZ: -0.15, alpha: 0.35},
-                    mass: 5,
-                    soundName: 'horn',
-                    sleep: false
-                })
-            }
+        this.objects.add({
+            base: this.resources.items.hornBase.scene,
+            collision: this.resources.items.hornCollision.scene,
+            offset: new THREE.Vector3(x, y, z),
+            rotation: new THREE.Euler(Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2),
+            duplicated: true,
+            shadow: {sizeX: 1.5, sizeY: 1.5, offsetZ: -0.15, alpha: 0.35},
+            mass: 5,
+            soundName: 'horn',
+            sleep: false
         })
     }
 }

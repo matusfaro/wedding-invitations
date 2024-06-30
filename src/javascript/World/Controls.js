@@ -1,6 +1,8 @@
 import mobileDoubleTriangle from '../../images/mobile/doubleTriangle.png'
 import mobileTriangle from '../../images/mobile/triangle.png'
 import mobileCross from '../../images/mobile/cross.png'
+import mobileBowlingBall from '../../images/mobile/bowlingball.png'
+import mobileKlaxon from '../../images/mobile/klaxon.png'
 import EventEmitter from '../Utils/EventEmitter'
 
 export default class Controls extends EventEmitter {
@@ -15,6 +17,10 @@ export default class Controls extends EventEmitter {
 
         this.setActions()
         this.setKeyboard()
+    }
+
+    setCar(car) {
+        this.car = car
     }
 
     setActions() {
@@ -75,6 +81,14 @@ export default class Controls extends EventEmitter {
 
                 case 'Shift':
                     this.actions.boost = true
+                    break
+
+                case 'k':
+                    this.car.shootBall()
+                    break
+
+                case 'h':
+                    this.car.shootKlaxon()
                     break
 
                 // case ' ':
@@ -601,13 +615,167 @@ export default class Controls extends EventEmitter {
 
         this.touch.backward.$element.addEventListener('touchstart', this.touch.backward.events.touchstart)
 
-        // Reveal
+        /**
+         * Bowling ball
+         */
+        this.touch.bowlingball = {}
+
+        // Element
+        this.touch.bowlingball.$element = document.createElement('div')
+        this.touch.bowlingball.$element.style.userSelect = 'none'
+        this.touch.bowlingball.$element.style.position = 'fixed'
+        this.touch.bowlingball.$element.style.top = 'calc(70px * 0 + 15px)'
+        this.touch.bowlingball.$element.style.left = '0px'
+        this.touch.bowlingball.$element.style.width = '95px'
+        this.touch.bowlingball.$element.style.height = '70px'
+        this.touch.bowlingball.$element.style.transition = 'opacity 0.3s 0.2s'
+        this.touch.bowlingball.$element.style.willChange = 'opacity'
+        this.touch.bowlingball.$element.style.opacity = '0'
+        // this.touch.bowlingball.$element.style.backgroundColor = '#ff0000'
+        document.body.appendChild(this.touch.bowlingball.$element)
+
+        this.touch.bowlingball.$border = document.createElement('div')
+        this.touch.bowlingball.$border.style.position = 'absolute'
+        this.touch.bowlingball.$border.style.top = 'calc(50% - 30px)'
+        this.touch.bowlingball.$border.style.left = 'calc(50% - 30px)'
+        this.touch.bowlingball.$border.style.width = '60px'
+        this.touch.bowlingball.$border.style.height = '60px'
+        this.touch.bowlingball.$border.style.border = '2px solid #ffffff'
+        this.touch.bowlingball.$border.style.borderRadius = '10px'
+        this.touch.bowlingball.$border.style.boxSizing = 'border-box'
+        this.touch.bowlingball.$border.style.opacity = '0.25'
+        this.touch.bowlingball.$border.style.willChange = 'opacity'
+        this.touch.bowlingball.$element.appendChild(this.touch.bowlingball.$border)
+
+        this.touch.bowlingball.$icon = document.createElement('div')
+        this.touch.bowlingball.$icon.style.position = 'absolute'
+        this.touch.bowlingball.$icon.style.top = 'calc(50% - 7px)'
+        this.touch.bowlingball.$icon.style.left = 'calc(50% - 7px)'
+        this.touch.bowlingball.$icon.style.width = '15px'
+        this.touch.bowlingball.$icon.style.height = '15px'
+        this.touch.bowlingball.$icon.style.backgroundImage = `url(${mobileBowlingBall})`
+        this.touch.bowlingball.$icon.style.backgroundSize = 'cover'
+        this.touch.bowlingball.$icon.style.transform = 'rotate(180deg)'
+        this.touch.bowlingball.$element.appendChild(this.touch.bowlingball.$icon)
+
+        // Events
+        this.touch.bowlingball.events = {}
+        this.touch.bowlingball.touchIdentifier = null
+        this.touch.bowlingball.events.touchstart = (_event) => {
+            _event.preventDefault()
+
+            const touch = _event.changedTouches[0]
+
+            if (touch) {
+                this.touch.bowlingball.touchIdentifier = touch.identifier
+
+                this.car.shootBall()
+
+                this.touch.bowlingball.$border.style.opacity = '0.5'
+
+                document.addEventListener('touchend', this.touch.bowlingball.events.touchend)
+            }
+        }
+
+        this.touch.bowlingball.events.touchend = (_event) => {
+            const touches = [..._event.changedTouches]
+            const touch = touches.find((_touch) => _touch.identifier === this.touch.bowlingball.touchIdentifier)
+
+            if (touch) {
+                this.touch.bowlingball.$border.style.opacity = '0.25'
+
+                document.removeEventListener('touchend', this.touch.bowlingball.events.touchend)
+            }
+        }
+
+        this.touch.bowlingball.$element.addEventListener('touchstart', this.touch.bowlingball.events.touchstart)
+
+        /**
+         * Klaxon
+         */
+        this.touch.klaxon = {}
+
+        // Element
+        this.touch.klaxon.$element = document.createElement('div')
+        this.touch.klaxon.$element.style.userSelect = 'none'
+        this.touch.klaxon.$element.style.position = 'fixed'
+        this.touch.klaxon.$element.style.top = 'calc(70px * 1 + 15px)'
+        this.touch.klaxon.$element.style.left = '0px'
+        this.touch.klaxon.$element.style.width = '95px'
+        this.touch.klaxon.$element.style.height = '70px'
+        this.touch.klaxon.$element.style.transition = 'opacity 0.3s 0.2s'
+        this.touch.klaxon.$element.style.willChange = 'opacity'
+        this.touch.klaxon.$element.style.opacity = '0'
+        // this.touch.klaxon.$element.style.backgroundColor = '#ff0000'
+        document.body.appendChild(this.touch.klaxon.$element)
+
+        this.touch.klaxon.$border = document.createElement('div')
+        this.touch.klaxon.$border.style.position = 'absolute'
+        this.touch.klaxon.$border.style.top = 'calc(50% - 30px)'
+        this.touch.klaxon.$border.style.left = 'calc(50% - 30px)'
+        this.touch.klaxon.$border.style.width = '60px'
+        this.touch.klaxon.$border.style.height = '60px'
+        this.touch.klaxon.$border.style.border = '2px solid #ffffff'
+        this.touch.klaxon.$border.style.borderRadius = '10px'
+        this.touch.klaxon.$border.style.boxSizing = 'border-box'
+        this.touch.klaxon.$border.style.opacity = '0.25'
+        this.touch.klaxon.$border.style.willChange = 'opacity'
+        this.touch.klaxon.$element.appendChild(this.touch.klaxon.$border)
+
+        this.touch.klaxon.$icon = document.createElement('div')
+        this.touch.klaxon.$icon.style.position = 'absolute'
+        this.touch.klaxon.$icon.style.top = 'calc(50% - 7px)'
+        this.touch.klaxon.$icon.style.left = 'calc(50% - 7px)'
+        this.touch.klaxon.$icon.style.width = '15px'
+        this.touch.klaxon.$icon.style.height = '15px'
+        this.touch.klaxon.$icon.style.backgroundImage = `url(${mobileKlaxon})`
+        this.touch.klaxon.$icon.style.backgroundSize = 'cover'
+        this.touch.klaxon.$icon.style.transform = 'rotate(180deg)'
+        this.touch.klaxon.$element.appendChild(this.touch.klaxon.$icon)
+
+        // Events
+        this.touch.klaxon.events = {}
+        this.touch.klaxon.touchIdentifier = null
+        this.touch.klaxon.events.touchstart = (_event) => {
+            _event.preventDefault()
+
+            const touch = _event.changedTouches[0]
+
+            if (touch) {
+                this.touch.klaxon.touchIdentifier = touch.identifier
+
+                this.car.shootKlaxon()
+
+                this.touch.klaxon.$border.style.opacity = '0.5'
+
+                document.addEventListener('touchend', this.touch.klaxon.events.touchend)
+            }
+        }
+
+        this.touch.klaxon.events.touchend = (_event) => {
+            const touches = [..._event.changedTouches]
+            const touch = touches.find((_touch) => _touch.identifier === this.touch.klaxon.touchIdentifier)
+
+            if (touch) {
+                this.touch.klaxon.$border.style.opacity = '0.25'
+
+                document.removeEventListener('touchend', this.touch.klaxon.events.touchend)
+            }
+        }
+
+        this.touch.klaxon.$element.addEventListener('touchstart', this.touch.klaxon.events.touchstart)
+
+        /**
+         * Reveal all
+         */
         this.touch.reveal = () => {
             this.touch.joystick.$element.style.opacity = 1
             this.touch.backward.$element.style.opacity = 1
             this.touch.brake.$element.style.opacity = 1
             this.touch.forward.$element.style.opacity = 1
             this.touch.boost.$element.style.opacity = 1
+            this.touch.bowlingball.$element.style.opacity = 1
+            this.touch.klaxon.$element.style.opacity = 1
         }
     }
 }

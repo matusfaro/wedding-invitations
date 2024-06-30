@@ -17,6 +17,7 @@ export default class Ger {
             rotation: new THREE.Euler(0, 0, (_options.rotation || 0) / 180 * Math.PI),
             mass: 1,
             shadow: {sizeX: 9, sizeY: 6, offsetZ: 1},
+            soundName: 'ger',
         })
     }
 
@@ -29,6 +30,7 @@ export default class Ger {
             mass: 5,
             shadow: {sizeX: 3, sizeY: 1, offsetZ: 1},
             duplicated: true,
+            soundName: 'woodHit'
         })
     }
 

@@ -33,6 +33,7 @@ export default class {
         this.camera = _options.camera
         this.renderer = _options.renderer
         this.passes = _options.passes
+        this.car = _options.car
 
         // Debug
         if (this.debug) {
@@ -474,6 +475,7 @@ export default class {
             config: this.config
         })
         this.container.add(this.car.container)
+        this.controls.setCar(this.car)
     }
 
     setSections() {

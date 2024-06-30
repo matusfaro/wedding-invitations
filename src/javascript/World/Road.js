@@ -65,9 +65,10 @@ export default class Road {
             collision: this.resources.items.treeCollision.scene,
             offset: new THREE.Vector3(_options.offset.x, _options.offset.y, 2),
             rotation: new THREE.Euler(0, 0, (_options.rotation || 0) / 180 * Math.PI),
-            mass: 10,
+            mass: 7,
             shadow: {sizeX: 1, sizeY: 1, alpha: 0.35},
             duplicated: true,
+            soundName: 'woodHit',
         })
     }
 }

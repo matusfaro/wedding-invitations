@@ -16,7 +16,7 @@ import brick1Sound from '../../sounds/bricks/brick-1.mp3'
 import brick2Sound from '../../sounds/bricks/brick-2.mp3'
 // import brick3Sound from '../../sounds/bricks/brick-3.mp3'
 import brick4Sound from '../../sounds/bricks/brick-4.mp3'
-// import brick5Sound from '../../sounds/bricks/brick-5.mp3'
+import brick5Sound from '../../sounds/bricks/brick-5.mp3'
 import brick6Sound from '../../sounds/bricks/brick-6.mp3'
 import brick7Sound from '../../sounds/bricks/brick-7.mp3'
 import brick8Sound from '../../sounds/bricks/brick-8.mp3'
@@ -124,6 +124,17 @@ export default class Sounds {
                 rateMax: 0.75
             },
             {
+                name: 'ger',
+                sounds: [brick5Sound],
+                minDelta: 1000,
+                velocityMin: 0.5,
+                velocityMultiplier: 1,
+                volumeMin: 0.4,
+                volumeMax: 1,
+                rateMin: 1,
+                rateMax: 1
+            },
+            {
                 name: 'bowlingBall',
                 sounds: [bowlingPin1Sound, bowlingPin1Sound, bowlingPin1Sound],
                 minDelta: 0,
@@ -217,8 +228,8 @@ export default class Sounds {
                 minDelta: 1000,
                 velocityMin: 0,
                 velocityMultiplier: 1,
-                volumeMin: 1,
-                volumeMax: 1,
+                volumeMin: 0.75,
+                volumeMax: 0.75,
                 rateMin: 1,
                 rateMax: 1
             },
@@ -228,8 +239,8 @@ export default class Sounds {
                 minDelta: 1000,
                 velocityMin: 0,
                 velocityMultiplier: 1,
-                volumeMin: 1,
-                volumeMax: 1,
+                volumeMin: 0.75,
+                volumeMax: 0.75,
                 rateMin: 1,
                 rateMax: 1
             },
@@ -239,8 +250,8 @@ export default class Sounds {
                 minDelta: 1000,
                 velocityMin: 0,
                 velocityMultiplier: 1,
-                volumeMin: 1,
-                volumeMax: 1,
+                volumeMin: 0.75,
+                volumeMax: 0.75,
                 rateMin: 1,
                 rateMax: 1
             },
@@ -250,8 +261,8 @@ export default class Sounds {
                 minDelta: 1000,
                 velocityMin: 0,
                 velocityMultiplier: 1,
-                volumeMin: 1,
-                volumeMax: 1,
+                volumeMin: 0.75,
+                volumeMax: 0.75,
                 rateMin: 1,
                 rateMax: 1
             },
@@ -261,8 +272,8 @@ export default class Sounds {
                 minDelta: 1000,
                 velocityMin: 0,
                 velocityMultiplier: 1,
-                volumeMin: 1,
-                volumeMax: 1,
+                volumeMin: 0.75,
+                volumeMax: 0.75,
                 rateMin: 1,
                 rateMax: 1
             },
@@ -272,8 +283,8 @@ export default class Sounds {
                 minDelta: 1000,
                 velocityMin: 0,
                 velocityMultiplier: 1,
-                volumeMin: 1,
-                volumeMax: 1,
+                volumeMin: 0.75,
+                volumeMax: 0.75,
                 rateMin: 1,
                 rateMax: 1
             },
