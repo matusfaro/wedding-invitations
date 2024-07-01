@@ -11,8 +11,9 @@ const translations = {
         weddingInvitation2: 'invitation →',
         theEnd: 'The End',
         seeYouSoon: 'See you soon!',
-        sixPm: ' 5 pm',
+        sixPm: 'Mongolia, 5pm',
         invitesYou: 'Invites you to our wedding',
+        skyResort: 'Sky Resort',
     },
     mn: { // АБВГДЕЁЖЗИЙКЛМНОӨПРСТУҮФХЦЧШЩЪЫЬЭЮЯ
         youSitHere: 'Энд суу',
@@ -41,7 +42,7 @@ const translations = {
         weddingInvitation2: '  pozvánka →',
         theEnd: 'Koniec',
         seeYouSoon: 'Uvidíme sa!',
-        sixPm: '   17h',
+        sixPm: 'Mongolsko, 17h',
         invitesYou: 'Vás pozývajú na svadbu',
     },
 }

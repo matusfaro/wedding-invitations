@@ -148,7 +148,7 @@ export default class WeddingSection {
             materialName: textMaterial,
         })
         this.alphabet.add({
-            text: 'Sky Resort',
+            text: this.i18n.get('skyResort'),
             direction: 'x',
             offset: new THREE.Vector3(
                 this.x,
