@@ -161,41 +161,45 @@ export default class Area extends EventEmitter {
     }
 
     interact(_showKey = true) {
-        // Not active
-        if (!this.active) {
-            return
-        }
-
-        // Kill tweens
-        TweenLite.killTweensOf(this.fence.mesh.position)
-        TweenLite.killTweensOf(this.floorBorder.material.uniforms.uAlpha)
-        TweenLite.killTweensOf(this.fence.material.uniforms.uBorderAlpha)
-
-        if (this.hasKey) {
-            TweenLite.killTweensOf(this.key.container.position)
-            TweenLite.killTweensOf(this.key.icon.material)
-            TweenLite.killTweensOf(this.key.enter.material)
-        }
-
-        // Animate
-        TweenLite.to(this.fence.mesh.position, 0.05, {
-            z: 0, onComplete: () => {
-                TweenLite.to(this.fence.mesh.position, 0.25, {z: 0.5, ease: Back.easeOut.config(2)})
-                TweenLite.fromTo(this.floorBorder.material.uniforms.uAlpha, 1.5, {value: 1}, {value: 0.5})
-                TweenLite.fromTo(this.fence.material.uniforms.uBorderAlpha, 1.5, {value: 1}, {value: 0.5})
+        try {
+            // Not active
+            if (!this.active) {
+                return
             }
-        })
 
-        if (this.hasKey && _showKey) {
-            this.key.container.position.z = this.key.shownZ
-            TweenLite.fromTo(this.key.icon.material, 1.5, {opacity: 1}, {opacity: 0.5})
-            TweenLite.fromTo(this.key.enter.material, 1.5, {opacity: 1}, {opacity: 0.5})
+            // Kill tweens
+            TweenLite.killTweensOf(this.fence.mesh.position)
+            TweenLite.killTweensOf(this.floorBorder.material.uniforms.uAlpha)
+            TweenLite.killTweensOf(this.fence.material.uniforms.uBorderAlpha)
+
+            if (this.hasKey) {
+                TweenLite.killTweensOf(this.key.container.position)
+                TweenLite.killTweensOf(this.key.icon.material)
+                TweenLite.killTweensOf(this.key.enter.material)
+            }
+
+            // Animate
+            TweenLite.to(this.fence.mesh.position, 0.05, {
+                z: 0, onComplete: () => {
+                    TweenLite.to(this.fence.mesh.position, 0.25, {z: 0.5, ease: Back.easeOut.config(2)})
+                    TweenLite.fromTo(this.floorBorder.material.uniforms.uAlpha, 1.5, {value: 1}, {value: 0.5})
+                    TweenLite.fromTo(this.fence.material.uniforms.uBorderAlpha, 1.5, {value: 1}, {value: 0.5})
+                }
+            })
+
+            if (this.hasKey && _showKey) {
+                this.key.container.position.z = this.key.shownZ
+                TweenLite.fromTo(this.key.icon.material, 1.5, {opacity: 1}, {opacity: 0.5})
+                TweenLite.fromTo(this.key.enter.material, 1.5, {opacity: 1}, {opacity: 0.5})
+            }
+
+            // Play sound
+            this.sounds.play('uiArea')
+
+            this.trigger('interact')
+        } catch (e) {
+            console.log("error interact", e)
         }
-
-        // Play sound
-        this.sounds.play('uiArea')
-
-        this.trigger('interact')
     }
 
     in(_showKey = true) {

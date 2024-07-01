@@ -32,65 +32,86 @@ export default class Areas {
 
         // Mouse move event
         window.addEventListener('mousemove', (_event) => {
-            this.mouse.coordinates.x = (_event.clientX / window.innerWidth) * 2 - 1
-            this.mouse.coordinates.y = -(_event.clientY / window.innerHeight) * 2 + 1
+            try {
+                this.mouse.coordinates.x = (_event.clientX / window.innerWidth) * 2 - 1
+                this.mouse.coordinates.y = -(_event.clientY / window.innerHeight) * 2 + 1
 
-            this.mouse.needsUpdate = true
+                this.mouse.needsUpdate = true
+            } catch (e) {
+                console.log("error mousemove", e)
+            }
         })
 
         // Mouse click event
         window.addEventListener('mousedown', () => {
-            if (this.mouse.currentArea) {
-                this.mouse.currentArea.interact(false)
+            try {
+                if (this.mouse.currentArea) {
+                    this.mouse.currentArea.interact(false)
+                }
+            } catch (e) {
+                console.log("error mousedown", e)
             }
         })
 
         // Touch
         this.renderer.domElement.addEventListener('touchstart', (_event) => {
-            this.mouse.coordinates.x = (_event.changedTouches[0].clientX / window.innerWidth) * 2 - 1
-            this.mouse.coordinates.y = -(_event.changedTouches[0].clientY / window.innerHeight) * 2 + 1
+            try {
+                this.mouse.coordinates.x = (_event.changedTouches[0].clientX / window.innerWidth) * 2 - 1
+                this.mouse.coordinates.y = -(_event.changedTouches[0].clientY / window.innerHeight) * 2 + 1
 
-            this.mouse.needsUpdate = true
+                // This was addded to fix spontaneous iphone breaking where the area could not be touched. No idea if this is the right thing to do.
+                if (this.mouse.currentArea) {
+                    this.mouse.currentArea.interact(false)
+                }
+
+                this.mouse.needsUpdate = true
+            } catch (e) {
+                console.log("error touchstart", e)
+            }
         })
 
         // Time tick event
         this.time.on('tick', () => {
-            // Only update if needed
-            if (this.mouse.needsUpdate) {
-                this.mouse.needsUpdate = false
+            try {
+                // Only update if needed
+                if (this.mouse.needsUpdate) {
+                    this.mouse.needsUpdate = false
 
-                // Set up
-                this.mouse.raycaster.setFromCamera(this.mouse.coordinates, this.camera.instance)
-                const objects = this.items.map((_area) => _area.mouseMesh)
-                const intersects = this.mouse.raycaster.intersectObjects(objects)
+                    // Set up
+                    this.mouse.raycaster.setFromCamera(this.mouse.coordinates, this.camera.instance)
+                    const objects = this.items.map((_area) => _area.mouseMesh)
+                    const intersects = this.mouse.raycaster.intersectObjects(objects)
 
-                // Intersections found
-                if (intersects.length) {
-                    // Find the area
-                    const area = this.items.find((_area) => _area.mouseMesh === intersects[0].object)
+                    // Intersections found
+                    if (intersects.length) {
+                        // Find the area
+                        const area = this.items.find((_area) => _area.mouseMesh === intersects[0].object)
 
-                    // Area did change
-                    if (area !== this.mouse.currentArea) {
-                        // Was previously over an area
-                        if (this.mouse.currentArea !== null) {
-                            // Play out
-                            this.mouse.currentArea.out()
-                            this.mouse.currentArea.testCar = this.mouse.currentArea.initialTestCar
+                        // Area did change
+                        if (area !== this.mouse.currentArea) {
+                            // Was previously over an area
+                            if (this.mouse.currentArea !== null) {
+                                // Play out
+                                this.mouse.currentArea.out()
+                                this.mouse.currentArea.testCar = this.mouse.currentArea.initialTestCar
+                            }
+
+                            // Play in
+                            this.mouse.currentArea = area
+                            this.mouse.currentArea.in(false)
+                            this.mouse.currentArea.testCar = false
                         }
-
-                        // Play in
-                        this.mouse.currentArea = area
-                        this.mouse.currentArea.in(false)
-                        this.mouse.currentArea.testCar = false
+                    }
+                    // No intersections found but was previously over an area
+                    else if (this.mouse.currentArea !== null) {
+                        // Play out
+                        this.mouse.currentArea.out()
+                        this.mouse.currentArea.testCar = this.mouse.currentArea.initialTestCar
+                        this.mouse.currentArea = null
                     }
                 }
-                // No intersections found but was previously over an area
-                else if (this.mouse.currentArea !== null) {
-                    // Play out
-                    this.mouse.currentArea.out()
-                    this.mouse.currentArea.testCar = this.mouse.currentArea.initialTestCar
-                    this.mouse.currentArea = null
-                }
+            } catch (e) {
+                console.log("error tick", e)
             }
         })
     }

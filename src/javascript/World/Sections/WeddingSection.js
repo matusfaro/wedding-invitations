@@ -140,40 +140,40 @@ export default class WeddingSection {
 
         this.alphabet.add({
             text: this.i18n.get('2024.8.4'),
-            direction: 'xy',
+            direction: 'x',
             offset: new THREE.Vector3(
-                this.x + 4 + 2,
-                this.y + 6 - 8,
+                this.x,
+                this.y + 42 - 3,
                 2),
             materialName: textMaterial,
         })
         this.alphabet.add({
             text: 'Sky Resort',
-            direction: 'xy',
+            direction: 'x',
             offset: new THREE.Vector3(
-                this.x + 5 + 2,
-                this.y + 5 - 8,
+                this.x,
+                this.y + 41 - 3,
                 1),
             materialName: textMaterial,
         })
         this.alphabet.add({
             text: this.i18n.get('sixPm'),
-            direction: 'xy',
+            direction: 'x',
             offset: new THREE.Vector3(
-                this.x + 6 + 2,
-                this.y + 4 - 8,
+                this.x,
+                this.y + 40 - 3,
                 0),
             materialName: textMaterial,
         })
 
-        this.alphabet.add({
-            text: this.i18n.get('seeYouSoon'),
-            direction: 'x',
-            offset: new THREE.Vector3(
-                this.x - 2,
-                this.y + 40,
-                0),
-            materialName: textMaterial,
-        })
+        // this.alphabet.add({
+        //     text: this.i18n.get('seeYouSoon'),
+        //     direction: 'x',
+        //     offset: new THREE.Vector3(
+        //         this.x - 2,
+        //         this.y + 40,
+        //         0),
+        //     materialName: textMaterial,
+        // })
     }
 }

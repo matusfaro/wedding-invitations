@@ -81,15 +81,23 @@ export default class Zones {
         })
 
         zone.on('in', () => {
-            this.camera.angle.set(_settings.cameraAngle)
-            TweenLite.to(this.passes.horizontalBlurPass.material.uniforms.uStrength.value, 2, {x: 0})
-            TweenLite.to(this.passes.verticalBlurPass.material.uniforms.uStrength.value, 2, {y: 0})
+            try {
+                this.camera.angle.set(_settings.cameraAngle)
+                TweenLite.to(this.passes.horizontalBlurPass.material.uniforms.uStrength.value, 2, {x: 0})
+                TweenLite.to(this.passes.verticalBlurPass.material.uniforms.uStrength.value, 2, {y: 0})
+            } catch (e) {
+                console.log("in error", e)
+            }
         })
 
         zone.on('out', () => {
-            this.camera.angle.set('driving')
-            TweenLite.to(this.passes.horizontalBlurPass.material.uniforms.uStrength.value, 2, {x: this.passes.horizontalBlurPass.strength})
-            TweenLite.to(this.passes.verticalBlurPass.material.uniforms.uStrength.value, 2, {y: this.passes.verticalBlurPass.strength})
+            try {
+                this.camera.angle.set('driving')
+                TweenLite.to(this.passes.horizontalBlurPass.material.uniforms.uStrength.value, 2, {x: this.passes.horizontalBlurPass.strength})
+                TweenLite.to(this.passes.verticalBlurPass.material.uniforms.uStrength.value, 2, {y: this.passes.verticalBlurPass.strength})
+            } catch (e) {
+                console.log("out error", e)
+            }
         })
 
         return zone
